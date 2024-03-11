@@ -1,5 +1,6 @@
 import User from "../../models/User.js";
 import { createSaltHash, hasher } from "../../utils/hasher.js";
+import sendMail from "../../utils/sendverificationMail.js";
 
 const register = async (registrationData) => {
     const { email, password } = registrationData;
@@ -22,7 +23,7 @@ const register = async (registrationData) => {
     };
 
     const registeredUser = await User.create(newUser);
-
+    await sendMail(v_code, registeredUser.generateUserInfo());
     return registeredUser.generateUserInfo();
 };
 
