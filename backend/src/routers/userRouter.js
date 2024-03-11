@@ -7,6 +7,7 @@ const userRouter = express
     .get("/", userController.getAllUser)
     .post("/edit", userController.edit)
     .post("/login", userController.login)
-    .post("/register", userController.register);
+    .post("/register", userController.register)
+    .get("/refresh", makeJwtAuth("refresh"), userController.refresh)
 
 export default userRouter;
