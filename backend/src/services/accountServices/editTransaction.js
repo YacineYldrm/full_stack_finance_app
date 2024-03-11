@@ -9,7 +9,7 @@ const editTransaction = async (req) => {
 
     const foundAccount = await Account.findById(updatedTransaction.accountId);
 
-    if (foundAccount.owner !== userId || updatedTransaction.owner !== userId) throw new Error("You are not authorized to edit this tansaction!!!")
+    if (foundAccount.owner.toString() !== userId || updatedTransaction.owner.toString() !== userId) throw new Error("You are not authorized to edit this tansaction!!!")
 
     foundAccount.transactions = foundAccount.transactions.map(transaction => {
         if (transaction._id === updatedTransaction._id) {
