@@ -6,6 +6,8 @@ const transactionSchema = new mongoose.Schema({
     type: { type: String, required: true, default: "" },
     date: { type: Number, required: true },
     seenBy: [{ type: mongoose.Types.ObjectId, required: true }],
+    comment: { type: String, default: "" },
+    media: { type: String, default: "" },
 });
 
 const accountSchema = new mongoose.Schema(
