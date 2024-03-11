@@ -9,6 +9,6 @@ const userRouter = express
     .post("/login", userController.login)
     .post("/register", userController.register)
     .get("/logout", makeJwtAuth(), userController.logout)
-    .get("/refresh", makeJwtAuth("refresh"), userController.refresh);
-
+    .get("/refresh", makeJwtAuth("refresh"), userController.refresh)
+    .post("/verify",userController.verify)
 export default userRouter;
