@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const transactionSchema = new mongoose.Schema({
     category: { type: String, required: true, default: "" },
     amount: { type: Number, required: true },
+    
     type: { type: String, required: true, default: "" },
     date: { type: Number, required: true }, // in services user value oder Date.now() als fallback
     seenBy: [{ type: mongoose.Types.ObjectId }], // beim Erstellen kommt die authorizedUserId hier rein
