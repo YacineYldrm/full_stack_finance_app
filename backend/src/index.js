@@ -5,9 +5,9 @@ import "dotenv/config";
 import multer from "multer";
 import mongoose from "mongoose";
 import status from "./utils/status.js";
-import routerOne from "./routers/userRouter.js";
 import cookieSession from "cookie-session";
 import userRouter from "./routers/userRouter.js";
+import accountRouter from "./routers/accountRouter.js";
 
 const app = express();
 
@@ -52,6 +52,7 @@ app.use(
 // ###################################
 
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/accounts", accountRouter);
 
 // ###################################
 
