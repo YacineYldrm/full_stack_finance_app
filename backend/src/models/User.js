@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
         birthDay: { type: Number, required: true },
         passwordHash: { type: String, required: true },
         saltHash: { type: String, required: true },
-        accounts: [{ type: mongoose.Types.ObjectId, required: true }],
+        accounts: [{ type: mongoose.Types.ObjectId }],
         v_code: { type: Number, required: true },
         verified: { type: Boolean, required: true, default: false },
     },
