@@ -3,7 +3,7 @@ import catchAsync from "../../utils/catchAsync.js";
 import status from "../../utils/status.js";
 
 const editCtrl = catchAsync(async (req, res) => {
-    const authorizedUserId = req.authorizedUserId;
+    const authorizedUserId = req.authorizedUser;
     const accountInfo = req.body;
     const updatedAccount = await accountServices.edit(
         authorizedUserId,

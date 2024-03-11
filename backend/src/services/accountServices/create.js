@@ -1,18 +1,21 @@
 import Account from "../../models/Account.js";
-
+import User from "../../models/User.js";
 
 const create = async (req) => {
-    const ownerId = req.authorizedUser;
+    const owner = req.authorizedUser;
     const accountData = req.body;
-    if (!accountData.cardNumber) throw new Error("Cardnumber must be provided!!!");
+    if (!accountData.cardNumber)
+        throw new Error("Cardnumber must be provided!!!");
     const newAccount = {
         ...accountData,
-        ownerId,
-        members: [ownerId]
-    }
+        owner,
+        members: [owner],
+    };
     const createdAccount = await Account.create(newAccount);
-    return createdAccount
-}
-
+    await User.findByIdAndUpdate(owner, {
+        $push: { accounts: createdAccount._id },
+    });
+    return createdAccount;
+};
 
 export default create;

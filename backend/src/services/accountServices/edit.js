@@ -5,7 +5,7 @@ const edit = async (authorizedUserId, accountInfo) => {
 
     if (!foundAccount) throw new Error("Account doesn't exist anymore!");
 
-    if (foundAccount.owner !== authorizedUserId)
+    if (foundAccount.owner.toString() !== authorizedUserId)
         throw new Error(
             "You are not allowed to edit this account. You must be the owner!"
         );
@@ -14,3 +14,5 @@ const edit = async (authorizedUserId, accountInfo) => {
         new: true,
     });
 };
+
+export default edit;
