@@ -1,11 +1,12 @@
 import edit from "./edit.js";
 import getAllUser from "./getAllUser.js";
-import { loginService } from "./loginService.js";
+import login from "./login.js";
 import register from "./register.js";
+
 const userServices = {
     getAllUser,
     edit,
-    loginService,
+    login,
     register,
 };
 
