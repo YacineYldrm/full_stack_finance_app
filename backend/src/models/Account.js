@@ -4,17 +4,17 @@ const transactionSchema = new mongoose.Schema({
     category: { type: String, required: true, default: "" },
     amount: { type: Number, required: true },
     type: { type: String, required: true, default: "" },
-    date: { type: Number, required: true },
-    seenBy: [{ type: mongoose.Types.ObjectId, required: true }],
+    date: { type: Number, required: true }, // in services user value oder Date.now() als fallback
+    seenBy: [{ type: mongoose.Types.ObjectId }], // beim Erstellen kommt die authorizedUserId hier rein
     comment: { type: String, default: "" },
     media: { type: String, default: "" },
 });
 
 const accountSchema = new mongoose.Schema(
     {
-        type: { type: String, required: true, default: "" },
-        cardNumber: { type: Number, required: true },
-        limit: { type: Number, required: true },
+        type: { type: String, default: "" },
+        cardNumber: { type: String, required: true },
+        limit: { type: Number },
         owner: { type: mongoose.Types.ObjectId, required: true },
         members: [{ type: mongoose.Types.ObjectId, required: true }],
         transactions: [transactionSchema],
