@@ -8,6 +8,7 @@ const userRouter = express
     .post("/edit", userController.edit)
     .post("/login", userController.login)
     .post("/register", userController.register)
-    .get("/logout", makeJwtAuth(), userController.logout);
+    .get("/logout", makeJwtAuth(), userController.logout)
+    .get("/refresh", makeJwtAuth("refresh"), userController.refresh);
 
 export default userRouter;
