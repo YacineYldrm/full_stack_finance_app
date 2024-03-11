@@ -8,7 +8,8 @@ const transactionSchema = new mongoose.Schema({
     seenBy: [{ type: mongoose.Types.ObjectId }], // beim Erstellen kommt die authorizedUserId hier rein
     comment: { type: String, default: "" },
     media: { type: String, default: "" },
-});
+    owner: { type: mongoose.Types.ObjectId, required: true }
+}, { timestamps: true });
 
 const accountSchema = new mongoose.Schema(
     {
