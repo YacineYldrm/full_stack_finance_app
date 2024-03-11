@@ -10,12 +10,21 @@ const userSchema = new mongoose.Schema(
         birthDay: { type: Number, required: true },
         passwordHash: { type: String, required: true },
         saltHash: { type: String, required: true },
-        accounts: [{ type: mongoose.Types.ObjectId, required: true }],
+        accounts: [{ type: mongoose.Types.ObjectId }],
         v_code: { type: Number, required: true },
         verified: { type: Boolean, required: true, default: false },
     },
     { collection: "users", timestamps: true }
 );
+
+
+userSchema.methods.generateUserInfo = function generateUserInfo() {
+    return {
+        _id: this._id,
+        user: this.firstName + " " + this.lastName,
+        email: this.email,
+    }
+}
 
 const User = mongoose.model("User", userSchema);
 
