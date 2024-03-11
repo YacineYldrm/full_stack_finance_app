@@ -8,7 +8,7 @@ const _delete = async (auhtorizedUserId, accountId) => {
 
     if (foundAccount.owner.toString() !== auhtorizedUserId)
         throw new Error(
-            "You can't delete this account. To delete an account you must be the owner of the account!"
+            "You can't delete this account. To delete an account you must be the owner!"
         );
 
     const foundUser = await User.findById(auhtorizedUserId);

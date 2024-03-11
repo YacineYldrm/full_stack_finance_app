@@ -4,6 +4,8 @@ import edit from "./edit.js";
 import editTransaction from "./editTransaction.js";
 import getAccounts from "./getAccounts.js";
 import addTransaction from "./addTransaction.js";
+import deleteTransaction from "./deleteTransaction.js";
+
 const accountServices = {
     create,
     getAccounts,
@@ -11,6 +13,7 @@ const accountServices = {
     editTransaction,
     addTransaction,
     _delete,
+    deleteTransaction,
 };
 
 export default accountServices;

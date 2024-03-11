@@ -9,6 +9,11 @@ const accountRouter = express
     .get("/", makeJwtAuth(), accountController.getAccounts)
     .delete("/:accountId", makeJwtAuth(), accountController.delete)
     .post("/add-transaction", makeJwtAuth(), accountController.addTransaction)
+    .delete(
+        "/delete-transaction/:transactionId",
+        makeJwtAuth(),
+        accountController.deleteTransaction
+    )
     .post(
         "/edit-transaction",
         makeJwtAuth(),

@@ -1,4 +1,4 @@
-import accountServices from "../../services/accountServices";
+import accountServices from "../../services/accountServices/index.js";
 import catchAsync from "../../utils/catchAsync.js";
 import status from "../../utils/status.js";
 
