@@ -17,6 +17,15 @@ const userSchema = new mongoose.Schema(
     { collection: "users", timestamps: true }
 );
 
+
+userSchema.methods.generateUserInfo = function generateUserInfo() {
+    return {
+        _id: this._id,
+        user: this.firstName + " " + this.lastName,
+        email: this.email,
+    }
+}
+
 const User = mongoose.model("User", userSchema);
 
 export default User;
