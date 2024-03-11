@@ -6,41 +6,39 @@ import createMailContent from "./createMailContent.js";
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const MAIL_URL = process.env.MAIL_URL
-const FRONTEND_URL = process.env.FRONTEND_URL + "/verify"
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const FRONTEND_URL = process.env.FRONTEND_URL + "/verify";
 
-console.log(REFRESH_TOKEN)
-const OAuth = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, MAIL_URL);
+console.log(REFRESH_TOKEN);
+const OAuth = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
-
-OAuth.setCredentials({ refresh_token: REFRESH_TOKEN })
-
+OAuth.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 const sendMail = async (v_code, userInfo) => {
-    const accessToken = await OAuth.getAccessToken()
+    const accessToken = await OAuth.getAccessToken();
     try {
         const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
+                type: "OAUTH2",
                 accessToken: accessToken,
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
-                type: "OAUTH2",
-                user: "psersianspacex@gmail.com"
-            }
-        })
+                refreshToken: REFRESH_TOKEN,
+                user: "persianspacex@gmail.com",
+            },
+        });
 
         const mailResult = await transporter.sendMail({
-            from: "APP Name",
+            from: "FINCO App <psersianspacex@gmail.com >",
             to: userInfo.email,
-            subject: "Your refistration ...",
-            text: "our text here",
-            html: createMailContent(v_code, userInfo, FRONTEND_URL)
-        })
-        console.log(mailResult)
+            subject: "Welcome to FINCO!",
+            html: createMailContent(v_code, userInfo, FRONTEND_URL),
+        });
+        console.log(mailResult);
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-}
+};
 
 export default sendMail;
