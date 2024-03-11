@@ -12,7 +12,7 @@ const login = async (loginInfo) => {
         throw new Error("Password is wrong");
     const accessToken = createToken(foundUser._id);
     const refreshToken = createToken(foundUser._id, "refresh");
-    return { result: foundUser, accessToken, refreshToken };
+    return { result: foundUser.generateUserInfo(), accessToken, refreshToken };
 };
 
 export default login;

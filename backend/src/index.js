@@ -43,7 +43,7 @@ app.use(
         name: "session",
         httpOnly: true,
         secret: COOKIE_SECRET,
-        secure: true,
+        secure: false,
         signed: true,
         maxAge: tenDays,
     })
