@@ -6,6 +6,6 @@ const accountRouter = express
     .Router()
     .post("/edit", makeJwtAuth(), accountController.edit)
     .post("/create", makeJwtAuth(), accountController.create)
-    .get("/", makeJwtAuth(), accountController.getAccounts);
-
+    .get("/", makeJwtAuth(), accountController.getAccounts)
+    .post("/add-transaction",makeJwtAuth(),accountController.addTransaction)
 export default accountRouter;
