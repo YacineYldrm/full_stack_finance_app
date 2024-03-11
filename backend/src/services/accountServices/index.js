@@ -1,7 +1,10 @@
+import create from "./create.js";
 import getAccounts from "./getAccounts.js"
 
 const accountServices = {
-    getAccounts
+    create,
+    getAccounts,
 }
 
-export default accountServices
+
+export default accountServices;

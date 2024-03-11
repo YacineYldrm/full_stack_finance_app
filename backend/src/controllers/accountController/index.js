@@ -1,7 +1,10 @@
-import getAccountsCtrl from "./getAccountsCtrl"
+import createCtrl from "./createCtrl.js";
+import getAccountsCtrl from "./getAccountsCtrl.js"
+
 
 const accountController = {
-getAccounts: getAccountsCtrl
+    create: createCtrl,
+    getAccounts: getAccountsCtrl,
 }
 
-export default accountController
+export default accountController;
