@@ -6,28 +6,48 @@ import multer from "multer";
 import mongoose from "mongoose";
 import status from "./utils/status.js";
 import routerOne from "./routers/routerOne.js";
+import cookieSession from "cookie-session";
 
 
 const app = express();
 
-
+// ###################################
 
 app.use(morgan("dev"));
 app.use(cors());
 
+// ###################################
+
 app.use(express.static("./data"));
+
+// ###################################
 
 const storage = multer.diskStorage({
     destination: "./data",
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + file.originalname)
+    filename: (_, file, cb) => {
+        cb(null, Date.now() + file.originalname);
     }
 })
-
 
 const upload = multer({ storage: storage });
 
 app.use(upload.single("image"));
+
+// ###################################
+
+const COOKIE_SECRET = process.env.COOKIE_SECRET;
+const tenDays = 10 * 24 * 60 * 60 * 1000;
+
+app.use(cookieSession({
+    name: "session",
+    httpOnly: true,
+    secret: COOKIE_SECRET,
+    secure: true,
+    signed: true,
+    maxAge: tenDays
+}))
+
+// ###################################
 
 
 app.use('/api/v1/model1', routerOne);
@@ -41,11 +61,14 @@ app.use('/api/v1/model1', routerOne);
 
 
 
+// ###################################
 
 app.get((_, res) => {
     res.status(status.NOT_FOUND).json({ success: false, result: "Not Found" });
 });
 
+
+// ###################################
 
 const PORT = process.env.PORT || 3001
 const startServer = () => {
