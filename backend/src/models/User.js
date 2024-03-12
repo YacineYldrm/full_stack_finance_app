@@ -24,6 +24,7 @@ userSchema.methods.generateUserInfo = function generateUserInfo() {
         email: this.email,
         profileImage: this.profileImage,
         verified: this.verified,
+        accounts: this.accounts,
     };
 };
 

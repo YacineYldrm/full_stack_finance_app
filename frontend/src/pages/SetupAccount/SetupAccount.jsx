@@ -14,7 +14,7 @@ const SetupAccount = ({ provider }) => {
         const authorization = provider.authorization;
         const userInfo = JSON.stringify(provider.activeUser);
         const fd = new FormData();
-        fd.append({ ...userInfo });
+        fd.append("userInfo", userInfo);
         imgFile ? fd.append("image", imgFile, imgFile.name) : null;
         const response = await fetch(
             "http://localhost:3001/api/v1/" + "users/edit",
@@ -39,9 +39,7 @@ const SetupAccount = ({ provider }) => {
             "http://localhost:3001/api/v1/" + "accounts/create",
             {
                 method: "POST",
-                headers: {
-                    authorization,
-                },
+                headers: { "Content-Type": "application/json", authorization },
                 body: JSON.stringify({
                     cardNumber,
                 }),

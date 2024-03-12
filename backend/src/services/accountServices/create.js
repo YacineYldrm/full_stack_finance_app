@@ -2,6 +2,7 @@ import Account from "../../models/Account.js";
 import User from "../../models/User.js";
 
 const create = async (req) => {
+    console.log(req.body);
     const owner = req.authorizedUser;
     const accountData = req.body;
     if (!accountData.cardNumber)
