@@ -15,7 +15,7 @@ const SetupAccount = ({ provider }) => {
         const userInfo = JSON.stringify(provider.activeUser);
         const fd = new FormData();
         fd.append("userInfo", userInfo);
-        imgFile ? fd.append("image", imgFile, imgFile.name) : null;
+        imgFile ? fd.append("image", imgFile) : null;
         const response = await fetch(
             "http://localhost:3001/api/v1/" + "users/edit",
             {
@@ -79,6 +79,7 @@ const SetupAccount = ({ provider }) => {
                 </div>
                 <div>
                     <input
+                        accept='image/*'
                         onChange={(e) => setImgFile(e.target.files[0])}
                         type="file"
                     />
