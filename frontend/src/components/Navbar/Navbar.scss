@@ -1,0 +1,38 @@
+.navbar {
+	background-color: rgb(255, 255, 255);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 4vmin 6vmin;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 1px 0 30px rgba(0, 0, 0, 0.14);
+	font-size: 2vmax;
+	transition: all 300ms linear;
+	a {
+		transition: all 300ms linear;
+		h3 {
+			display: none;
+			font-weight: 500;
+			background: linear-gradient(#44bbfe, #1e78fe) bottom no-repeat;
+			background-size: 2vmax 3px;
+			line-height: 200%;
+			transition: all 300ms linear;
+		}
+		img {
+			width: 3.3vmax;
+			transition: all 300ms linear;
+		}
+	}
+	.active {
+		transition: all 300ms linear;
+		h3 {
+			display: block;
+		}
+		img {
+			display: none;
+		}
+	}
+}
