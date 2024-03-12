@@ -1,30 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import SetupAccount from "./pages/SetupAccount/SetupAccount";
 import Navbar from "./components/Navbar/Navbar";
+import Login from './pages/Login/Login';
+import { silentRefresh } from './utils/refresh';
 
 function App() {
-    const [authorization, setAuthorizsation] = useState("");
+    const [authorization, setAuthorization] = useState("");
     const [activeUser, setActiveUser] = useState("");
-    const [accounts, setAcconts] = useState([]);
-    const [account, setAccont] = useState({});
+    const [accounts, setAccounts] = useState([]);
+    const [account, setAccount] = useState({});
     const [transactions, setTransactions] = useState([]);
+	
 
     const provider = {
         authorization,
-        setAuthorizsation,
+        setAuthorization,
         activeUser,
         setActiveUser,
         accounts,
-        setAcconts,
+        setAccounts,
         account,
-        setAccont,
+        setAccount,
         transactions,
         setTransactions,
     };
+	 useEffect(()=>{
+		if(authorization==="") silentRefresh(null,setAuthorization)
+	 },[authorization])
 
     return (
         <>
@@ -40,6 +46,7 @@ function App() {
                         path="/account/setup"
                         element={<SetupAccount provider={provider} />}
                     />
+					<Route path='/login' element={<Login provider={provider}/>}/>
                 </Routes>
                 <Navbar />
             </BrowserRouter>
