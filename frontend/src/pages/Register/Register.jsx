@@ -32,7 +32,7 @@ const Register = () => {
             setMessage(message);
         } else {
             setMessage("Great! Your registration was successful!");
-            navigate(`/verify/${result._id}`); // verification link checken
+            navigate(`/verify/${result._id}`);
         }
     };
 

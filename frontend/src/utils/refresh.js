@@ -1,34 +1,34 @@
-import { backendUrl } from "../api"
+import { backendUrl } from "../api";
 
 const getDelayTime = (accessToken) => {
-    const [_, payload] = accessToken.split(".")
-    const { iat, exp } = JSON.parse(atob(payload))
-    const delayTime = (exp - iat - 60) * 1000
-    return delayTime
-}
+    const [_, payload] = accessToken.split(".");
+    const { iat, exp } = JSON.parse(atob(payload));
+    const delayTime = (exp - iat - 60) * 1000;
+    return delayTime;
+};
 
 const getNewAccessToken = async () => {
     const res = await fetch(`${backendUrl}users/refresh`, {
         method: "GET",
-        credentials: "include"
-    })
-    const { accessToken } = await res.json()
-    return accessToken
-}
+        credentials: "include",
+    });
+    const { result } = await res.json();
+    return result;
+};
 
-export const silentRefresh = (accessToken, setAuthorization) => {
+export const silentRefresh = async (accessToken, setAuthorization) => {
     if (!accessToken) {
-        async () => {
+        const newAccessToken = await getNewAccessToken();
+        if (newAccessToken) {
+            setAuthorization(`Bearer ${newAccessToken}`);
+            silentRefresh(newAccessToken, setAuthorization);
+        }
+    } else {
+        const delayTime = getDelayTime(accessToken);
+        setTimeout(async () => {
             const newAccessToken = await getNewAccessToken();
             setAuthorization(`Bearer ${newAccessToken}`);
-            silentRefresh(newAccessToken, setAuthorization)
-        }
-        return
+            silentRefresh(newAccessToken, setAuthorization);
+        }, delayTime);
     }
-    const delayTime = getDelayTime(accessToken)
-    setTimeout(async () => {
-        const newAccessToken = await getNewAccessToken()
-        setAuthorization(`Bearer ${newAccessToken}`)
-        silentRefresh(newAccessToken, setAuthorization)
-    }, delayTime)
-}
+};
