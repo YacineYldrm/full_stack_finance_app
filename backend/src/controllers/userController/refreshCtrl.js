@@ -4,8 +4,8 @@ import status from "../../utils/status.js";
 
 const refreshCtrl = catchAsync(async (req, res) => {
     const userId = req.authorizedUser;
-    const newAccessToken = await userServices.refresh(userId);
-    res.status(status.CREATED).json({ success: true, result: newAccessToken });
+    const result = await userServices.refresh(userId);
+    res.status(status.CREATED).json({ success: true, result });
 });
 
 export default refreshCtrl;

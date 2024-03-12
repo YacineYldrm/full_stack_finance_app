@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "../../../public/logo.png";
+import placeholderImage from "../../../public/PlaceHolderImage.svg";
 import "./SetupAccount.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +8,8 @@ const SetupAccount = ({ provider }) => {
     const [imgFile, setImgFile] = useState(null);
     const [cardNumber, setCardNumber] = useState(null);
     const [message, setMessage] = useState("");
+
+    console.log(provider.activeUser);
 
     const navigate = useNavigate();
 
@@ -30,7 +33,7 @@ const SetupAccount = ({ provider }) => {
         if (!success) {
             console.log(error, message);
             setMessage(message);
-        } else console.log(result);
+        } else provider.setActiveUser(result);
     };
 
     const createAccount = async () => {
@@ -72,7 +75,7 @@ const SetupAccount = ({ provider }) => {
                         src={
                             imgFile
                                 ? URL.createObjectURL(imgFile)
-                                : "https://i.etsystatic.com/27443014/r/il/d58347/4721440813/il_570xN.4721440813_f7e4.jpg"
+                                : placeholderImage
                         }
                         alt="profile picture"
                     />

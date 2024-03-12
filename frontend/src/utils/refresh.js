@@ -16,17 +16,22 @@ const getNewAccessToken = async () => {
     return result;
 };
 
-export const silentRefresh = async (accessToken, setAuthorization) => {
+export const silentRefresh = async (
+    accessToken,
+    setAuthorization,
+    setActiveUser
+) => {
     if (!accessToken) {
-        const newAccessToken = await getNewAccessToken();
+        const { activeUser, newAccessToken } = await getNewAccessToken();
         if (newAccessToken) {
             setAuthorization(`Bearer ${newAccessToken}`);
             silentRefresh(newAccessToken, setAuthorization);
+            setActiveUser(activeUser);
         }
     } else {
         const delayTime = getDelayTime(accessToken);
         setTimeout(async () => {
-            const newAccessToken = await getNewAccessToken();
+            const { newAccessToken } = await getNewAccessToken();
             setAuthorization(`Bearer ${newAccessToken}`);
             silentRefresh(newAccessToken, setAuthorization);
         }, delayTime);
