@@ -19,6 +19,7 @@ const Login = ({ provider }) => {
             headers: { "Content-Type": "application/json" },
         });
         const { success, result, accessToken, error } = await res.json();
+        console.log(result);
         if (!success) {
             console.log(error);
         } else {
