@@ -21,6 +21,7 @@ export const silentRefresh = (accessToken, setAuthorization) => {
         async () => {
             const newAccessToken = await getNewAccessToken();
             setAuthorization(`Bearer ${newAccessToken}`);
+            silentRefresh(newAccessToken, setAuthorization)
         }
         return
     }
