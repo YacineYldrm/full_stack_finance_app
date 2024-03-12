@@ -4,6 +4,7 @@ import "./App.scss";
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import SetupAccount from "./pages/SetupAccount/SetupAccount";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
     const [authorization, setAuthorizsation] = useState("");
@@ -40,6 +41,7 @@ function App() {
                         element={<SetupAccount provider={provider} />}
                     />
                 </Routes>
+                <Navbar />
             </BrowserRouter>
         </>
     );
