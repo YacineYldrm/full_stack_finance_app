@@ -4,7 +4,6 @@
 
 const createMailContent = (v_code, userInfo, link) => {
     return `
-        < !DOCTYPE html >
         <html lang="en">
             <head>
                 <meta charset="UTF-8" />
@@ -29,10 +28,10 @@ const createMailContent = (v_code, userInfo, link) => {
                     max-width: 100%;
 			}
                     body {
-                        width: 100vw;
-                    min-height: 60vh;
+                        width: 100%;
+                    
                     background-color: rgb(219, 243, 255);
-                    padding: 2.5% 5%;
+                    padding: 2.5rem 5rem;
                     font-family: system-ui, -apple-system, BlinkMacSystemFont,
                     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
                     'Helvetica Neue', sans-serif;
@@ -40,72 +39,72 @@ const createMailContent = (v_code, userInfo, link) => {
 			}
 			body > div {
                         display: flex;
-                    align-items: center;
-                    gap: 2vw;
+                    align-items: basline;
+                    gap: 2rem;
                     color: rgb(4, 137, 225);
-                    font-size: 2vmax;
+                    font-size: 2rem;
                     border-bottom: 3px solid rgb(4, 137, 225);
-                    padding-bottom: 2.5%;
-                    margin-bottom: 8vh;
+                    padding-bottom: 2.5rem;
+                    margin-bottom: 8rem;
+			}
+			body > div > img {
+                width: 6rem;
+                height:  3rem;
+                margin-right: 2rem;
 			}
 			body > div > h2 {
-                        position: relative;
-                    top: 2.8vh;
+                padding-top: 3rem;
 			}
 
                     h3 {
                         margin: 0 auto;
-                    font-size: 2.3vmax;
-                    margin-bottom: 3vh;
-                    margin-bottom: 6vh;
+                    font-size: 2.3rem;
+                    margin-bottom: 3rem;
+                    margin-bottom: 6rem;
                     width: 80%;
 			}
                     h4 {
-                        text - align: center;
-                    font-size: 2.5vmax;
+                        text-align: center;
+                    font-size: 2.5rem;
                     background-color: rgb(0, 75, 125);
                     color: rgb(219, 243, 255);
-                    width: 15%;
-                    padding: 1% 0.5%;
+                    width:fit-content;
+                    padding: 1%;
                     line-height: 100%;
                     margin: 0 auto;
-                    border-radius: 1vmax;
-                    margin-bottom: 8vh;
+                    border-radius: 1rem;
+                    margin-bottom: 8rem;
 			}
                     h5 {
                         margin: 0 auto;
-                    margin-bottom: 10vh;
-                    font-size: 2vmax;
+                    margin-bottom: 10rem;
+                    font-size: 2rem;
                     width: 80%;
 			}
 
                     a {
                         text - align: center;
-                    font-size: 1.4vmax;
+                    font-size: 1.4rem;
                     background-color: rgb(0, 75, 125);
                     color: rgb(219, 243, 255);
-                    width: 15%;
                     padding: 0.7%;
                     line-height: 100%;
                     margin: 0 auto;
-                    border-radius: 0.6vmax;
+                    border-radius: 0.6rems;
                     display: inline-block;
                     transition: all 400ms ease-in-out;
 			}
-                    a:hover {
-                        transform: scale(1.03) translate(0, -10%);
-                    font-size: 1.5;
-			}
+        
                 </style>
             </head>
             <body>
                 <div>
                     <img
-                        src="./logo.png"
+                        src="cid:persianspacex@gmail.com"
                         alt="" />
                     <h2>Welcome to Finco</h2>
                 </div>
-                <h3>Hello ${userInfo.user}}</h3>
+                <h3>Hello ${userInfo.user}</h3>
                 <h5>
                     Welcome aboard! With Finco, you’re embarking on a journey towards
                     your financial aspirations. From now on, stay in control of your
