@@ -17,7 +17,7 @@ const transactionSchema = new mongoose.Schema(
 
 const accountSchema = new mongoose.Schema(
     {
-        type: { type: String, default: "" },
+        type: { type: String, default: "TEST" }, // ANPASSEN
         cardNumber: { type: String, required: true },
         limit: { type: Number },
         owner: { type: mongoose.Types.ObjectId, required: true },

@@ -8,6 +8,7 @@ import { silentRefresh } from "../../utils/refresh";
 
 const Login = ({ provider }) => {
     const [loginInfo, setLoginInfo] = useState({});
+    const [message, setMessage] = useState(null);
     const navigate = useNavigate();
 
     const login = async () => {
@@ -37,6 +38,7 @@ const Login = ({ provider }) => {
             }
         }
     };
+
     return (
         <>
             <main>

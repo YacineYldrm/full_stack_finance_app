@@ -14,6 +14,7 @@ function App() {
     const [accounts, setAccounts] = useState([]);
     const [account, setAccount] = useState({});
     const [transactions, setTransactions] = useState([]);
+    console.log(authorization);
 
     const provider = {
         authorization,
@@ -29,14 +30,23 @@ function App() {
     };
 
     useEffect(() => {
-        if (!authorization) silentRefresh(null, setAuthorization);
+        if (!authorization)
+            silentRefresh(null, setAuthorization, setActiveUser);
     }, []);
 
     return (
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home provider={provider} />} />
+                    <Route
+                        path="/"
+                        element={
+                            <Home
+                                provider={provider}
+                                authorization={authorization}
+                            />
+                        }
+                    />
 
                     <Route
                         path="/register"
