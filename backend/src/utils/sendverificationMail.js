@@ -34,6 +34,11 @@ const sendMail = async (v_code, userInfo) => {
             to: userInfo.email,
             subject: "Welcome to FINCO!",
             html: createMailContent(v_code, userInfo, FRONTEND_URL),
+            attachments: [{
+                filename: "logo.png",
+                path: "./logo.png",
+                cid: "persianspacex@gmail.com"
+            }]
         });
         console.log(mailResult);
     } catch (error) {
