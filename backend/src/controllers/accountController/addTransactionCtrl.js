@@ -2,9 +2,10 @@ import accountServices from "../../services/accountServices/index.js";
 import catchAsync from "../../utils/catchAsync.js";
 
 const addTransactionCtrl = catchAsync(async(req,res)=>{
-    const transactionInfo = req.body
+    const transactionInfo = JSON.parse(req.body.transactionInfo)
     const userId = req.authorizedUser
-    const result = await accountServices.addTransaction(transactionInfo,userId)
+    const reqFile = req.file
+    const result = await accountServices.addTransaction(transactionInfo,userId,reqFile)
     res.json({success: true, result})
 })
 

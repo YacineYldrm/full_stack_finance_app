@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./Login.scss";
-import Button from "../../components/Button";
 import { backendUrl } from "../../api";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../public/logo.png";
 import { silentRefresh } from "../../utils/refresh";
+import Button from "../../components/Button/Button";
 
 const Login = ({ provider }) => {
     const [loginInfo, setLoginInfo] = useState({});
@@ -41,7 +41,7 @@ const Login = ({ provider }) => {
 
     return (
         <>
-            <main>
+            <main className="login">
                 <div>
                     <img src={logo} alt="Finco-Logo" />
                 </div>
@@ -72,9 +72,9 @@ const Login = ({ provider }) => {
                             }
                         />
                     </div>
-                    <div>
-                        <p>Forgot password?</p>
-                    </div>
+
+                    <h6>Forgot password?</h6>
+
                     <Button btnContent={"Login"} btnFunction={login} />
                 </form>
                 <p>

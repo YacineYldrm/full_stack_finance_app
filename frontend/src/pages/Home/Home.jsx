@@ -1,3 +1,4 @@
+import Navbar from "../../components/Navbar/Navbar";
 import "./Home.scss";
 import checkIcon from "../../../public/check.svg";
 import checkIconBG from "../../../public/Bg.svg";
@@ -42,7 +43,7 @@ const Home = ({ provider }) => {
         );
         setIncomeTotal(incomes?.reduce((acc, curr) => acc + curr.amount, 0));
         setExpenseTotal(expenses?.reduce((acc, curr) => acc + curr.amount, 0));
-    }, [index]);
+    }, [provider.account]);
 
     useEffect(() => {
         if (provider.accounts.length > index)

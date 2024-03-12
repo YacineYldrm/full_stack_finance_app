@@ -4,9 +4,10 @@ import "./App.scss";
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import SetupAccount from "./pages/SetupAccount/SetupAccount";
-import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login/Login";
 import { silentRefresh } from "./utils/refresh";
+import AddIncome from "./pages/AddIncome/AddIncome";
+import AddExpense from "./pages/AddExpanse/AddExpense";
 
 function App() {
     const [authorization, setAuthorization] = useState(null);
@@ -14,7 +15,6 @@ function App() {
     const [accounts, setAccounts] = useState([]);
     const [account, setAccount] = useState({});
     const [transactions, setTransactions] = useState([]);
-    console.log(authorization);
 
     const provider = {
         authorization,
@@ -38,15 +38,7 @@ function App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <Home
-                                provider={provider}
-                                authorization={authorization}
-                            />
-                        }
-                    />
+                    <Route path="/" element={<Home provider={provider} />} />
 
                     <Route
                         path="/register"
@@ -60,8 +52,15 @@ function App() {
                         path="/login"
                         element={<Login provider={provider} />}
                     />
+                    <Route
+                        path="/add-income"
+                        element={<AddIncome provider={provider} />}
+                    />
+                    <Route
+                        path="add-expense"
+                        element={<AddExpense provider={provider} />}
+                    />
                 </Routes>
-                <Navbar />
             </BrowserRouter>
         </>
     );
