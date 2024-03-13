@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './AddIncome.scss';
 
 import { backendUrl } from '../../api';
@@ -9,10 +9,27 @@ const AddIncome = ({ provider }) => {
 	const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
 	const [time, setTime] = useState(new Date().toISOString().slice(11, 16));
 	const [file, setFile] = useState();
-
+	
 	const getDateTime = () => {
 		return new Date(`${date}T${time}:00`).getTime();
 	};
+	const getAllAccounts = async () => {
+        const response = await fetch(`${backendUrl}accounts`, {
+            method: "GET",
+            headers: { authorization: provider.authorization },
+        });
+        const { success, result, error, message } = await response.json();
+        if (!success) {
+            console.log(error, message);
+        } else {
+            console.log(result);
+            provider.setAccounts(result);
+            provider.setAccount(result[0]);
+        }
+    };
+    useEffect(() => {
+        getAllAccounts();
+    }, [provider.authorization]);
 
 	const addTransaction = async () => {
 		event.preventDefault();
@@ -21,7 +38,7 @@ const AddIncome = ({ provider }) => {
 			...transactionInfo,
 			date: getDateTime(),
 			type: 'income',
-			accountId: '65f0a06b73cf05b42ed0d23e',
+			accountId: provider.account._id,
 		};
 		fd.append('transactionInfo', JSON.stringify(transaction));
 		file ? fd.append('image', file) : null;
@@ -36,7 +53,7 @@ const AddIncome = ({ provider }) => {
 			console.log(message);
 		} else {
 			console.log(result);
-			// setAccount(result)
+			provider.setAccount(result)
 		}
 	};
 

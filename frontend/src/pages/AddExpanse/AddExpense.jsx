@@ -5,8 +5,8 @@ import Button from '../../components/Button/Button';
 
 const AddExpense = ({ provider }) => {
 	const [transactionInfo, setTransactionInfo] = useState({});
-	const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
-	const [time, setTime] = useState(new Date().toISOString().slice(11, 16));
+	const [date, setDate] = useState(new Date(Date.now()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(0, 10));
+	const [time, setTime] = useState(new Date(Date.now()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(11, 16));
 	const [file, setFile] = useState();
 
 	const getDateTime = () => {
@@ -20,7 +20,7 @@ const AddExpense = ({ provider }) => {
 			...transactionInfo,
 			date: getDateTime(),
 			type: 'expense',
-			accountId: '65f0a06b73cf05b42ed0d23e',
+			accountId: provider.account._id,
 		};
 		fd.append('transactionInfo', JSON.stringify(transaction));
 		file ? fd.append('image', file) : null;
@@ -35,6 +35,7 @@ const AddExpense = ({ provider }) => {
 			console.log(message);
 		} else {
 			console.log(result);
+			provider.setAccount(result)
 		}
 	};
 
