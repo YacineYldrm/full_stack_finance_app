@@ -14,7 +14,7 @@ const Navbar = ({ provider }) => {
 					<HomeIcon />
 				</div>
 			</NavLink>
-			<NavLink to='/transactions'>
+			<NavLink to='/all-transactions'>
 				<h3>Transactions</h3>
 				<div>
 					<CardIcon />

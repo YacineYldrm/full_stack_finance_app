@@ -11,6 +11,7 @@ import AddExpense from './pages/AddExpanse/AddExpense';
 import AllTransaction from './pages/AllTransaction/AllTransaction';
 
 function App() {
+	// #################################################
 	const [authorization, setAuthorization] = useState(null);
 	const [activeUser, setActiveUser] = useState('');
 	const [accounts, setAccounts] = useState([]);
@@ -29,12 +30,14 @@ function App() {
 		transactions,
 		setTransactions,
 	};
+	// ############### Refresh Token on pagereload ###############
 
 	useEffect(() => {
 		if (!authorization)
 			silentRefresh(null, setAuthorization, setActiveUser);
 	}, []);
 
+	// #################################################
 	return (
 		<>
 			<BrowserRouter>

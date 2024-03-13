@@ -1,11 +1,14 @@
 import { backendUrl } from "../api";
 
+// #################################################
+
 const getDelayTime = (accessToken) => {
     const [_, payload] = accessToken.split(".");
     const { iat, exp } = JSON.parse(atob(payload));
     const delayTime = (exp - iat - 60) * 1000;
     return delayTime;
 };
+// #################################################
 
 const getNewAccessToken = async () => {
     const res = await fetch(`${backendUrl}users/refresh`, {
@@ -15,6 +18,8 @@ const getNewAccessToken = async () => {
     const { result } = await res.json();
     return result;
 };
+
+// #################################################
 
 export const silentRefresh = async (
     accessToken,
@@ -37,3 +42,5 @@ export const silentRefresh = async (
         }, delayTime);
     }
 };
+
+// #################################################
