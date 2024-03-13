@@ -7,38 +7,39 @@ import Card from "../../components/Card/Card";
 
 const AddExpense = ({ provider }) => {
     const [transactionInfo, setTransactionInfo] = useState({});
-    const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
-    const [time, setTime] = useState(new Date().toISOString().slice(11, 16));
+    const [date, setDate] = useState(new Date(Date.now()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(0, 10));
+    const [time, setTime] = useState(new Date(Date.now()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(11, 16));
     const [file, setFile] = useState();
 
     const getDateTime = () => {
         return new Date(`${date}T${time}:00`).getTime();
     };
 
-    const addTransaction = async () => {
-        event.preventDefault();
-        const fd = new FormData();
-        const transaction = {
-            ...transactionInfo,
-            date: getDateTime(),
-            type: "expense",
-            accountId: "65f0a06b73cf05b42ed0d23e",
-        };
-        fd.append("transactionInfo", JSON.stringify(transaction));
-        file ? fd.append("image", file) : null;
-        const res = await fetch(`${backendUrl}accounts/add-transaction`, {
-            method: "POST",
-            body: fd,
-            headers: { authorization: provider.authorization },
-        });
-        const { success, result, error, message } = await res.json();
-        if (!success) {
-            console.log(error);
-            console.log(message);
-        } else {
-            console.log(result);
-        }
-    };
+	const addTransaction = async () => {
+		event.preventDefault();
+		const fd = new FormData();
+		const transaction = {
+			...transactionInfo,
+			date: getDateTime(),
+			type: 'expense',
+			accountId: provider.account._id,
+		};
+		fd.append('transactionInfo', JSON.stringify(transaction));
+		file ? fd.append('image', file) : null;
+		const res = await fetch(`${backendUrl}accounts/add-transaction`, {
+			method: 'POST',
+			body: fd,
+			headers: { authorization: provider.authorization },
+		});
+		const { success, result, error, message } = await res.json();
+		if (!success) {
+			console.log(error);
+			console.log(message);
+		} else {
+			console.log(result);
+			provider.setAccount(result)
+		}
+	};
 
     return (
         <>

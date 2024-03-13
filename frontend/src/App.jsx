@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import { silentRefresh } from "./utils/refresh";
 import AddIncome from "./pages/AddIncome/AddIncome";
 import AddExpense from "./pages/AddExpanse/AddExpense";
+import AllTransaction from "./pages/AllTransaction/AllTransaction";
 
 function App() {
     const [authorization, setAuthorization] = useState(null);
@@ -60,6 +61,7 @@ function App() {
                         path="add-expense"
                         element={<AddExpense provider={provider} />}
                     />
+                    <Route path="/all-transactions" element={<AllTransaction provider={provider}/>}/>
                 </Routes>
             </BrowserRouter>
         </>
