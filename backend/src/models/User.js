@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
         email: { type: String, required: true },
         profileImage: { type: String, default: "" },
         phoneNumber: { type: String, required: true },
-        birthDay: { type: Number, required: true },
+        // birthDay: { type: Number, required: true },
         passwordHash: { type: String, required: true },
         saltHash: { type: String, required: true },
         accounts: [{ type: mongoose.Types.ObjectId }],

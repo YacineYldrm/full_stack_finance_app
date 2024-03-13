@@ -3,6 +3,8 @@ import './AddIncome.scss';
 
 import { backendUrl } from '../../api';
 import Button from '../../components/Button/Button';
+import Arrow from '../../../public/svg/Arrows/Arrow';
+import Card from '../../components/Card/Card';
 
 const AddIncome = ({ provider }) => {
 	const [transactionInfo, setTransactionInfo] = useState({});
@@ -42,45 +44,48 @@ const AddIncome = ({ provider }) => {
 
 	return (
 		<>
-			<main>
-				<div>
-					<h1>Add income</h1>
-					{/* Card component */}
+			<main className='addIncome'>
+				<div className='userInfo'>
+					<Arrow />
+					<img
+						src={`http://localhost:3001/${provider.activeUser.profileImage}`}
+						alt=''
+					/>
 				</div>
+
+				<h1>Add income</h1>
+				<Card />
 				<form>
+					<input
+						type='number'
+						placeholder='Amount'
+						onChange={(e) =>
+							setTransactionInfo({
+								...transactionInfo,
+								amount: e.target.value,
+							})
+						}
+					/>
+					<label htmlFor='category'>Category</label>
+					<select
+						name='category'
+						defaultValue={'Select Category...'}
+						required
+						id='category'
+						onChange={(e) =>
+							setTransactionInfo({
+								...transactionInfo,
+								category: e.target.value,
+							})
+						}>
+						<option disabled>Select Category...</option>
+						<option value='Sallary'>Sallary</option>
+						<option value='Other Income'>Other Income</option>
+					</select>
+
 					<div>
-						<input
-							type='number'
-							placeholder='Amount'
-							onChange={(e) =>
-								setTransactionInfo({
-									...transactionInfo,
-									amount: e.target.value,
-								})
-							}
-						/>
-					</div>
-					<div>
-						<label htmlFor='category'>Category</label>
-						<select
-							name='category'
-							defaultValue={'Select Category...'}
-							required
-							id='category'
-							onChange={(e) =>
-								setTransactionInfo({
-									...transactionInfo,
-									category: e.target.value,
-								})
-							}>
-							<option disabled>Select Category...</option>
-							<option value='Sallary'>Sallary</option>
-							<option value='Other Income'>Other Income</option>
-						</select>
-					</div>
-					<div>
-						<div>
-							<label htmlFor='date'>Date</label>
+						<label htmlFor='date'>
+							Date
 							<input
 								type='date'
 								name='date'
@@ -88,9 +93,10 @@ const AddIncome = ({ provider }) => {
 								defaultValue={date}
 								onChange={(e) => setDate(e.target.value)}
 							/>
-						</div>
-						<div>
-							<label htmlFor='time'>Time</label>
+						</label>
+
+						<label htmlFor='time'>
+							Time
 							<input
 								type='time'
 								name='time'
@@ -98,31 +104,31 @@ const AddIncome = ({ provider }) => {
 								defaultValue={time}
 								onChange={(e) => setTime(e.target.value)}
 							/>
-						</div>
+						</label>
 					</div>
+					<textarea
+						name='comment'
+						id='commen'
+						placeholder='Comment...'
+						cols='30'
+						rows='1'
+						onChange={(e) =>
+							setTransactionInfo({
+								...transactionInfo,
+								comment: e.target.value,
+							})
+						}></textarea>
 					<div>
+						<Button
+							btnContent={'Add income'}
+							btnFunction={addTransaction}
+						/>
 						<input
 							type='file'
 							accept='image/*'
 							onChange={(e) => setFile(e.target.files[0])}
 						/>
-						<textarea
-							name='comment'
-							id='commen'
-							placeholder='Comment...'
-							cols='30'
-							rows='10'
-							onChange={(e) =>
-								setTransactionInfo({
-									...transactionInfo,
-									comment: e.target.value,
-								})
-							}></textarea>
 					</div>
-					<Button
-						btnContent={'Add income'}
-						btnFunction={addTransaction}
-					/>
 				</form>
 			</main>
 		</>
