@@ -1,13 +1,9 @@
 import Navbar from "../../components/Navbar/Navbar";
 import "./Home.scss";
-import checkIcon from "../../../public/cardCheckIcon.svg";
 import { useEffect, useState } from "react";
 import { backendUrl } from "../../api";
-import CardLogo from "../../../public/svg/CardIcons/CardLogo/CardLogo";
-import CardChip from "../../../public/svg/CardIcons/CardChip/CardChip";
 import incomeIcon from "../../../public/incomeIcon.svg";
 import expenseIcon from "../../../public/expenseIcon.svg";
-
 import limitIcon from "../../../public/limitIcon.svg";
 import getAllAccounts from "../../utils/getAllAccounts";
 import Card from "../../components/Card/Card";
