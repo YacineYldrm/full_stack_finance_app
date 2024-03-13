@@ -171,7 +171,7 @@ const Home = ({ provider }) => {
                                     type="range"
                                     min={0}
                                     max={100}
-                                />
+                                />{" "}
                                 %
                                 {Math.ceil(percentage)
                                     ? Math.ceil(percentage)

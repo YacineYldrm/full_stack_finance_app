@@ -91,7 +91,7 @@
                 width: 80%;
                 label {
                     width: 80%;
-                    height: fit-content;
+                    // height: fit-content;
                     &:nth-of-type(1) {
                         position: relative;
                         p {
@@ -107,6 +107,11 @@
                             outline: none;
                             border-radius: 36px;
                             padding-left: 10%;
+                        }
+                    }
+                    &:nth-of-type(2) {
+                        input {
+                            width: 87%;
                         }
                     }
                 }
