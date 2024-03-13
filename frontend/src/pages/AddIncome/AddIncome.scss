@@ -1,11 +1,10 @@
 .addIncome {
 	padding: 2.5% 5%;
 	max-width: 800px;
-	padding-bottom: 0;
-
+	overflow: hidden;
+	border-top: 1px solid rgba(128, 128, 128, 0.09);
 	.userInfo {
 		width: 100%;
-
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -20,7 +19,7 @@
 		}
 	}
 	h1 {
-		color: #298bff;
+		color: #409474;
 		font-size: 3.5vmax;
 		font-weight: 600;
 		margin-bottom: 1.5vh;
@@ -38,9 +37,10 @@
 		textarea {
 			display: block;
 			margin: 0 auto;
-			font-size: 1.9vmax;
+			font-size: 2vmax;
 			width: 100%;
-			padding: 1.5vh;
+			padding: 1.9vh;
+			padding-left: 2.5vh;
 			border-radius: 3vmax;
 			font-weight: 500;
 			border: none;
@@ -58,15 +58,15 @@
 			&[type='time'],
 			&[type='date'] {
 				margin-top: 0.8vh;
-				font-weight: 500;
 				display: flex;
 				text-align: center;
-				height: 6vmax;
+				height: 7vmax;
 				font-size: 2vmax;
 				&::-webkit-calendar-picker-indicator {
 					display: none;
 				}
 				width: 20vmax;
+				color: rgb(65, 65, 65);
 			}
 			&[type='file'] {
 				color: #2989ff00;
@@ -75,16 +75,18 @@
 				width: 5.5vmax;
 				aspect-ratio: 1 / 1;
 				margin: 0;
-				border: 3px solid gray;
 				border-radius: 50%;
+				border: 3px solid gray;
 				&::file-selector-button {
 					display: none;
 				}
 			}
 		}
 		select {
-			height: 6vmax;
+			height: 7vmax;
 			font-size: 2vmax;
+			-webkit-appearance: none;
+			color: rgb(65, 65, 65);
 		}
 		div {
 			&:nth-of-type(1) {
@@ -98,8 +100,8 @@
 				gap: 1vmax;
 				align-items: center;
 				justify-content: center;
-				margin: 2vh 0;
-				margin-bottom: 0;
+				margin: 2.5vh 0;
+				margin-bottom: 0.5vh;
 				.button {
 					max-width: 50vmax;
 				}

@@ -8,6 +8,8 @@ import limitIcon from "../../../public/limitIcon.svg";
 import getAllAccounts from "../../utils/getAllAccounts";
 import Card from "../../components/Card/Card";
 
+// #####################################################
+
 const Home = ({ provider }) => {
     const [index, setIndex] = useState(0);
     const [expenseTotal, setExpenseTotal] = useState(0);
@@ -16,9 +18,13 @@ const Home = ({ provider }) => {
     const [percentage, setPercentage] = useState(0);
     const [message, setMessage] = useState(null);
 
+    // #####################################################
+
     useEffect(() => {
-        if (provider.authorization) getAllAccounts(backendUrl, provider);
+        if (provider.authorization) getAllAccounts(provider);
     }, [provider.authorization]);
+
+    // #####################################################
 
     useEffect(() => {
         const incomes = provider.account?.transactions?.filter(
@@ -31,11 +37,15 @@ const Home = ({ provider }) => {
         setExpenseTotal(expenses?.reduce((acc, curr) => acc + curr.amount, 0));
     }, [provider.account]);
 
+    // #####################################################
+
     useEffect(() => {
         if (provider.accounts.length > index)
             provider.setAccount(provider.accounts[index]);
         else setIndex(0);
     }, [index]);
+
+    // #####################################################
 
     useEffect(() => {
         if (incomeTotal < limit) {
@@ -43,14 +53,20 @@ const Home = ({ provider }) => {
         } else setPercentage((Number(limit) / Number(incomeTotal)) * 100);
     }, [limit]);
 
+    // #####################################################
+
     useEffect(() => {
         setLimit(Number((incomeTotal * percentage) / 100).toFixed(0));
     }, [percentage]);
+
+    // #####################################################
 
     const toggleModal = () => {
         const modal = document.getElementById("modal");
         modal.classList.toggle("show_modal");
     };
+
+    // #####################################################
 
     const submitLimit = async () => {
         const response = await fetch(`${backendUrl}accounts/edit`, {
@@ -72,6 +88,8 @@ const Home = ({ provider }) => {
         }
     };
 
+    // #####################################################
+
     return (
         <>
             <main className="home">
@@ -88,31 +106,30 @@ const Home = ({ provider }) => {
                     </div>
                 </div>
                 <Card account={provider.account} />
-                <h4>Total wallet</h4>
+                <h5>Total wallet</h5>
                 <section>
                     <div>
                         <article>
                             <div>
                                 <img src={incomeIcon} alt="income icon" />
+                                <p>Income</p>
                             </div>
-                            <p>Income</p>
                             <h2>+ €{incomeTotal?.toLocaleString()},00</h2>
                         </article>
                         <article>
                             <div>
                                 <img src={expenseIcon} alt="expense icon" />
+                                <p>Expense</p>
                             </div>
-                            <p>Expense</p>
                             <h2>- €{expenseTotal?.toLocaleString()},00</h2>
                         </article>
                     </div>
-                    <article className="limit_dislpay_wrapper">
+                    <article
+                        className="limit_dislpay_wrapper"
+                        onClick={toggleModal}
+                    >
                         <div>
-                            <img
-                                onClick={toggleModal}
-                                src={limitIcon}
-                                alt="limit icon"
-                            />
+                            <img src={limitIcon} alt="limit icon" />
                         </div>
                         <div>
                             {provider.account?.limit ? (
@@ -123,7 +140,7 @@ const Home = ({ provider }) => {
                                         {provider.account?.limit.toLocaleString()}
                                         ,00
                                     </h2>
-                                    <h5> ← Click to edit spending limit.</h5>
+                                    {/* <h5> ← Click to edit spending limit.</h5> */}
                                 </>
                             ) : (
                                 <>
@@ -131,6 +148,11 @@ const Home = ({ provider }) => {
                                     <h5> ← Click to set spending limit.</h5>
                                 </>
                             )}
+                        </div>
+                        <div>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                     </article>
                 </section>
@@ -167,7 +189,7 @@ const Home = ({ provider }) => {
                                     type="range"
                                     min={0}
                                     max={100}
-                                />{" "}
+                                />
                                 %
                                 {Math.ceil(percentage)
                                     ? Math.ceil(percentage)
@@ -181,8 +203,8 @@ const Home = ({ provider }) => {
                         <button onClick={submitLimit}>Confirm limit</button>
                     </article>
                 </div>
+                <Navbar provider={provider} />
             </main>
-            <Navbar provider={provider} />
         </>
     );
 };
