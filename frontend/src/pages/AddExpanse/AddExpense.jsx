@@ -1,12 +1,18 @@
-import { useEffect, useState } from 'react';
 import './AddExpense.scss';
+import { useEffect, useState } from 'react';
 import { backendUrl } from '../../api';
+import { useNavigate } from 'react-router-dom';
+import getAllAccounts from '../../utils/getAllAccounts';
+// ####################################################
 import Button from '../../components/Button/Button';
 import Arrow from '../../../public/svg/Arrows/Arrow';
 import Card from '../../components/Card/Card';
+import Navbar from '../../components/Navbar/Navbar';
 
 const AddExpense = ({ provider }) => {
 	const [transactionInfo, setTransactionInfo] = useState({});
+	const [file, setFile] = useState();
+	const navigate = useNavigate();
 	const [date, setDate] = useState(
 		new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
 			.toISOString()
@@ -17,32 +23,24 @@ const AddExpense = ({ provider }) => {
 			.toISOString()
 			.slice(11, 16),
 	);
-	const [file, setFile] = useState();
 
-	const getAllAccounts = async () => {
-		const response = await fetch(`${backendUrl}accounts`, {
-			method: 'GET',
-			headers: { authorization: provider.authorization },
-		});
-		const { success, result, error, message } = await response.json();
-		if (!success) {
-			console.log(error, message);
-		} else {
-			console.log(result);
-			provider.setAccounts(result);
-			provider.setAccount(result[0]);
-		}
-	};
+	// #################################################
+
 	useEffect(() => {
-		getAllAccounts();
+		if (provider.authorization) getAllAccounts(provider);
 	}, [provider.authorization]);
+
+	// #################################################
 
 	const getDateTime = () => {
 		return new Date(`${date}T${time}:00`).getTime();
 	};
 
+	// #################################################
+
 	const addTransaction = async () => {
 		event.preventDefault();
+
 		const fd = new FormData();
 		const transaction = {
 			...transactionInfo,
@@ -66,8 +64,11 @@ const AddExpense = ({ provider }) => {
 		} else {
 			console.log(result);
 			provider.setAccount(result);
+			navigate('/');
 		}
 	};
+
+	// #################################################
 
 	return (
 		<>
@@ -79,7 +80,6 @@ const AddExpense = ({ provider }) => {
 						alt=''
 					/>
 				</div>
-
 				<h1>Add Expense</h1>
 				<Card account={provider.account} />
 				<form>
@@ -93,7 +93,6 @@ const AddExpense = ({ provider }) => {
 							})
 						}
 					/>
-
 					<label htmlFor='category'>Category</label>
 					<select
 						name='category'
@@ -112,7 +111,6 @@ const AddExpense = ({ provider }) => {
 						<option value='Insurance bill'>Insurance bill</option>
 						<option value='Other Expense'>Other Expense</option>
 					</select>
-
 					<div>
 						<label htmlFor='date'>
 							Date
@@ -124,7 +122,6 @@ const AddExpense = ({ provider }) => {
 								onChange={(e) => setDate(e.target.value)}
 							/>
 						</label>
-
 						<label htmlFor='time'>
 							Time
 							<input
@@ -136,7 +133,6 @@ const AddExpense = ({ provider }) => {
 							/>
 						</label>
 					</div>
-
 					<textarea
 						name='comment'
 						id='commen'
@@ -149,7 +145,6 @@ const AddExpense = ({ provider }) => {
 								comment: e.target.value,
 							})
 						}></textarea>
-
 					<div>
 						<Button
 							btnContent={'Add expenses'}

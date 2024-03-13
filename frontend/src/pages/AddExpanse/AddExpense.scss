@@ -1,11 +1,10 @@
 .addExpense {
 	padding: 2.5% 5%;
 	max-width: 800px;
-	padding-bottom: 0;
-
+	overflow: hidden;
+	border-top: 1px solid rgba(128, 128, 128, 0.09);
 	.userInfo {
 		width: 100%;
-
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -20,7 +19,7 @@
 		}
 	}
 	h1 {
-		color: #ffaa1a;
+		color: #da6e53;
 		font-size: 3.5vmax;
 		font-weight: 600;
 		margin-bottom: 1.5vh;
@@ -38,9 +37,10 @@
 		textarea {
 			display: block;
 			margin: 0 auto;
-			font-size: 1.9vmax;
+			font-size: 2vmax;
 			width: 100%;
-			padding: 1.5vh;
+			padding: 1.9vh;
+			padding-left: 2.5vh;
 			border-radius: 3vmax;
 			font-weight: 500;
 			border: none;
@@ -58,10 +58,9 @@
 			&[type='time'],
 			&[type='date'] {
 				margin-top: 0.8vh;
-				font-size: 3vmax;
 				display: flex;
 				text-align: center;
-				height: 6vmax;
+				height: 7vmax;
 				font-size: 2vmax;
 				&::-webkit-calendar-picker-indicator {
 					display: none;
@@ -84,7 +83,7 @@
 			}
 		}
 		select {
-			height: 6vmax;
+			height: 7vmax;
 			font-size: 2vmax;
 		}
 		div {
@@ -99,8 +98,8 @@
 				gap: 1vmax;
 				align-items: center;
 				justify-content: center;
-				margin: 2vh 0;
-				margin-bottom: 0;
+				margin: 2.5vh 0;
+				margin-bottom: 0.5vh;
 				.button {
 					max-width: 50vmax;
 				}

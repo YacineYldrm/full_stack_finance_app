@@ -3,10 +3,22 @@
 	src: url(../public/fonts/Urbanist-VariableFont_wght.ttf);
 }
 
-* {
+*,
+*::before,
+*::after {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+select:after {
+	justify-self: end;
 }
 
 a {
@@ -21,4 +33,5 @@ img {
 
 body {
 	font-family: urbanist;
+	background-color: white;
 }

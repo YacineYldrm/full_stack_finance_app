@@ -8,17 +8,22 @@ const Register = () => {
 	const [userInfo, setUserInfo] = useState({});
 	const [message, setMessage] = useState('');
 	const [accepted, setAccepted] = useState(false);
-
 	const navigate = useNavigate();
+
+	// #################################################
 
 	useEffect(() => {}, [message]);
 
+	// #################################################
+
 	const handleRegistration = async () => {
 		event.preventDefault();
+
 		if (!accepted) {
 			setMessage('Please accept our Terms and Services!');
 			return;
 		}
+
 		const response = await fetch(
 			'http://localhost:3001/api/v1/' + 'users/register',
 			{
@@ -27,6 +32,7 @@ const Register = () => {
 				body: JSON.stringify(userInfo),
 			},
 		);
+
 		const { success, result, error, message } = await response.json();
 		if (!success) {
 			console.log(error, message);
@@ -36,6 +42,8 @@ const Register = () => {
 			navigate(`/verify/${result._id}`);
 		}
 	};
+
+	// #################################################
 
 	return (
 		<main className='registration'>

@@ -1,4 +1,9 @@
-const getAllAccounts = async (backendUrl, provider) => {
+import { backendUrl } from "../api";
+
+
+
+const getAllAccounts = async (provider) => {
+
     const response = await fetch(`${backendUrl}accounts`, {
         method: "GET",
         headers: { authorization: provider.authorization },
