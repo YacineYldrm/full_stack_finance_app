@@ -1,60 +1,119 @@
 .home {
     background-color: aliceblue;
+    padding: 4%;
+    padding-top: 3vmax;
     padding-bottom: 20vh;
-    > article {
-        background: linear-gradient(rgb(142, 85, 255), #0224ff);
-    }
-    article {
-        color: white;
-        div {
-            width: 24vw;
-            aspect-ratio: 1/1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmax;
+    > div {
+        display: flex;
+        justify-content: space-between;
+        .profile_img_wrapper {
+            border-radius: 50%;
+            width: 4vmax;
             img {
-                position: absolute;
+                border-radius: 50%;
                 width: 100%;
-                height: 100%;
+            }
+        }
+    }
+
+    section {
+        > div {
+            display: flex;
+            gap: 2vmax;
+            margin-bottom: 2vmax;
+            article {
+                border-radius: 10px;
+                background-color: #ececec;
+                flex: 1;
+                padding: 4%;
+                div {
+                    aspect-ratio: 1/1;
+                    width: 6vmax;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .limit_dislpay_wrapper {
+            display: flex;
+            gap: 1vmax;
+            align-items: center;
+            padding: 3%;
+            background-color: #ececec;
+            border-radius: 36px;
+            div {
+                &:nth-of-type(1) {
+                    aspect-ratio: 1/1;
+                    width: 6vmax;
+                    img {
+                        width: 100%;
+                    }
+                }
                 &:nth-of-type(2) {
-                    transform: translate(-50%, -52%);
-                    width: 20%;
-                    height: 20%;
-                    left: 50%;
-                    top: 39%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0;
                 }
             }
         }
     }
-    section {
-        div {
-            display: flex;
-            article {
-                color: black;
-                div {
-                    width: 35vw;
-                    img {
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        &:nth-of-type(2) {
-                            transform: translate(-50%, -52%);
-                            width: 20%;
-                            height: 20%;
-                            left: 50%;
-                            top: 37%;
+
+    .limit_editor {
+        display: none;
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.34);
+        backdrop-filter: blur(5px);
+        z-index: 1;
+
+        article {
+            color: black;
+            background-color: white;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            min-height: 30vh;
+            width: 60vw;
+            z-index: 3;
+            border-radius: 15px;
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 80%;
+                label {
+                    width: 80%;
+                    height: fit-content;
+                    &:nth-of-type(1) {
+                        position: relative;
+                        p {
+                            position: absolute;
+                            top: 25%;
+                            left: 5%;
                         }
-                    }
-                }
-                &:nth-of-type(2) {
-                    div {
-                        img:nth-of-type(2) {
-                            top: 41%;
+                        input {
+                            background-color: #ececec;
+                            width: 100%;
+                            height: 4vmax;
+                            border: none;
+                            outline: none;
+                            border-radius: 36px;
+                            padding-left: 10%;
                         }
                     }
                 }
             }
         }
+    }
+    .limit_editor.show_modal {
+        display: block;
     }
 }
