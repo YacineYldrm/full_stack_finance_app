@@ -1,37 +1,26 @@
 import Navbar from "../../components/Navbar/Navbar";
 import "./Home.scss";
-import checkIcon from "../../../public/check.svg";
-import checkIconBG from "../../../public/Bg.svg";
+import checkIcon from "../../../public/cardCheckIcon.svg";
 import { useEffect, useState } from "react";
 import { backendUrl } from "../../api";
 import CardLogo from "../../../public/svg/CardIcons/CardLogo/CardLogo";
 import CardChip from "../../../public/svg/CardIcons/CardChip/CardChip";
-import incomeIconBg from "../../../public/incomeIconBg.svg";
-import trendingUp from "../../../public/trendingUp.svg";
-import expenseIconBg from "../../../public/expenseIconBg.svg";
-import trendingDown from "../../../public/trendingDown.svg";
+import incomeIcon from "../../../public/incomeIcon.svg";
+import expenseIcon from "../../../public/expenseIcon.svg";
+
+import limitIcon from "../../../public/limitIcon.svg";
+import getAllAccounts from "../../utils/getAllAccounts";
 
 const Home = ({ provider }) => {
     const [index, setIndex] = useState(0);
     const [expenseTotal, setExpenseTotal] = useState(0);
     const [incomeTotal, setIncomeTotal] = useState(0);
+    const [limit, setLimit] = useState(0);
+    const [percentage, setPercentage] = useState(0);
+    const [message, setMessage] = useState(null);
 
-    const getAllAccounts = async () => {
-        const response = await fetch(`${backendUrl}accounts`, {
-            method: "GET",
-            headers: { authorization: provider.authorization },
-        });
-        const { success, result, error, message } = await response.json();
-        if (!success) {
-            console.log(error, message);
-        } else {
-            console.log(result);
-            provider.setAccounts(result);
-            provider.setAccount(result[0]);
-        }
-    };
     useEffect(() => {
-        getAllAccounts();
+        if (provider.authorization) getAllAccounts(backendUrl, provider);
     }, [provider.authorization]);
 
     useEffect(() => {
@@ -51,6 +40,41 @@ const Home = ({ provider }) => {
         else setIndex(0);
     }, [index]);
 
+    useEffect(() => {
+        if (incomeTotal < limit) {
+            setPercentage(100);
+        } else setPercentage((Number(limit) / Number(incomeTotal)) * 100);
+    }, [limit]);
+
+    useEffect(() => {
+        setLimit(Number((incomeTotal * percentage) / 100).toFixed(0));
+    }, [percentage]);
+
+    const showModal = () => {
+        const modal = document.getElementById("modal");
+        modal.classList.toggle("show_modal");
+    };
+
+    const submitLimit = async () => {
+        const response = await fetch(`${backendUrl}accounts/edit`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: provider.authorization,
+            },
+            body: JSON.stringify({ ...provider.account, limit }),
+        });
+        const { success, result, error, message } = await response.json();
+        if (!success) {
+            console.log(error);
+            setMessage(message);
+        } else {
+            console.log(result);
+            provider.setAccount(result);
+            showModal();
+        }
+    };
+
     return (
         <>
             <main className="home">
@@ -59,7 +83,7 @@ const Home = ({ provider }) => {
                         <p>Welcome back.</p>
                         <h3>{provider.activeUser?.user}</h3>
                     </div>
-                    <div>
+                    <div className="profile_img_wrapper">
                         <img
                             src={`http://localhost:3001/${provider?.activeUser?.profileImage}`}
                             alt="profile picture."
@@ -68,8 +92,7 @@ const Home = ({ provider }) => {
                 </div>
                 <article>
                     <div>
-                        <img src={checkIconBG} alt="check icon background" />
-                        <img src={checkIcon} alt="check icon" />
+                        <img src={checkIcon} alt="check icon background" />
                     </div>
                     <CardLogo />
                     <p>{provider.account.type}</p>
@@ -88,24 +111,85 @@ const Home = ({ provider }) => {
                     <div>
                         <article>
                             <div>
-                                <img src={incomeIconBg} alt="income icon" />
-                                <img src={trendingUp} alt="income icon" />
+                                <img src={incomeIcon} alt="income icon" />
                             </div>
                             <p>Income</p>
-                            <h2>+${incomeTotal}</h2>
+                            <h2>+ €{incomeTotal?.toLocaleString()},00</h2>
                         </article>
                         <article>
                             <div>
-                                <img src={expenseIconBg} alt="expense icon" />
-                                <img src={trendingDown} alt="expense icon" />
+                                <img src={expenseIcon} alt="expense icon" />
                             </div>
                             <p>Expense</p>
-                            <h2>-${expenseTotal}</h2>
+                            <h2>- €{expenseTotal?.toLocaleString()},00</h2>
                         </article>
                     </div>
+                    <article>
+                        <div>
+                            <img
+                                onClick={showModal}
+                                src={limitIcon}
+                                alt="limit icon"
+                            />
+                        </div>
+                        <div>
+                            {provider.account?.limit ? (
+                                <>
+                                    <p>Monthly spending limit</p>
+                                    <h2>
+                                        €
+                                        {provider.account?.limit.toLocaleString()}
+                                        ,00
+                                    </h2>
+                                    <h5> ← Click to edit spending limit.</h5>
+                                </>
+                            ) : (
+                                <>
+                                    <p>No monthly spending limit set.</p>
+                                    <h5> ← Click to set spending limit.</h5>
+                                </>
+                            )}
+                        </div>
+                    </article>
                 </section>
-                <article></article>
+
+                <div id="modal" className="limit_editor">
+                    <article>
+                        <form>
+                            <label>
+                                <input
+                                    onChange={(e) => setLimit(e.target.value)}
+                                    value={
+                                        limit > incomeTotal
+                                            ? incomeTotal
+                                            : limit
+                                    }
+                                    type="number"
+                                    placeholder={`Spending limit: max ${incomeTotal}`}
+                                />
+                            </label>
+                            <label>
+                                <input
+                                    defaultValue={0}
+                                    value={percentage ? percentage : 0}
+                                    onChange={(e) =>
+                                        setPercentage(e.target.value)
+                                    }
+                                    type="range"
+                                    min={0}
+                                    max={100}
+                                />
+                                %
+                                {Math.ceil(percentage)
+                                    ? Math.ceil(percentage)
+                                    : 0}
+                            </label>
+                        </form>
+                        <button onClick={submitLimit}>Confirm limit</button>
+                    </article>
+                </div>
             </main>
+            <Navbar />
         </>
     );
 };
