@@ -1,0 +1,106 @@
+.addIncome {
+	padding: 2.5% 5%;
+	max-width: 800px;
+	padding-bottom: 0;
+
+	.userInfo {
+		width: 100%;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		svg {
+			width: 2vmax;
+			height: 2vmax;
+		}
+		img {
+			width: 6vmax;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+	}
+	h1 {
+		color: #298bff;
+		font-size: 3.5vmax;
+		font-weight: 600;
+		margin-bottom: 1.5vh;
+	}
+	form {
+		margin-top: 2vh;
+		label {
+			display: block;
+			margin-bottom: 1vh;
+			font-size: 2vmax;
+			font-weight: 600;
+		}
+		input,
+		select,
+		textarea {
+			display: block;
+			margin: 0 auto;
+			font-size: 1.9vmax;
+			width: 100%;
+			padding: 1.5vh;
+			border-radius: 3vmax;
+			font-weight: 600;
+			border: 1px solid gray;
+			margin-bottom: 1.5vh;
+			&::placeholder {
+				color: rgb(81, 81, 81);
+				font-weight: 500;
+			}
+			&:focus {
+				outline: 2px solid black;
+			}
+
+			&[type='time'],
+			&[type='date'] {
+				margin-top: 0.8vh;
+				font-size: 3vmax;
+				display: flex;
+				text-align: center;
+				height: 6vmax;
+				font-size: 2vmax;
+				&::-webkit-calendar-picker-indicator {
+					display: none;
+				}
+				width: 20vmax;
+			}
+			&[type='file'] {
+				background: url(../../../public/camera.png) center / 60%
+					no-repeat;
+				width: 5.5vmax;
+				aspect-ratio: 1 / 1;
+				margin: 0;
+				border-width: 3px;
+				border-radius: 50%;
+				&::file-selector-button {
+					display: none;
+				}
+			}
+		}
+		select {
+			height: 6vmax;
+			font-size: 2vmax;
+		}
+		div {
+			&:nth-of-type(1) {
+				display: flex;
+				justify-content: space-between;
+			}
+			&:nth-of-type(2) {
+				padding: 0;
+				width: 100%;
+				display: flex;
+				gap: 1vmax;
+				align-items: center;
+				justify-content: center;
+				margin: 2vh 0;
+				margin-bottom: 0;
+				.button {
+					max-width: 50vmax;
+				}
+			}
+		}
+	}
+}

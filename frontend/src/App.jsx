@@ -53,7 +53,7 @@ function App() {
                         element={<Login provider={provider} />}
                     />
                     <Route
-                        path="/add-income"
+                        path="/add-income/:accountId"
                         element={<AddIncome provider={provider} />}
                     />
                     <Route

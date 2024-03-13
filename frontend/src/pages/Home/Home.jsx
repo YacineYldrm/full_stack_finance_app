@@ -10,6 +10,7 @@ import expenseIcon from "../../../public/expenseIcon.svg";
 
 import limitIcon from "../../../public/limitIcon.svg";
 import getAllAccounts from "../../utils/getAllAccounts";
+import Card from "../../components/Card/Card";
 
 const Home = ({ provider }) => {
     const [index, setIndex] = useState(0);
@@ -50,7 +51,7 @@ const Home = ({ provider }) => {
         setLimit(Number((incomeTotal * percentage) / 100).toFixed(0));
     }, [percentage]);
 
-    const showModal = () => {
+    const toggleModal = () => {
         const modal = document.getElementById("modal");
         modal.classList.toggle("show_modal");
     };
@@ -71,7 +72,7 @@ const Home = ({ provider }) => {
         } else {
             console.log(result);
             provider.setAccount(result);
-            showModal();
+            toggleModal();
         }
     };
 
@@ -90,22 +91,7 @@ const Home = ({ provider }) => {
                         />
                     </div>
                 </div>
-                <article>
-                    <div>
-                        <img src={checkIcon} alt="check icon background" />
-                    </div>
-                    <CardLogo />
-                    <p>{provider.account.type}</p>
-                    <p>{provider.account.cardNumber}</p>
-                    <div>
-                        <CardChip />
-
-                        <p>XX/XX</p>
-                    </div>
-                    <button onClick={() => setIndex(index + 1)}>
-                        Next Account
-                    </button>
-                </article>
+                <Card account={provider.account} />
                 <h4>Total wallet</h4>
                 <section>
                     <div>
@@ -124,10 +110,10 @@ const Home = ({ provider }) => {
                             <h2>- €{expenseTotal?.toLocaleString()},00</h2>
                         </article>
                     </div>
-                    <article>
+                    <article className="limit_dislpay_wrapper">
                         <div>
                             <img
-                                onClick={showModal}
+                                onClick={toggleModal}
                                 src={limitIcon}
                                 alt="limit icon"
                             />
@@ -153,10 +139,18 @@ const Home = ({ provider }) => {
                     </article>
                 </section>
 
-                <div id="modal" className="limit_editor">
+                <div
+                    onClick={() => {
+                        event.target === document.getElementById("modal") &&
+                            (toggleModal(), setPercentage(0));
+                    }}
+                    id="modal"
+                    className="limit_editor"
+                >
                     <article>
                         <form>
                             <label>
+                                <p>€</p>
                                 <input
                                     onChange={(e) => setLimit(e.target.value)}
                                     value={
@@ -165,7 +159,6 @@ const Home = ({ provider }) => {
                                             : limit
                                     }
                                     type="number"
-                                    placeholder={`Spending limit: max ${incomeTotal}`}
                                 />
                             </label>
                             <label>
@@ -184,12 +177,16 @@ const Home = ({ provider }) => {
                                     ? Math.ceil(percentage)
                                     : 0}
                             </label>
+                            <h4>
+                                Spending limit: max €
+                                {incomeTotal?.toLocaleString()},00
+                            </h4>
                         </form>
                         <button onClick={submitLimit}>Confirm limit</button>
                     </article>
                 </div>
             </main>
-            <Navbar />
+            <Navbar provider={provider} />
         </>
     );
 };

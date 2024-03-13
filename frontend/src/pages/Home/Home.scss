@@ -3,6 +3,7 @@
     padding: 4%;
     padding-top: 3vmax;
     padding-bottom: 20vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     gap: 3vmax;
@@ -19,12 +20,6 @@
         }
     }
 
-    > article {
-        color: white;
-        background: linear-gradient(rgb(142, 85, 255), #0224ff);
-        padding: 4%;
-        border-radius: 15px;
-    }
     section {
         > div {
             display: flex;
@@ -44,7 +39,7 @@
                 }
             }
         }
-        > article {
+        .limit_dislpay_wrapper {
             display: flex;
             gap: 1vmax;
             align-items: center;
@@ -76,15 +71,46 @@
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.34);
         backdrop-filter: blur(5px);
+        z-index: 1;
+
         article {
             color: black;
-            background-color: #ececec;
+            background-color: white;
             position: absolute;
             transform: translate(-50%, -50%);
             left: 50%;
             top: 50%;
-            height: 40%;
-            width: 40%;
+            min-height: 30vh;
+            width: 60vw;
+            z-index: 3;
+            border-radius: 15px;
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 80%;
+                label {
+                    width: 80%;
+                    height: fit-content;
+                    &:nth-of-type(1) {
+                        position: relative;
+                        p {
+                            position: absolute;
+                            top: 25%;
+                            left: 5%;
+                        }
+                        input {
+                            background-color: #ececec;
+                            width: 100%;
+                            height: 4vmax;
+                            border: none;
+                            outline: none;
+                            border-radius: 36px;
+                            padding-left: 10%;
+                        }
+                    }
+                }
+            }
         }
     }
     .limit_editor.show_modal {
