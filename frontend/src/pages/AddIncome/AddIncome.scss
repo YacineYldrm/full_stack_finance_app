@@ -42,21 +42,23 @@
 			width: 100%;
 			padding: 1.5vh;
 			border-radius: 3vmax;
-			font-weight: 600;
-			border: 1px solid gray;
+			font-weight: 500;
+			border: none;
 			margin-bottom: 1.5vh;
+			background-color: #f2f2f2;
+			resize: none;
 			&::placeholder {
 				color: rgb(81, 81, 81);
 				font-weight: 500;
 			}
 			&:focus {
-				outline: 2px solid black;
+				outline: none;
 			}
 
 			&[type='time'],
 			&[type='date'] {
 				margin-top: 0.8vh;
-				font-size: 3vmax;
+				font-weight: 500;
 				display: flex;
 				text-align: center;
 				height: 6vmax;
@@ -73,7 +75,7 @@
 				width: 5.5vmax;
 				aspect-ratio: 1 / 1;
 				margin: 0;
-				border-width: 3px;
+				border: 3px solid gray;
 				border-radius: 50%;
 				&::file-selector-button {
 					display: none;
