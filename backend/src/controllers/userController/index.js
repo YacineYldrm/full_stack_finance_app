@@ -3,7 +3,7 @@ import loginCtrl from "./loginCtrl.js";
 import registerCtrl from "./registerCtrl.js";
 import getAllUserCtrl from "./getAllUserCtrl.js";
 import logoutCtrl from "./logoutCtrl.js";
-
+import getUserCtrl from "./getUserCtrl.js";
 import refreshCtrl from "./refreshCtrl.js";
 import verifyCtrl from "./verifyCtrl.js";
 
@@ -15,6 +15,7 @@ const userController = {
     verify: verifyCtrl,
     logout: logoutCtrl,
     refresh: refreshCtrl,
+    getUser: getUserCtrl,
 };
 
 export default userController;

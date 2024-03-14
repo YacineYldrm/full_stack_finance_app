@@ -7,6 +7,7 @@ import expenseIcon from "../../../public/expenseIcon.svg";
 import limitIcon from "../../../public/limitIcon.svg";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 // #####################################################
 
@@ -17,7 +18,7 @@ const Home = ({ provider }) => {
     const [limit, setLimit] = useState(0);
     const [percentage, setPercentage] = useState(0);
     const [message, setMessage] = useState(null);
-
+    const navigate = useNavigate()
     // #####################################################
 
     useEffect(() => {
@@ -93,7 +94,7 @@ const Home = ({ provider }) => {
                         <h3>{provider.activeUser?.user}</h3>
                     </div>
                     <div className="profile_img_wrapper">
-                        <img
+                        <img onClick={()=>navigate("/menu")}
                             src={`http://localhost:3001/${provider?.activeUser?.profileImage}`}
                             alt="profile picture."
                         />
