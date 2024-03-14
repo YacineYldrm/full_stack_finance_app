@@ -185,6 +185,12 @@
                                 appearance: none;
                             }
                         }
+                        p {
+                            position: relative;
+                            font-size: 3vmax;
+                            left: -10vw;
+                            bottom: 0.8vh;
+                        }
                     }
 
                     &:nth-of-type(2) {

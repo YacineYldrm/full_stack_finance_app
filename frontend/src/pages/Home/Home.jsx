@@ -57,6 +57,7 @@ const Home = ({ provider }) => {
     // #####################################################
 
     useEffect(() => {
+        console.log(formatter.format(limit));
         setLimit(Number((incomeTotal * percentage) / 100).toFixed(0));
     }, [percentage]);
 
@@ -89,6 +90,10 @@ const Home = ({ provider }) => {
         }
     };
 
+    const formatter = new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+    });
     // #####################################################
 
     return (
@@ -190,6 +195,7 @@ const Home = ({ provider }) => {
                                     }
                                     type="number"
                                 />
+                                <p>€</p>
                             </label>
                             <p>
                                 %{" "}
