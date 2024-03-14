@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import './AddIncome.scss';
-
 import { backendUrl } from '../../api';
 import Button from '../../components/Button/Button';
 import Arrow from '../../../public/svg/Arrows/Arrow';
 import Card from '../../components/Card/Card';
 import { useNavigate } from 'react-router-dom';
 import getAllAccounts from '../../utils/getAllAccounts';
-import Navbar from '../../components/Navbar/Navbar';
 
 const AddIncome = ({ provider }) => {
 	const [transactionInfo, setTransactionInfo] = useState({});

@@ -1,5 +1,5 @@
 import Transaction from '../Transaction/Transaction';
-
+import './TransactionDay.scss';
 const TransactionDay = ({ date, transactions }) => {
 	const newdate = new Date(date);
 
@@ -37,17 +37,17 @@ const TransactionDay = ({ date, transactions }) => {
 
 	return (
 		<>
-			<section>
+			<main className='transactionsDay'>
 				<div>
-					<p>{getDay()}</p>
-					<p>
+					<h6>{getDay()}</h6>
+					<h5>
 						{newdate
 							.toISOString()
 							.replace(/T.*/, '')
 							.split('-')
 							.reverse()
 							.join('-')}
-					</p>
+					</h5>
 				</div>
 				<div>
 					{filteredTransactions.map((transaction) => (
@@ -57,7 +57,7 @@ const TransactionDay = ({ date, transactions }) => {
 						/>
 					))}
 				</div>
-			</section>
+			</main>
 		</>
 	);
 };

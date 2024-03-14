@@ -9,6 +9,7 @@ import { silentRefresh } from './utils/refresh';
 import AddIncome from './pages/AddIncome/AddIncome';
 import AddExpense from './pages/AddExpanse/AddExpense';
 import AllTransaction from './pages/AllTransaction/AllTransaction';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
 	// #################################################
