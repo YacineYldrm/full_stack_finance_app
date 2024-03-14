@@ -29,7 +29,7 @@ const Transaction = ({ transaction }) => {
 
 	return (
 		<>
-			<article>
+			<main className="transaction">
 				<div>{/* <img src={getIcon()} alt="" /> */}</div>
 				<div>
 					<p>{transaction?.category}</p>
@@ -49,7 +49,7 @@ const Transaction = ({ transaction }) => {
 						<p>{`-$ ${transaction?.amount}`}</p>
 					)}
 				</div>
-			</article>
+			</main>
 		</>
 	);
 };

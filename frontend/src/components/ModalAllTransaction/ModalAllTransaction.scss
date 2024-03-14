@@ -1,0 +1,59 @@
+.alltransactionmodal {
+	padding: 2.5% 5%;
+    position: fixed;
+    background-color: white;
+	max-width: 800px;
+    width: 100vw;
+	overflow: hidden;
+	border-top: 1px solid rgba(128, 128, 128, 0.09);
+	article {
+		&:nth-of-type(1){
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+        padding-bottom: 6%;
+		svg {
+			width: 2vmax;
+			height: 2vmax;
+		}
+		img {
+			width: 7.5vmax;
+			border-radius: 50%;
+			object-fit: cover;
+		}}
+        &:nth-of-type(2){
+            display: flex;
+            gap: 5vw;
+
+            div{
+                display: flex;
+                background-color: #F7F7F7;
+                padding: 3%;
+                border-radius: 30px;
+                align-items: center;
+                
+                input[type="search"]{
+                    border: none;
+                    background-color: #F7F7F7;
+                    
+                    width: 60vw;
+                }
+            }
+            input[type="date"]{
+                width: 8vmax;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                color: rgba(255, 0, 0, 0);
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background: url("../../../public/Calendar.svg") center/70% no-repeat;
+                &::-webkit-calendar-picker-indicator{
+                    display: none;
+                }
+            }
+        }
+	}
+    
+}
