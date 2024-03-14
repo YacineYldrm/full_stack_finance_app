@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import Transaction from '../Transaction/Transaction';
+import './ModalAllTransaction.scss'
+import Arrow from '../../../public/svg/Arrows/Arrow';
+import Search from '../../../public/svg/Search/Search';
 
-const ModalAllTransaction = ({ transactions, modal, setModal }) => {
+const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 	const [search, setSearch] = useState('');
 	const [date, setDate] = useState('');
 	const [result, setResult] = useState(transactions);
@@ -47,31 +50,35 @@ const ModalAllTransaction = ({ transactions, modal, setModal }) => {
 
 	return (
 		<>
-			<section>
-				<div>
-					<button onClick={() => setModal(!modal)}>close</button>
-					{/* header von addTransaction */}
-				</div>
-				<div>
+			<section className='alltransactionmodal'>
+				<article >
+					<Arrow onClick={()=>setModal(false)}/>
+					<img src={`http://localhost:3001/${provider.activeUser.profileImage}`} alt="" />
+				</article>
+				<article>
+					<div>
+						
 					<input
 						type='search'
 						onChange={(e) => setSearch(e.target.value)}
 					/>
+					<Search/>
+					</div>
 					<input
 						type='date'
 						name=''
 						id=''
 						onChange={(e) => setDate(e.target.value)}
 					/>
-				</div>
-				<div>
+				</article>
+				<article>
 					<p>{search}</p>
 					<div>
 						{result?.map((transaction) => (
 							<Transaction transaction={transaction} />
 						))}
 					</div>
-				</div>
+				</article>
 			</section>
 		</>
 	);
