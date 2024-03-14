@@ -90,7 +90,7 @@ const Login = ({ provider }) => {
 					/>
 				</form>
 				<p>
-					Don’t have any account? <Link to='/register'>Sign up</Link>
+					Don’t have an account? <Link to='/register'>Sign up</Link>
 				</p>
 			</main>
 		</>
