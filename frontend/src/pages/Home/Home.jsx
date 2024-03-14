@@ -115,14 +115,24 @@ const Home = ({ provider }) => {
                                 <img src={incomeIcon} alt="income icon" />
                                 <p>Income</p>
                             </div>
-                            <h2>{incomeTotal?.toLocaleString()},00€</h2>
+                            <h2>
+                                {incomeTotal?.toLocaleString("de-DE", {
+                                    style: "currency",
+                                    currency: "EUR",
+                                })}
+                            </h2>
                         </article>
                         <article>
                             <div>
                                 <img src={expenseIcon} alt="expense icon" />
                                 <p>Expense</p>
                             </div>
-                            <h2>{expenseTotal?.toLocaleString()},00€</h2>
+                            <h2>
+                                {expenseTotal?.toLocaleString("de-DE", {
+                                    style: "currency",
+                                    currency: "EUR",
+                                })}
+                            </h2>
                         </article>
                     </div>
                     <article
@@ -137,8 +147,13 @@ const Home = ({ provider }) => {
                                 <>
                                     <p>Monthly spending limit</p>
                                     <h2>
-                                        {provider.account?.limit.toLocaleString()}
-                                        ,00€
+                                        {provider.account?.limit.toLocaleString(
+                                            "de-DE",
+                                            {
+                                                style: "currency",
+                                                currency: "EUR",
+                                            }
+                                        )}
                                     </h2>
                                 </>
                             ) : (

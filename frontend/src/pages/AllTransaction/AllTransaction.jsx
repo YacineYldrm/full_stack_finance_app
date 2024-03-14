@@ -101,7 +101,12 @@ const AllTransaction = ({ provider }) => {
                         </div>
                         <div>
                             <p>Income</p>
-                            <h2>{incomeTotal?.toLocaleString()},00€</h2>
+                            <h2>
+                                {incomeTotal?.toLocaleString("de-DE", {
+                                    style: "currency",
+                                    currency: "EUR",
+                                })}
+                            </h2>
                         </div>
                     </article>
                     <article>
@@ -110,7 +115,12 @@ const AllTransaction = ({ provider }) => {
                         </div>
                         <div>
                             <p>Expense</p>
-                            <h2>{expenseTotal?.toLocaleString()},00€</h2>
+                            <h2>
+                                {expenseTotal?.toLocaleString("de-DE", {
+                                    style: "currency",
+                                    currency: "EUR",
+                                })}
+                            </h2>
                         </div>
                     </article>
                 </div>
