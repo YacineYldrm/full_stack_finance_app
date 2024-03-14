@@ -181,7 +181,6 @@ const Home = ({ provider }) => {
                     <article>
                         <form>
                             <label>
-                                <p>€</p>
                                 <input
                                     onChange={(e) => setLimit(e.target.value)}
                                     value={
@@ -220,7 +219,13 @@ const Home = ({ provider }) => {
                             <h6>Spending limit:</h6>
                             <h4>
                                 {incomeTotal > 0
-                                    ? `max  € ${incomeTotal?.toLocaleString()},00`
+                                    ? `max ${incomeTotal?.toLocaleString(
+                                          "de-DE",
+                                          {
+                                              style: "currency",
+                                              currency: "EUR",
+                                          }
+                                      )}`
                                     : "Account has no income"}
                             </h4>
                         </form>
