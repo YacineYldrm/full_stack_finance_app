@@ -69,6 +69,7 @@ const AllTransaction = ({ provider }) => {
 					transactions={provider.account.transactions}
 					modal={modal}
 					setModal={setModal}
+					provider={provider}
 				/>
 			) : null}
 			<header>
@@ -88,11 +89,12 @@ const AllTransaction = ({ provider }) => {
 						<img
 							src=''
 							alt='search'
-							onClick={() => setModal(!modal)}
+							onClick={() => setModal(true)}
 						/>
 						<img
 							src=''
 							alt='calendar'
+							onClick={()=>setModal(true)}
 						/>
 					</div>
 				</div>
