@@ -1,0 +1,31 @@
+.transaction {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin-block: 4vh;
+	> div {
+		display: flex;
+		align-items: center;
+		img {
+			width: 6vmax;
+			margin-right: 2vmax;
+		}
+
+		h5,
+		h4 {
+			font-size: 2.5vmax;
+			font-weight: 600;
+		}
+		h5 {
+			color: #409474;
+		}
+		h4 {
+			color: #da6e53;
+		}
+		div {
+			p {
+				font-size: 2.1vmax;
+			}
+		}
+	}
+}
