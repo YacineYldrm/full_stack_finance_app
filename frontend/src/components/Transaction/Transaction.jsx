@@ -2,8 +2,9 @@
 // import shopping from '../../../public/shopping.png'
 // import insurance from '../../../public/insurance.png'
 // import other from '../../../public/other.png'
-// import sallary from '../../../public/sallary.png'
-
+// import sallary from '../../../public/sallary.png';
+import activeCard from '../../../public/activeCard.svg';
+import './Transaction.scss';
 const Transaction = ({ transaction }) => {
 	// #################################################
 
@@ -29,24 +30,29 @@ const Transaction = ({ transaction }) => {
 
 	return (
 		<>
-			<main className="transaction">
-				<div>{/* <img src={getIcon()} alt="" /> */}</div>
+			<main className='transaction'>
 				<div>
-					<p>{transaction?.category}</p>
-					<p>{`${date
-						.toString()
-						.slice(16, 21)
-						.replace(':', '.')} , ${date
-						.toString()
-						.slice(8, 10)} ${date.toString().slice(4, 7)} ${date
-						.toString()
-						.slice(11, 15)}`}</p>
+					<img
+						src={activeCard}
+						alt=''
+					/>
+					<div>
+						<h3>{transaction?.category}</h3>
+						<p>{`${date
+							.toString()
+							.slice(16, 21)
+							.replace(':', '.')} , ${date
+							.toString()
+							.slice(8, 10)} ${date.toString().slice(4, 7)} ${date
+							.toString()
+							.slice(11, 15)}`}</p>
+					</div>
 				</div>
 				<div>
 					{transaction?.type === 'income' ? (
-						<p>{`$ ${transaction?.amount}`}</p>
+						<h5>{`${transaction?.amount.toLocaleString()},00€`}</h5>
 					) : (
-						<p>{`-$ ${transaction?.amount}`}</p>
+						<h4>{`${transaction?.amount.toLocaleString()},00€`}</h4>
 					)}
 				</div>
 			</main>
