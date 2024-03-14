@@ -7,6 +7,7 @@ import expenseIcon from "../../../public/expenseIcon.svg";
 import limitIcon from "../../../public/limitIcon.svg";
 import getAllAccounts from "../../utils/getAllAccounts";
 import Card from "../../components/Card/Card";
+import Button from "../../components/Button/Button";
 
 // #####################################################
 
@@ -179,8 +180,21 @@ const Home = ({ provider }) => {
                                     type="number"
                                 />
                             </label>
+                            <p>
+                                %{" "}
+                                {Math.ceil(percentage)
+                                    ? Math.ceil(percentage)
+                                    : 0}
+                            </p>
                             <label>
                                 <input
+                                    className={
+                                        percentage > 60 && percentage <= 80
+                                            ? "limit_range_middle"
+                                            : percentage >= 80
+                                            ? "limit_range_high"
+                                            : "limit_range_low"
+                                    }
                                     defaultValue={0}
                                     value={percentage ? percentage : 0}
                                     onChange={(e) =>
@@ -190,17 +204,16 @@ const Home = ({ provider }) => {
                                     min={0}
                                     max={100}
                                 />
-                                %
-                                {Math.ceil(percentage)
-                                    ? Math.ceil(percentage)
-                                    : 0}
                             </label>
-                            <h4>
-                                Spending limit: max €
-                                {incomeTotal?.toLocaleString()},00
-                            </h4>
+                            <h6>Spending limit:</h6>
+                            <h4>max €{incomeTotal?.toLocaleString()},00</h4>
                         </form>
-                        <button onClick={submitLimit}>Confirm limit</button>
+                        <div>
+                            <Button
+                                btnContent={"Confirm"}
+                                btnFunction={submitLimit}
+                            />
+                        </div>
                     </article>
                 </div>
                 <Navbar provider={provider} />
