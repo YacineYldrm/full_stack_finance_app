@@ -232,8 +232,8 @@ const Home = ({ provider }) => {
                         </div>
                     </article>
                 </div>
+                <Navbar provider={provider} />
             </main>
-            <Navbar provider={provider} />
         </>
     );
 };

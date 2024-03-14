@@ -1,6 +1,6 @@
 .navbar {
 	background-color: rgb(255, 255, 255);
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -34,6 +34,7 @@
 		.jumpUpBox {
 			position: absolute;
 			display: flex;
+			display: none;
 			transform: translate(0, 300%);
 			gap: 3vmax;
 			opacity: 0;
@@ -68,6 +69,7 @@
 			left: -210%;
 			transform: translate(0, 0);
 			opacity: 1;
+			display: flex;
 		}
 	}
 	.active {

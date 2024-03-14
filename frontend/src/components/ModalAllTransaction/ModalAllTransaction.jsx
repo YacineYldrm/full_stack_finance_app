@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Transaction from '../Transaction/Transaction';
-import './ModalAllTransaction.scss'
+import './ModalAllTransaction.scss';
 import Arrow from '../../../public/svg/Arrows/Arrow';
 import Search from '../../../public/svg/Search/Search';
 
@@ -51,18 +51,20 @@ const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 	return (
 		<>
 			<section className='alltransactionmodal'>
-				<article >
-					<Arrow onClick={()=>setModal(false)}/>
-					<img src={`http://localhost:3001/${provider.activeUser.profileImage}`} alt="" />
+				<article>
+					<Arrow onClick={() => setModal(false)} />
+					<img
+						src={`http://localhost:3001/${provider.activeUser.profileImage}`}
+						alt=''
+					/>
 				</article>
 				<article>
 					<div>
-						
-					<input
-						type='search'
-						onChange={(e) => setSearch(e.target.value)}
-					/>
-					<Search/>
+						<input
+							type='text'
+							onChange={(e) => setSearch(e.target.value)}
+						/>
+						<Search />
 					</div>
 					<input
 						type='date'

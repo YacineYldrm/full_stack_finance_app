@@ -1,12 +1,13 @@
 import "./AllTransaction.scss";
-import logo from "../../../public/logo.png";
+import logo from "../../../public/Logo.svg";
 import incomeIcon from "../../../public/incomeIcon.svg";
 import expenseIcon from "../../../public/expenseIcon.svg";
 import { useEffect, useState } from "react";
 import TransactionDay from "../../components/TransactionDay/TransactionDay";
-import { backendUrl } from "../../api";
 import ModalAllTransaction from "../../components/ModalAllTransaction/ModalAllTransaction";
 import getAllAccounts from "../../utils/getAllAccounts";
+import magnifire from "../../../public/magnifire.svg";
+import calendar from "../../../public/calendar.svg";
 import Navbar from "../../components/Navbar/Navbar";
 
 const AllTransaction = ({ provider }) => {
@@ -71,73 +72,83 @@ const AllTransaction = ({ provider }) => {
                     provider={provider}
                 />
             ) : null}
-            <header>
-                <img src={logo} alt="finco logo" />
-                <img
-                    src={`http://localhost:3001/${provider.activeUser.profileImage}`}
-                    alt="profile Image"
-                />
-            </header>
-            <main className="all_transactions_main">
-                <div>
-                    <h1>All transactions</h1>
-                    <div>
-                        <img
-                            src=""
-                            alt="search"
-                            onClick={() => setModal(true)}
-                        />
-                        <img
-                            src=""
-                            alt="calendar"
-                            onClick={() => setModal(true)}
-                        />
-                    </div>
-                </div>
-                <div>
-                    <article>
-                        <div>
-                            <img src={incomeIcon} alt="income icon" />
-                        </div>
-                        <div>
-                            <p>Income</p>
-                            <h2>
-                                {incomeTotal?.toLocaleString("de-DE", {
-                                    style: "currency",
-                                    currency: "EUR",
-                                })}
-                            </h2>
-                        </div>
-                    </article>
-                    <article>
-                        <div>
-                            <img src={expenseIcon} alt="expense icon" />
-                        </div>
-                        <div>
-                            <p>Expense</p>
-                            <h2>
-                                {expenseTotal?.toLocaleString("de-DE", {
-                                    style: "currency",
-                                    currency: "EUR",
-                                })}
-                            </h2>
-                        </div>
-                    </article>
-                </div>
-                <section>
-                    {dates
-                        ?.sort()
-                        .reverse()
-                        .map((date, i) => (
-                            <TransactionDay
-                                date={date}
-                                key={i}
-                                transactions={provider.account.transactions}
+
+            {modal ? null : (
+                <main className="all_transactions_main">
+                    <section>
+                        <div className="userInfo">
+                            <img src={logo} alt="finco logo" />
+                            <img
+                                src={`http://localhost:3001/${provider.activeUser?.profileImage}`}
+                                alt=""
                             />
-                        ))}
-                </section>
-            </main>
-            <Navbar />
+                        </div>
+                    </section>
+                    <div className="titleBar">
+                        <h1>All transactions</h1>
+                        <div>
+                            <div>
+                                <img
+                                    src={magnifire}
+                                    alt="search"
+                                    onClick={() => setModal(true)}
+                                />
+                            </div>
+                            <div>
+                                <img
+                                    src={calendar}
+                                    alt="calendar"
+                                    onClick={() => setModal(true)}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <article>
+                            <div>
+                                <img src={incomeIcon} alt="income icon" />
+                            </div>
+                            <div>
+                                <p>Income</p>
+                                <h2>
+                                    {incomeTotal?.toLocaleString("de-DE", {
+                                        style: "currency",
+                                        currency: "EUR",
+                                    })}
+                                </h2>
+                            </div>
+                        </article>
+                        <article>
+                            <div>
+                                <img src={expenseIcon} alt="expense icon" />
+                            </div>
+                            <div>
+                                <p>Expense</p>
+                                <h2>
+                                    {expenseTotal?.toLocaleString("de-DE", {
+                                        style: "currency",
+                                        currency: "EUR",
+                                    })}
+                                </h2>
+                            </div>
+                        </article>
+                    </div>
+                    <section>
+                        {dates
+                            ?.sort()
+                            .reverse()
+                            .map((date, i) => (
+                                <TransactionDay
+                                    date={date}
+                                    key={i}
+                                    transactions={provider.account.transactions}
+                                />
+                            ))}
+                    </section>
+                </main>
+            )}
+
+            {modal ? null : <Navbar provider={provider} />}
         </>
     );
 };
