@@ -1,0 +1,52 @@
+.all_transactions_main {
+    padding: 2.5% 5%;
+    > div {
+        &:nth-of-type(2) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 2vmax;
+            article {
+                border-radius: 50vmax;
+                background-color: #f2f2f2;
+                display: flex;
+                align-items: center;
+                gap: 1.5vmax;
+                padding: 2.5% 5%;
+                padding-left: 2.5%;
+
+                div {
+                    display: flex;
+                    img {
+                        min-width: 10vw;
+                        aspect-ratio: 1/1;
+                    }
+                    &:nth-of-type(2) {
+                        flex: 1;
+                        flex-direction: column;
+                        justify-content: center;
+                        p {
+                            font-size: 3vw;
+
+                            flex: 1;
+                        }
+                    }
+                }
+                &:nth-of-type(1) {
+                    h2 {
+                        color: #409474;
+                    }
+                }
+                &:nth-of-type(2) {
+                    h2 {
+                        color: #da6e53;
+                    }
+                }
+                h2 {
+                    font-weight: 700;
+                    font-size: 4.3vw;
+                }
+            }
+        }
+    }
+}
