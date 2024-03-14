@@ -5,7 +5,6 @@ import { backendUrl } from "../../api";
 import incomeIcon from "../../../public/incomeIcon.svg";
 import expenseIcon from "../../../public/expenseIcon.svg";
 import limitIcon from "../../../public/limitIcon.svg";
-import getAllAccounts from "../../utils/getAllAccounts";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
@@ -23,12 +22,6 @@ const Home = ({ provider }) => {
     // #####################################################
 
     useEffect(() => {
-        if (provider.authorization) getAllAccounts(provider);
-    }, [provider.authorization]);
-
-    // #####################################################
-
-    useEffect(() => {
         const incomes = provider.account?.transactions?.filter(
             (transaction) => transaction.type === "income"
         );
@@ -42,7 +35,7 @@ const Home = ({ provider }) => {
     // #####################################################
 
     useEffect(() => {
-        if (provider.accounts.length > index)
+        if (provider?.accounts?.length > index)
             provider.setAccount(provider.accounts[index]);
         else setIndex(0);
     }, [index]);
@@ -58,7 +51,6 @@ const Home = ({ provider }) => {
     // #####################################################
 
     useEffect(() => {
-        console.log(formatter.format(limit));
         setLimit(Number((incomeTotal * percentage) / 100).toFixed(0));
     }, [percentage]);
 
@@ -91,10 +83,6 @@ const Home = ({ provider }) => {
         }
     };
 
-    const formatter = new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "EUR",
-    });
     // #####################################################
 
     return (
@@ -189,6 +177,7 @@ const Home = ({ provider }) => {
                             <label>
                                 <input
                                     onChange={(e) => setLimit(e.target.value)}
+                                    disabled={incomeTotal === 0}
                                     value={
                                         limit > incomeTotal
                                             ? incomeTotal
@@ -213,6 +202,7 @@ const Home = ({ provider }) => {
                                             ? "limit_range_high"
                                             : "limit_range_low"
                                     }
+                                    disabled={incomeTotal === 0}
                                     defaultValue={0}
                                     value={percentage ? percentage : 0}
                                     onChange={(e) =>
