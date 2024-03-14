@@ -14,7 +14,6 @@ const getAllAccounts = async (provider) => {
         console.log(error, message);
     } else {
         provider.setAccounts(result);
-        provider.setAccount(result[0]);
     }
 };
 

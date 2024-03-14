@@ -5,7 +5,7 @@ import HomeIcon from '../../../public/svg/homeIcon';
 import PlusIcon from '../../../public/svg/plusIcon';
 import ReportIcon from '../../../public/svg/reportIcon';
 
-const Navbar = ({ provider }) => {
+const Navbar = () => {
 	const jumpUp = (e) => {
 		e.preventDefault();
 		const allActive = document.getElementsByClassName('active');
@@ -20,17 +20,13 @@ const Navbar = ({ provider }) => {
 	};
 	return (
 		<nav className='navbar'>
-			<NavLink
-				to='/'
-				onClick={(e) => e.classList.add('active')}>
+			<NavLink to='/'>
 				<h3>Home</h3>
 				<div>
 					<HomeIcon />
 				</div>
 			</NavLink>
-			<NavLink
-				to='/all-transactions'
-				onClick={(e) => e.classList.add('active')}>
+			<NavLink to='/all-transactions'>
 				<h3>Transactions</h3>
 				<div>
 					<CardIcon />
@@ -49,9 +45,7 @@ const Navbar = ({ provider }) => {
 					<Link to='/add-expense'>Expense</Link>
 				</div>
 			</article>
-			<NavLink
-				to='/reports'
-				onClick={(e) => e.classList.add('active')}>
+			<NavLink to='/reports'>
 				<h3>Reports</h3>
 				<div>
 					<ReportIcon />
