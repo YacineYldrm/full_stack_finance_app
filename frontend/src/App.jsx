@@ -7,9 +7,11 @@ import SetupAccount from './pages/SetupAccount/SetupAccount';
 import Login from './pages/Login/Login';
 import { silentRefresh } from './utils/refresh';
 import AddIncome from './pages/AddIncome/AddIncome';
-import AddExpense from './pages/AddExpanse/AddExpense';
+import AddExpense from './pages/AddExpense/AddExpense';
 import AllTransaction from './pages/AllTransaction/AllTransaction';
 import Navbar from './components/Navbar/Navbar';
+import Verify from './pages/Verify/Verify';
+import Menu from './pages/Menu/Menu';
 
 function App() {
 	// #################################################
@@ -72,6 +74,8 @@ function App() {
 						path='/all-transactions'
 						element={<AllTransaction provider={provider} />}
 					/>
+					<Route path='/verify/:userId' element={<Verify/>}/>
+					<Route path='/menu' element={<Menu provider={provider}/>}/>
 				</Routes>
 			</BrowserRouter>
 		</>

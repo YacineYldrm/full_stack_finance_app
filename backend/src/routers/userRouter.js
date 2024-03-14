@@ -10,5 +10,6 @@ const userRouter = express
     .post("/register", userController.register)
     .get("/logout", makeJwtAuth(), userController.logout)
     .get("/refresh", makeJwtAuth("refresh"), userController.refresh)
-    .post("/verify", userController.verify);
+    .post("/verify", userController.verify)
+    .post("/get-user",userController.getUser)
 export default userRouter;
