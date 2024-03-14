@@ -71,7 +71,7 @@ const AddIncome = ({ provider }) => {
 		<>
 			<main className='addIncome'>
 				<div className='userInfo'>
-					<Arrow />
+					<Arrow onClick={() => navigate('/')} />
 					<img
 						src={`http://localhost:3001/${provider.activeUser?.profileImage}`}
 						alt=''
