@@ -4,10 +4,12 @@ import status from "../../utils/status.js";
 
 const deleteCtrl = catchAsync(async (req, res) => {
     const authorizedUserId = req.authorizedUser;
-    const accountId = req.params.accountId;
+    const accountId = req.body.accountId;
+    const password = req.body.password;
     const deletedAccount = await accountServices._delete(
         authorizedUserId,
-        accountId
+        accountId,
+        password
     );
     res.status(status.OK).json({
         success: true,

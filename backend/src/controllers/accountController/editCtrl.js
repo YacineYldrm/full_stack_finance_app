@@ -5,6 +5,7 @@ import status from "../../utils/status.js";
 const editCtrl = catchAsync(async (req, res) => {
     const authorizedUserId = req.authorizedUser;
     const accountInfo = req.body;
+
     const updatedAccount = await accountServices.edit(
         authorizedUserId,
         accountInfo
