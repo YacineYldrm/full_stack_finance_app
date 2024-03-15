@@ -12,7 +12,7 @@ const calcTotal = (account, provider) => {
     );
     provider.setIncomeTotal(incomes?.reduce((acc, curr) => acc + curr.amount, 0));
     provider.setExpenseTotal(expenses?.reduce((acc, curr) => acc + curr.amount, 0));
-    console.log(provider)
+
 };
 
 
