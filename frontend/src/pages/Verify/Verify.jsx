@@ -43,8 +43,8 @@ const Verify = () => {
         if(!success){
             console.log(error,message);
         }else{
-            console.log(result);
-            console.log(success);
+            
+            navigate("/login");
         }
     }
     return ( 

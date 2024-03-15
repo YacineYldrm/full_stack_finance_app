@@ -13,4 +13,6 @@ const userRouter = express
     .post("/verify", userController.verify)
     .post("/get-user",userController.getUser)
     .post("/change-password",makeJwtAuth(), userController.changePassword)
+    .post("/change-email",makeJwtAuth(),userController.changeEmail)
+    .delete("/delete",makeJwtAuth(),userController.deleteUser)
 export default userRouter;
