@@ -14,7 +14,8 @@ import getAllAccounts from "./utils/getAllAccounts";
 import Verify from "./pages/Verify/Verify";
 import Menu from "./pages/Menu/Menu";
 import calcTotal from "./utils/calcTotal";
-import Settings from './pages/Settings/Settings';
+import Settings from "./pages/Settings/Settings";
+import MyWallet from "./pages/MyWallet/MyWallet";
 
 function App() {
     // #################################################
@@ -101,7 +102,14 @@ function App() {
                         path="/menu"
                         element={<Menu provider={provider} />}
                     />
-					<Route path='/menu/settings' element={<Settings provider={provider}/>}/>
+                    <Route
+                        path="/menu/settings"
+                        element={<Settings provider={provider} />}
+                    />
+                    <Route
+                        path="/menu/my-wallet"
+                        element={<MyWallet provider={provider} />}
+                    />
                 </Routes>
             </BrowserRouter>
         </>
