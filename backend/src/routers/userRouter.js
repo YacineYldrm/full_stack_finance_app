@@ -12,4 +12,5 @@ const userRouter = express
     .get("/refresh", makeJwtAuth("refresh"), userController.refresh)
     .post("/verify", userController.verify)
     .post("/get-user",userController.getUser)
+    .post("/change-password",makeJwtAuth(), userController.changePassword)
 export default userRouter;
