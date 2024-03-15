@@ -8,48 +8,49 @@ import limitIcon from '../../../public/limitIcon.svg';
 import Card from '../../components/Card/Card';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import calcTotal from '../../utils/calcTotal';
+import getAllAccounts from '../../utils/getAllAccounts';
 
 // #####################################################
 
 const Home = ({ provider }) => {
-	const [expenseTotal, setExpenseTotal] = useState(0);
-	const [incomeTotal, setIncomeTotal] = useState(0);
 	const [limit, setLimit] = useState(0);
 	const [percentage, setPercentage] = useState(0);
 	const [message, setMessage] = useState(null);
 	const navigate = useNavigate();
-	const [accountLimit, setAccountLimit] = useState(0);
+	const [account, setAccount] = useState(0);
+
 	// #####################################################
 
 	useEffect(() => {
-		const incomes = provider.account?.transactions?.filter(
-			(transaction) => transaction.type === 'income',
-		);
-		const expenses = provider.account?.transactions?.filter(
-			(transaction) => transaction.type === 'expense',
-		);
-		setIncomeTotal(incomes?.reduce((acc, curr) => acc + curr.amount, 0));
-		setExpenseTotal(expenses?.reduce((acc, curr) => acc + curr.amount, 0));
+		setAccount(provider?.account);
+	}, [provider.account]);
+
+	// #####################################################
+
+	useEffect(() => {
+		if (account) calcTotal(account, provider);
 	}, [provider.account]);
 
 	// #####################################################
 
 	useEffect(() => {
 		provider.setAccount(provider.accounts[provider.cardIndex]);
+		setAccount(provider.accounts[provider.cardIndex]);
 	}, [provider]);
 
 	// #####################################################
 
 	useEffect(() => {
-		if (incomeTotal < limit) {
-			setPercentage(100);
-		} else setPercentage((Number(limit) / Number(incomeTotal)) * 100);
+		const percentage = (Number(limit) / Number(provider.incomeTotal)) * 100;
+		if (percentage < 100) setPercentage(percentage);
+		else setPercentage(100);
 	}, [limit]);
 
 	// #####################################################
 
 	useEffect(() => {
-		setLimit(Number((incomeTotal * percentage) / 100).toFixed(0));
+		setLimit(Number((provider.incomeTotal * percentage) / 100).toFixed(0));
 	}, [percentage]);
 
 	// #####################################################
@@ -60,10 +61,6 @@ const Home = ({ provider }) => {
 	};
 
 	// #####################################################
-
-	useEffect(() => {
-		setAccountLimit(provider?.account?.limit);
-	}, [provider]);
 
 	// #####################################################
 
@@ -81,7 +78,7 @@ const Home = ({ provider }) => {
 			console.log(error);
 			setMessage(message);
 		} else {
-			setAccountLimit(result.limit);
+			setAccount(result);
 			toggleModal();
 		}
 	};
@@ -123,7 +120,7 @@ const Home = ({ provider }) => {
 								<p>Income</p>
 							</div>
 							<h2>
-								{incomeTotal?.toLocaleString('de-DE', {
+								{provider.incomeTotal.toLocaleString('de-DE', {
 									style: 'currency',
 									currency: 'EUR',
 								})}
@@ -138,7 +135,7 @@ const Home = ({ provider }) => {
 								<p>Expense</p>
 							</div>
 							<h2>
-								{expenseTotal?.toLocaleString('de-DE', {
+								{provider.expenseTotal.toLocaleString('de-DE', {
 									style: 'currency',
 									currency: 'EUR',
 								})}
@@ -155,11 +152,11 @@ const Home = ({ provider }) => {
 							/>
 						</div>
 						<div>
-							{accountLimit ? (
+							{account?.limit ? (
 								<>
 									<p>Monthly spending limit</p>
 									<h2>
-										{accountLimit.toLocaleString('de-DE', {
+										{account.limit.toLocaleString('de-DE', {
 											style: 'currency',
 											currency: 'EUR',
 										})}
@@ -191,10 +188,10 @@ const Home = ({ provider }) => {
 							<label>
 								<input
 									onChange={(e) => setLimit(e.target.value)}
-									disabled={incomeTotal === 0}
+									disabled={provider.incomeTotal === 0}
 									value={
-										limit > incomeTotal
-											? incomeTotal
+										limit > provider.incomeTotal
+											? provider.incomeTotal
 											: limit
 									}
 									type='number'
@@ -216,7 +213,7 @@ const Home = ({ provider }) => {
 											? 'limit_range_high'
 											: 'limit_range_low'
 									}
-									disabled={incomeTotal === 0}
+									disabled={provider.incomeTotal === 0}
 									defaultValue={0}
 									value={percentage ? percentage : 0}
 									onChange={(e) =>
@@ -229,8 +226,8 @@ const Home = ({ provider }) => {
 							</label>
 							<h6>Spending limit:</h6>
 							<h4>
-								{incomeTotal > 0
-									? `max ${incomeTotal?.toLocaleString(
+								{provider.incomeTotal > 0
+									? `max ${provider.incomeTotal?.toLocaleString(
 											'de-DE',
 											{
 												style: 'currency',

@@ -6,6 +6,7 @@ import Arrow from '../../../public/svg/Arrows/Arrow';
 import Card from '../../components/Card/Card';
 import { useNavigate } from 'react-router-dom';
 import getAllAccounts from '../../utils/getAllAccounts';
+import calcTotal from '../../utils/calcTotal';
 
 const AddIncome = ({ provider }) => {
 	const [transactionInfo, setTransactionInfo] = useState({});
@@ -30,9 +31,9 @@ const AddIncome = ({ provider }) => {
 
 	// #################################################
 
-	useEffect(() => {
-		if (provider.authorization) getAllAccounts(provider);
-	}, [provider.authorization]);
+	// useEffect(() => {
+	// 	if (provider.authorization) getAllAccounts(provider);
+	// }, [provider.authorization]);
 
 	// #################################################
 
@@ -57,8 +58,11 @@ const AddIncome = ({ provider }) => {
 			console.log(error);
 			console.log(message);
 		} else {
-			console.log(result);
+			getAllAccounts(provider);
+			calcTotal(result, provider);
 			provider.setAccount(result);
+			console.log(result);
+
 			navigate('/');
 		}
 	};

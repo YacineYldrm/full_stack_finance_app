@@ -13,15 +13,18 @@ import Reports from './pages/Reports/Reports';
 import getAllAccounts from './utils/getAllAccounts';
 import Verify from './pages/Verify/Verify';
 import Menu from './pages/Menu/Menu';
+import calcTotal from './utils/calcTotal';
 
 function App() {
 	// #################################################
 	const [authorization, setAuthorization] = useState(null);
 	const [activeUser, setActiveUser] = useState('');
 	const [accounts, setAccounts] = useState([]);
-	const [account, setAccount] = useState({});
+	const [account, setAccount] = useState(null);
 	const [transactions, setTransactions] = useState([]);
 	const [cardIndex, setCardIndex] = useState(0);
+	const [expenseTotal, setExpenseTotal] = useState(0);
+	const [incomeTotal, setIncomeTotal] = useState(0);
 
 	const provider = {
 		authorization,
@@ -36,6 +39,10 @@ function App() {
 		setTransactions,
 		cardIndex,
 		setCardIndex,
+		expenseTotal,
+		setExpenseTotal,
+		incomeTotal,
+		setIncomeTotal,
 	};
 
 	// ############### Refresh Token on pagereload ###############
@@ -47,7 +54,10 @@ function App() {
 
 	useEffect(() => {
 		if (provider.authorization) getAllAccounts(provider);
-	}, [provider.authorization]);
+	}, [authorization]);
+	useEffect(() => {
+		if (account) calcTotal(account, provider);
+	}, [incomeTotal, expenseTotal]);
 
 	// #################################################
 
