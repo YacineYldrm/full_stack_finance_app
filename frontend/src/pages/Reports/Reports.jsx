@@ -261,20 +261,24 @@ const Reports = ({ provider }) => {
 					))}
 				</section>
 				<section>
-					<p
-						onClick={() => {
-							index < allTransactions?.length
-								? setIndex(index + 5)
-								: null;
-						}}>
-						load more
-					</p>
-					<p
-						onClick={() => {
-							index !== 5 ? setIndex(index - 5) : null;
-						}}>
-						show less
-					</p>
+					{index < allTransactions?.length ? (
+						<p
+							onClick={() => {
+								index < allTransactions?.length
+									? setIndex(index + 5)
+									: null;
+							}}>
+							load more
+						</p>
+					) : null}
+					{index <= 5 || allTransactions?.length <= 5 ? null : (
+						<p
+							onClick={() => {
+								index !== 5 ? setIndex(index - 5) : null;
+							}}>
+							show less
+						</p>
+					)}
 				</section>
 			</main>
 		</>
