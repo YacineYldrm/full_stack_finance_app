@@ -4,7 +4,7 @@ const Button = ({ btnContent, btnFunction }) => {
 	return (
 		<button
 			className='button'
-			onClick={btnFunction}>
+			onClick={() => btnFunction()}>
 			{btnContent}
 		</button>
 	);

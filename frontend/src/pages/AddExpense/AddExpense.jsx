@@ -8,6 +8,7 @@ import Button from '../../components/Button/Button';
 import Arrow from '../../../public/svg/Arrows/Arrow';
 import Card from '../../components/Card/Card';
 import Navbar from '../../components/Navbar/Navbar';
+import calcTotal from '../../utils/calcTotal';
 
 const AddExpense = ({ provider }) => {
 	const [transactionInfo, setTransactionInfo] = useState({});
@@ -62,6 +63,8 @@ const AddExpense = ({ provider }) => {
 			console.log(error);
 			console.log(message);
 		} else {
+			getAllAccounts(provider);
+			calcTotal(result, provider);
 			console.log(result);
 			provider.setAccount(result);
 			navigate('/');
