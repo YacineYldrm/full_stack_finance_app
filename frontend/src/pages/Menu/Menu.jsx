@@ -55,7 +55,7 @@ const Menu = ({provider}) => {
                         <img src={arrowright} alt="" />
                         </div>
 
-                        <div>
+                        <div onClick={()=>navigate("/menu/settings")}>
                         <div>
                             <img src={settings} alt="" />
                             <p>Settings</p>

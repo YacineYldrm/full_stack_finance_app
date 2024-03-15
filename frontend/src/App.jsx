@@ -14,6 +14,7 @@ import getAllAccounts from './utils/getAllAccounts';
 import Verify from './pages/Verify/Verify';
 import Menu from './pages/Menu/Menu';
 import calcTotal from './utils/calcTotal';
+import Settings from './pages/Settings/Settings';
 
 function App() {
 	// #################################################
@@ -106,6 +107,7 @@ function App() {
 						path='/menu'
 						element={<Menu provider={provider} />}
 					/>
+					<Route path='/menu/settings' element={<Settings provider={provider}/>}/>
 				</Routes>
 			</BrowserRouter>
 		</>

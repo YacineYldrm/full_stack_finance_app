@@ -13,7 +13,8 @@ const edit = async (userId, userInfo, reqFile) => {
     if (reqFile && foundUser.profileImage !== "") {
         await fs.unlink(`./data/${foundUser.profileImage}`);
     }
-
+    foundUser.firstName =userInfo.firstName
+    foundUser.lastName = userInfo.lastName
     foundUser.profileImage = reqFile
         ? reqFile.filename
         : foundUser.profileImage;

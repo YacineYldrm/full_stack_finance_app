@@ -7,7 +7,7 @@ import TransactionDay from '../../components/TransactionDay/TransactionDay';
 import ModalAllTransaction from '../../components/ModalAllTransaction/ModalAllTransaction';
 import getAllAccounts from '../../utils/getAllAccounts';
 import magnifire from '../../../public/magnifire.svg';
-import calendar from '../../../public/Calendar.svg';
+import calendar from '../../../public/calendar.svg';
 import Navbar from '../../components/Navbar/Navbar';
 
 const AllTransaction = ({ provider }) => {
