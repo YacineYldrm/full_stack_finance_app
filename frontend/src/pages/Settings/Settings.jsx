@@ -116,12 +116,33 @@ const Settings = ({ provider }) => {
                 </div>
                 <h3>Settings</h3>
                 <section>
-                    {/* <div>
-                        <img src={image ? URL.createObjectURL(image) :`http://localhost:3001/${provider?.activeUser?.profileImage}`} alt="" />
-                        <input type="file" name="" accept="image/*" id="" onChange={(e)=>setImage(e.target.files[0])}/>
-                        {image? <button onClick={()=>setImage(null)}>use old</button> : <p>Drop your image here ⬆️ </p>}
-                        {image? <button onClick={editUser}>upload new image</button>: null}
-                    </div> */}
+                    <div>
+                        <img
+                            src={
+                                image
+                                    ? URL.createObjectURL(image)
+                                    : `http://localhost:3001/${provider?.activeUser?.profileImage}`
+                            }
+                            alt=""
+                        />
+                        <input
+                            type="file"
+                            name=""
+                            accept="image/*"
+                            id=""
+                            onChange={(e) => setImage(e.target.files[0])}
+                        />
+                        {image ? (
+                            <button onClick={() => setImage(null)}>
+                                use old
+                            </button>
+                        ) : (
+                            <p>Drop your image here ⬆️ </p>
+                        )}
+                        {image ? (
+                            <button onClick={editUser}>upload new image</button>
+                        ) : null}
+                    </div>
                     <article className="my_profile_options">
                         <div
                             id="settings1"
