@@ -4,14 +4,14 @@ const ModalSure = ({setModalSure, yesFunc, content}) => {
     return ( 
         <>
         <section className="modalsure">
-            <article>
-                <div>
+            <article className='modalsureart'>
+                
                     <p>{content}</p>
-                    <div>
+                    <div className='modalsurediv'>
                         <button onClick={()=>yesFunc()}>yes</button>
                         <button onClick={()=>setModalSure(false)}>no</button>
                     </div>
-                </div>
+                
             </article>
         </section>
         </>

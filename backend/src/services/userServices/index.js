@@ -6,6 +6,8 @@ import register from "./register.js";
 import getUser from "./getUser.js";
 import changePassword from "./changePassword.js";
 import verify from "./verify.js";
+import changeEmail from "./changeEmail.js";
+import deleteUser from "./deleteUser.js";
 
 const userServices = {
     getAllUser,
@@ -15,7 +17,9 @@ const userServices = {
     refresh,
     verify,
     getUser,
-    changePassword
+    changePassword,
+    changeEmail,
+    deleteUser
 };
 
 export default userServices;
