@@ -133,7 +133,7 @@ const AllTransaction = ({ provider }) => {
                                 <TransactionDay
                                     date={date}
                                     key={i}
-                                    transactions={provider.account.transactions}
+                                    transactions={provider.account?.transactions}
                                 />
                             ))}
                     </section>

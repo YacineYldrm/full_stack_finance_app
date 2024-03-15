@@ -19,7 +19,7 @@ const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 						.toLowerCase()
 						.includes(search.toLowerCase()) &&
 					new Date(
-						transaction.date -
+						transaction?.date -
 							new Date().getTimezoneOffset() * 60000,
 					)
 						.toISOString()
@@ -32,7 +32,7 @@ const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 			} else if (search == '' && date !== '') {
 				return (
 					new Date(
-						transaction.date -
+						transaction?.date -
 							new Date().getTimezoneOffset() * 60000,
 					)
 						.toISOString()
@@ -54,7 +54,7 @@ const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 				<article>
 					<Arrow onClick={() => setModal(false)} />
 					<img
-						src={`http://localhost:3001/${provider.activeUser.profileImage}`}
+						src={`http://localhost:3001/${provider.activeUser?.profileImage}`}
 						alt=''
 					/>
 				</article>
