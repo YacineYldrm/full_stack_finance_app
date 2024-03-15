@@ -3,19 +3,19 @@ import editPen from "../../../public/edit_pen.svg";
 import changeUser from "../../../public/changeUser.svg";
 import deleteIcon from "../../../public/delete.svg";
 import arrowright from "../../../public/ArrowRight.svg";
-import Navbar from "../../components/Navbar/Navbar";
 import "./MyWallet.scss";
 import Arrow from "../../../public/svg/Arrows/Arrow";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import { useEffect, useState } from "react";
+import getAllAccounts from "../../utils/getAllAccounts";
 
 const MyWallet = ({ provider }) => {
     const navigate = useNavigate();
     const [message, setMessage] = useState(null);
     const [accountInfo, setAccountInfo] = useState({});
-
-    console.log(accountInfo);
+    const [newMember, setNewMember] = useState(null);
+    const [password, setPassword] = useState(null);
 
     useEffect(() => {
         provider.setAccount(provider.accounts[provider.cardIndex]);
@@ -42,13 +42,17 @@ const MyWallet = ({ provider }) => {
         if (!success) {
             console.log(error, message);
             setMessage(message);
-        } else console.log(result);
+        } else {
+            await getAllAccounts(provider);
+            provider.setCardIndex(provider.accounts.length);
+            navigate("/");
+        }
     };
 
     const editAccount = async () => {
         const authorization = provider.authorization;
         const response = await fetch(
-            "http://localhost:3001/api/v1/" + "accounts/create",
+            "http://localhost:3001/api/v1/" + "accounts/edit",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json", authorization },
@@ -59,7 +63,53 @@ const MyWallet = ({ provider }) => {
         if (!success) {
             console.log(error, message);
             setMessage(message);
-        } else console.log(result);
+        } else {
+            await getAllAccounts(provider);
+            navigate("/");
+        }
+    };
+
+    const addMember = async () => {
+        const authorization = provider.authorization;
+        const response = await fetch(
+            "http://localhost:3001/api/v1/" + "accounts/edit",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json", authorization },
+                body: JSON.stringify(newMember),
+            }
+        );
+        const { success, result, error, message } = await response.json();
+        if (!success) {
+            console.log(error, message);
+            setMessage(message);
+        } else {
+            await getAllAccounts(provider);
+            navigate("/");
+        }
+    };
+
+    const deleteAccount = async () => {
+        const authorization = provider.authorization;
+        const response = await fetch(
+            "http://localhost:3001/api/v1/" + "accounts/delete",
+            {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json", authorization },
+                body: JSON.stringify({
+                    password,
+                    accountId: provider.account._id,
+                }),
+            }
+        );
+        const { success, result, error, message } = await response.json();
+        if (!success) {
+            console.log(error, message);
+            setMessage(message);
+        } else {
+            await getAllAccounts(provider);
+            navigate("/");
+        }
     };
 
     const toggleDisplayOption = (idName) => {
@@ -88,7 +138,7 @@ const MyWallet = ({ provider }) => {
                         >
                             <div>
                                 <img src={bankCard} alt="" />
-                                <p>Add new account</p>
+                                <p>Add new bank account</p>
                             </div>
                             <img
                                 className="arrow_img"
@@ -117,7 +167,6 @@ const MyWallet = ({ provider }) => {
                                     }}
                                     defaultValue="default"
                                     name=""
-                                    id=""
                                 >
                                     <option disabled value="default">
                                         Select account type
@@ -131,15 +180,17 @@ const MyWallet = ({ provider }) => {
                                     <option value="Business Account">
                                         Business Account
                                     </option>
-                                    <option value="Business Account">
+                                    <option value="Basic Account">
                                         Basic Account
                                     </option>
-                                    <option value="Business Account">
+                                    <option value="Family Account">
                                         Family Account
                                     </option>
                                 </select>
                             </form>
-                            <button>Add Account</button>
+                            <button onClick={() => createAccount()}>
+                                Add bank account
+                            </button>
                         </div>
 
                         <div
@@ -149,7 +200,7 @@ const MyWallet = ({ provider }) => {
                         >
                             <div>
                                 <img src={editPen} alt="" />
-                                <p>Edit account</p>
+                                <p>Edit bank account</p>
                             </div>
                             <img src={arrowright} alt="" />
                         </div>
@@ -165,41 +216,43 @@ const MyWallet = ({ provider }) => {
                                     type="text"
                                     defaultValue={provider.account?.cardNumber}
                                 />
+
+                                <label>
+                                    Account type:{" "}
+                                    <select
+                                        onChange={(e) => {
+                                            setAccountInfo({
+                                                ...accountInfo,
+                                                type: e.target.value,
+                                            });
+                                        }}
+                                        defaultValue="default"
+                                        name=""
+                                    >
+                                        <option disabled value="default">
+                                            {provider.account?.type}
+                                        </option>
+                                        <option value="Credit Card">
+                                            Credit Card
+                                        </option>
+                                        <option value="Savings account">
+                                            Savings Account
+                                        </option>
+                                        <option value="Business Account">
+                                            Business Account
+                                        </option>
+                                        <option value="Business Account">
+                                            Basic Account
+                                        </option>
+                                        <option value="Business Account">
+                                            Family Account
+                                        </option>
+                                    </select>
+                                </label>
                             </form>
-                            <label>
-                                Account type:{" "}
-                                <select
-                                    onChange={(e) => {
-                                        setAccountInfo({
-                                            ...accountInfo,
-                                            type: e.target.value,
-                                        });
-                                    }}
-                                    defaultValue="default"
-                                    name=""
-                                    id=""
-                                >
-                                    <option disabled value="default">
-                                        {provider.account?.type}
-                                    </option>
-                                    <option value="Credit Card">
-                                        Credit Card
-                                    </option>
-                                    <option value="Savings account">
-                                        Savings Account
-                                    </option>
-                                    <option value="Business Account">
-                                        Business Account
-                                    </option>
-                                    <option value="Business Account">
-                                        Basic Account
-                                    </option>
-                                    <option value="Business Account">
-                                        Family Account
-                                    </option>
-                                </select>
-                            </label>
-                            <button>Confirm</button>
+                            <button onClick={() => editAccount()}>
+                                Confirm
+                            </button>
                         </div>
 
                         <div
@@ -209,15 +262,21 @@ const MyWallet = ({ provider }) => {
                         >
                             <div>
                                 <img src={changeUser} alt="" />
-                                <p>Add member to account</p>
+                                <p>Add member to bank account</p>
                             </div>
                             <img src={arrowright} alt="" />
                         </div>
                         <div className="option_inputs_container">
                             <form>
-                                <input type="text" placeholder="Card Number" />
+                                <input
+                                    onChange={(e) =>
+                                        setNewMember(e.target.value)
+                                    }
+                                    type="text"
+                                    placeholder="e.g. member@email.com"
+                                />
                             </form>
-                            <button>Confirm</button>
+                            <button onClick={() => addMember()}>Confirm</button>
                         </div>
                     </article>
 
@@ -229,7 +288,7 @@ const MyWallet = ({ provider }) => {
                         >
                             <div>
                                 <img src={deleteIcon} alt="" />
-                                <p>Delete account</p>
+                                <p>Delete bank account</p>
                             </div>
                             <img src={arrowright} alt="" />
                         </div>
@@ -240,12 +299,17 @@ const MyWallet = ({ provider }) => {
                                     Enter your Password and confirm to delete
                                     your selected Account.
                                     <input
+                                        onChange={(e) =>
+                                            setPassword(e.target.value)
+                                        }
                                         type="password"
                                         placeholder="Password"
                                     />
                                 </label>
                             </form>
-                            <button>Confirm</button>
+                            <button onClick={() => deleteAccount()}>
+                                Confirm
+                            </button>
                         </div>
                     </article>
                 </section>

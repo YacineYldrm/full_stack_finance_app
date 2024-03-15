@@ -1,14 +1,14 @@
-import './AllTransaction.scss';
-import logo from '../../../public/Logo.svg';
-import incomeIcon from '../../../public/incomeIcon.svg';
-import expenseIcon from '../../../public/expenseIcon.svg';
-import { useEffect, useState } from 'react';
-import TransactionDay from '../../components/TransactionDay/TransactionDay';
-import ModalAllTransaction from '../../components/ModalAllTransaction/ModalAllTransaction';
-import getAllAccounts from '../../utils/getAllAccounts';
-import magnifire from '../../../public/magnifire.svg';
-import calendar from '../../../public/calendar.svg';
-import Navbar from '../../components/Navbar/Navbar';
+import "./AllTransaction.scss";
+import logo from "../../../public/Logo.svg";
+import incomeIcon from "../../../public/incomeIcon.svg";
+import expenseIcon from "../../../public/expenseIcon.svg";
+import { useEffect, useState } from "react";
+import TransactionDay from "../../components/TransactionDay/TransactionDay";
+import ModalAllTransaction from "../../components/ModalAllTransaction/ModalAllTransaction";
+import getAllAccounts from "../../utils/getAllAccounts";
+import magnifire from "../../../public/magnifire.svg";
+import calendar from "../../../public/calendar.svg";
+import Navbar from "../../components/Navbar/Navbar";
 
 const AllTransaction = ({ provider }) => {
     const [expenseTotal, setExpenseTotal] = useState(0);

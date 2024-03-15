@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 const SetupAccount = ({ provider }) => {
     const [imgFile, setImgFile] = useState(null);
     const [cardNumber, setCardNumber] = useState(null);
+    const [accountInfo, setAccountInfo] = useState({
+        cardNumber: "",
+        type: "",
+    });
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
@@ -44,9 +48,7 @@ const SetupAccount = ({ provider }) => {
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json", authorization },
-                body: JSON.stringify({
-                    cardNumber,
-                }),
+                body: JSON.stringify(accountInfo),
             }
         );
         const { success, result, error, message } = await response.json();
@@ -94,11 +96,38 @@ const SetupAccount = ({ provider }) => {
                     <img src="" alt="" />
                 </div>
             </div>
-            <input
-                onChange={(e) => setCardNumber(e.target.value)}
-                type="text"
-                placeholder="Card Number"
-            />
+            <form>
+                <input
+                    onChange={(e) =>
+                        setAccountInfo({
+                            ...accountInfo,
+                            cardNumber: e.target.value,
+                        })
+                    }
+                    type="text"
+                    placeholder="Card Number"
+                />
+                <select
+                    onChange={(e) => {
+                        setAccountInfo({
+                            ...accountInfo,
+                            type: e.target.value,
+                        });
+                    }}
+                    defaultValue="default"
+                    name=""
+                    id=""
+                >
+                    <option disabled value="default">
+                        Select account type
+                    </option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Savings account">Savings Account</option>
+                    <option value="Business Account">Business Account</option>
+                    <option value="Basic Account">Basic Account</option>
+                    <option value="Family Account">Family Account</option>
+                </select>
+            </form>
             <h4>{message}</h4>
             <button onClick={() => handleAccountSetup()}>
                 Profile Complete
