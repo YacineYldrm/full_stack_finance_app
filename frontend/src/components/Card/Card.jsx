@@ -1,14 +1,53 @@
 import './Card.scss';
-import cardBg from '../../../public/cardBg.jpeg';
+import cardBg from '../../../public/cardBgs/cardBg.jpeg';
+import cardBg1 from '../../../public/cardBgs/cardBg1.avif';
+import cardBg2 from '../../../public/cardBgs/cardBg2.webp';
+import cardBg3 from '../../../public/cardBgs/cardBg3.webp';
+import cardBg4 from '../../../public/cardBgs/cardBg4.webp';
+import cardBg5 from '../../../public/cardBgs/cardBg5.jpeg';
+import cardBg6 from '../../../public/cardBgs/cardBg6.avif';
+import cardBg7 from '../../../public/cardBgs/cardBg7.avif';
+import cardBg8 from '../../../public/cardBgs/cardBg8.jpeg';
+import cardBg9 from '../../../public/cardBgs/cardBg9.jpeg';
 import activeCard from '../../../public/activeCard.svg';
 import chip from '../../../public/chip.svg';
 
 const Card = ({ account }) => {
+	const colors = [
+		'#005eb060',
+		'#b0000060',
+		'#b0610060',
+		'#20b00060',
+		'#00b0a160',
+		'#4f00b060',
+		'#a100b060',
+		'#b0005860',
+		'#bb00ff60',
+		'#a1a1a19b',
+	];
+
+	const cardBgs = [
+		cardBg,
+		cardBg1,
+		cardBg2,
+		cardBg3,
+		cardBg4,
+		cardBg5,
+		cardBg6,
+		cardBg7,
+		cardBg8,
+		cardBg9,
+	];
+	const cardColorNum = Number(account?.cardNumber?.slice(-4));
+	const cardColorIndex = Number((cardColorNum * 128).toString().split('')[3]);
+
 	return (
-		<section className='card'>
+		<section
+			className='card'
+			style={{ backgroundColor: `${colors[cardColorIndex]}` }}>
 			<img
 				className='pattern'
-				src={cardBg}
+				src={cardBgs[cardColorIndex]}
 				alt=''
 			/>
 			<section>
