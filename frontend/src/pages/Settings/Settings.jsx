@@ -7,7 +7,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import './Settings.scss'
 import { useState } from 'react'
 import Arrow from '../../../public/svg/Arrows/Arrow'
-import ModalSure from '../../components/ModalSure/ModalSure'
+
 import { useNavigate } from 'react-router-dom'
 import { backendUrl } from '../../api'
 

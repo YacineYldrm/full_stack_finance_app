@@ -50,7 +50,9 @@ const TransactionDay = ({ date, transactions }) => {
 					</h5>
 				</div>
 				<div>
-					{filteredTransactions.map((transaction) => (
+					{filteredTransactions.sort(
+				(transOne, transTwo) => transTwo.date - transOne.date,
+			).map((transaction) => (
 						<Transaction
 							key={transaction._id}
 							transaction={transaction}

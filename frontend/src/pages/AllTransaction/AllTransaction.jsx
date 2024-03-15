@@ -58,7 +58,7 @@ const AllTransaction = ({ provider }) => {
         <>
             {modal ? (
                 <ModalAllTransaction
-                    transactions={provider.account.transactions}
+                    transactions={provider.account?.transactions}
                     modal={modal}
                     setModal={setModal}
                     provider={provider}
@@ -133,7 +133,7 @@ const AllTransaction = ({ provider }) => {
                                 <TransactionDay
                                     date={date}
                                     key={i}
-                                    transactions={provider.account.transactions}
+                                    transactions={provider.account?.transactions}
                                 />
                             ))}
                     </section>
