@@ -214,7 +214,6 @@ const Home = ({ provider }) => {
 											: 'limit_range_low'
 									}
 									disabled={provider.incomeTotal === 0}
-									defaultValue={0}
 									value={percentage ? percentage : 0}
 									onChange={(e) =>
 										setPercentage(e.target.value)

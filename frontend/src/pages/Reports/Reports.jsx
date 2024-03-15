@@ -6,22 +6,25 @@ import { useEffect, useState } from 'react';
 import Transaction from '../../components/Transaction/Transaction';
 import Navbar from '../../components/Navbar/Navbar';
 import ReactECharts from 'echarts-for-react';
+import Arrow from '../../../public/svg/Arrows/Arrow';
+import { useNavigate } from 'react-router-dom';
+import getAllAccounts from '../../utils/getAllAccounts';
 // import BarChart from "../../components/Charts/BarChart";
 
 const Reports = ({ provider }) => {
 	const [expenseTotal, setExpenseTotal] = useState(0);
 	const [incomeTotal, setIncomeTotal] = useState(0);
-	console.log(provider.account);
-
 	const [allTransactions, setAllTransactions] = useState([]);
-
 	const [renderedTransactions, setRenderedTransactions] = useState([]);
 	const [index, setIndex] = useState(5);
 
+	const navigate = useNavigate();
+
 	// ####################################################################
 	useEffect(() => {
+		getAllAccounts(provider);
 		provider.setAccount(provider.accounts[provider.cardIndex]);
-	}, [provider]);
+	}, [provider, provider.authorization]);
 
 	// #######################render loadmore #############################
 
@@ -54,7 +57,7 @@ const Reports = ({ provider }) => {
 
 	// ###############################################################
 
-	const option1 = {
+	const monthlyView = {
 		legend: [{ show: true, itemGap: 30 }],
 		tooltip: {},
 		animationEasing: 'circularIn',
@@ -93,11 +96,12 @@ const Reports = ({ provider }) => {
 		// to a column of dataset.source by default.
 		series: [{ type: 'bar' }, { type: 'bar' }],
 	};
-	const option2 = {
+
+	const dailyView = {
 		legend: [{ show: true, itemGap: 30 }],
 		tooltip: {},
 		animationEasing: 'circularIn',
-		color: ['#409474', '#da6e53'],
+		color: ['#da6e53', '#409474'],
 		textStyle: {
 			fontFamily: 'urbanist',
 			fontSize: '16px',
@@ -110,20 +114,32 @@ const Reports = ({ provider }) => {
 			right: 10,
 		},
 		dataset: {
-			dimensions: ['period', 'income', 'expense'],
+			dimensions: ['period', 'expense', 'difference'],
 			source: [],
 		},
 		xAxis: { type: 'category' },
 		yAxis: { axisLabel: false, splitNumber: 6 },
 		// Declare several bar series, each will be mapped
 		// to a column of dataset.source by default.
-		series: [{ type: 'bar' }, { type: 'bar' }],
+		series: [
+			{
+				type: 'line',
+				smooth: true,
+				areaStyle: {
+					color: '#da6e53',
+					origin: 'start',
+				},
+			},
+			{
+				type: 'line',
+			},
+		],
 	};
 
 	// ###############################################################
 
-	const setOption1 = () => {
-		const source = [...option1.dataset.source];
+	const setMonthlyView = () => {
+		const source = [...monthlyView.dataset.source];
 		const transactions = provider?.account?.transactions;
 
 		transactions?.forEach((transaction) => {
@@ -133,40 +149,49 @@ const Reports = ({ provider }) => {
 		});
 	};
 
-	const setOption2 = () => {
+	const setDailyView = () => {
 		const transactions = provider?.account?.transactions;
 
 		transactions?.forEach((transaction) => {
 			const transactionYear = new Date(transaction.date).getFullYear();
 			const transactionMonth = new Date(Date.now()).getMonth();
-			const monthLength = new Date(
-				transactionYear,
-				transactionMonth + 1,
-				0,
-			).getDate();
+			const calcDay = new Date(Date.now()).getDate();
+			// const monthLength = new Date(
+			// 	transactionYear,
+			// 	transactionMonth + 1,
+			// 	0,
+			// ).getDate();
 			let sourceArray = [];
-			for (let i = 1; i <= monthLength; i++) {
+
+			for (let i = 1; i <= calcDay; i++) {
 				sourceArray = [
 					...sourceArray,
-					{ period: i, income: 0, expense: 0 },
+					{
+						period: i,
+						expense: 0,
+					},
 				];
 			}
-			transactions?.forEach((transaction) => {
-				const transactionDay = new Date(transaction.date).getDay();
-				sourceArray[transactionDay][transaction.type] =
-					sourceArray[transactionDay][transaction.type] +
-					transaction.amount;
+			const expenseTransactions = transactions?.filter(
+				(transaction) => transaction.type === 'expense',
+			);
+
+			expenseTransactions?.forEach((transaction) => {
+				const transactionDay = new Date(transaction.date).getDate();
+				if (transactionDay <= calcDay) {
+					sourceArray[transactionDay - 1][transaction.type] =
+						sourceArray[transactionDay - 1][transaction.type] +
+						transaction.amount;
+				}
 			});
-			// source[transactionDate][transaction.type] =
-			option2.dataset.source = sourceArray;
-			console.log(sourceArray);
-			// 	source[transactionDate][transaction.type] + transaction.amount;
+			dailyView.dataset.source = sourceArray;
 		});
 	};
 
-	setOption1();
-	setOption2();
+	setMonthlyView();
+	setDailyView();
 
+	const [dailyOption, setDailyOption] = useState(monthlyView);
 	// ###############################################################
 
 	return (
@@ -174,10 +199,7 @@ const Reports = ({ provider }) => {
 			<main className='report_main'>
 				<section>
 					<div className='userInfo'>
-						<img
-							src={logo}
-							alt='finco logo'
-						/>
+						<Arrow onClick={() => navigate('/')} />
 						<img
 							src={`http://localhost:3001/${provider.activeUser?.profileImage}`}
 							alt=''
@@ -221,7 +243,13 @@ const Reports = ({ provider }) => {
 						</article>
 					</div>
 					<article className='bar_chart'>
-						<ReactECharts option={option1} />
+						<ReactECharts option={dailyOption} />
+						<article onClick={() => setDailyOption(monthlyView)}>
+							Monthly
+						</article>
+						<article onClick={() => setDailyOption(dailyView)}>
+							Daily
+						</article>
 					</article>
 				</section>
 				<section>
@@ -231,6 +259,8 @@ const Reports = ({ provider }) => {
 							transaction={transaction}
 						/>
 					))}
+				</section>
+				<section>
 					<p
 						onClick={() => {
 							index < allTransactions?.length
@@ -247,7 +277,6 @@ const Reports = ({ provider }) => {
 					</p>
 				</section>
 			</main>
-			<Navbar />
 		</>
 	);
 };
