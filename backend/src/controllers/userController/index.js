@@ -9,6 +9,10 @@ import verifyCtrl from "./verifyCtrl.js";
 import changePasswordCtrl from "./changePasswordCtrl.js";
 import changeEmailCtrl from "./changeEmailCtrl.js";
 import deleteUserCtrl from "./deleteUserCtrl.js";
+import resetPasswordCtrl from "./resetPasswordCtrl.js";
+
+
+
 const userController = {
     getAllUser: getAllUserCtrl,
     edit: editCtrl,
@@ -21,6 +25,7 @@ const userController = {
     changePassword: changePasswordCtrl,
     changeEmail: changeEmailCtrl,
     deleteUser: deleteUserCtrl,
+    resetPassword: resetPasswordCtrl,
 };
 
 export default userController;
