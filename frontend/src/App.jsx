@@ -16,6 +16,8 @@ import Menu from "./pages/Menu/Menu";
 import calcTotal from "./utils/calcTotal";
 import Settings from "./pages/Settings/Settings";
 import MyWallet from "./pages/MyWallet/MyWallet";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 function App() {
     // #################################################
@@ -119,6 +121,8 @@ function App() {
                         path="/menu/my-wallet"
                         element={<MyWallet provider={provider} />}
                     />
+                    <Route path="/forgot-password" element={<ForgotPassword/>}/>
+                    <Route path="/reset-password/:resetToken" element={<ResetPassword/>}/>
                 </Routes>
             </BrowserRouter>
         </>

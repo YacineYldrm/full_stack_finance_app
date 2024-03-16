@@ -11,7 +11,7 @@ const resetPassword = async (req) => {
     if (!foundUser) throw new Error("User doesn't exist!")
     const resetToken = createToken(foundUser._id)
     await sendPasswordResetMail(resetToken, foundUser.generateUserInfo())
-    return "Email has been sent to your email Adress"
+    return "Email has been sent to your email adress!"
 
 }
 
