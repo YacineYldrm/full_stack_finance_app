@@ -37,3 +37,9 @@ body {
 	background-color: white;
 	overflow-x: hidden;
 }
+
+@media only screen and (min-width: 1180px) {
+	body {
+		padding-bottom: 10%;
+	}
+}
