@@ -8,7 +8,7 @@ import changePassword from "./changePassword.js";
 import verify from "./verify.js";
 import changeEmail from "./changeEmail.js";
 import deleteUser from "./deleteUser.js";
-
+import resetPassword from "./resetPassword.js";
 const userServices = {
     getAllUser,
     edit,
@@ -19,6 +19,7 @@ const userServices = {
     getUser,
     changePassword,
     changeEmail,
+    resetPassword,
     deleteUser
 };
 
