@@ -243,6 +243,8 @@ const Reports = ({ provider }) => {
                 <section>
                     {renderedTransactions?.map((transaction) => (
                         <Transaction
+                            _delete={false}
+                            provider={provider}
                             key={transaction._id}
                             transaction={transaction}
                         />

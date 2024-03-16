@@ -1,6 +1,6 @@
 import Transaction from '../Transaction/Transaction';
 import './TransactionDay.scss';
-const TransactionDay = ({ date, transactions }) => {
+const TransactionDay = ({ date, transactions,provider }) => {
 	const newdate = new Date(date);
 
 	// #################################################
@@ -54,6 +54,8 @@ const TransactionDay = ({ date, transactions }) => {
 				(transOne, transTwo) => transTwo.date - transOne.date,
 			).map((transaction) => (
 						<Transaction
+							provider={provider}
+							_delete={true}
 							key={transaction._id}
 							transaction={transaction}
 						/>

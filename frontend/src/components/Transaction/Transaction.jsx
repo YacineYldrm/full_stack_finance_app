@@ -1,11 +1,15 @@
-// import food from '../../../public/food.png'
-// import shopping from '../../../public/shopping.png'
-// import insurance from '../../../public/insurance.png'
-// import other from '../../../public/other.png'
-// import sallary from '../../../public/sallary.png';
+import food from '../../../public/food.png'
+import shopping from '../../../public/shopping.svg'
+import insurance from '../../../public/insurance.svg'
+import other from '../../../public/other.svg'
+import sallary from '../../../public/sallary.png';
+import deleteIcon from '../../../public/trashcan.svg'
 import activeCard from "../../../public/activeCard.svg";
+import {backendUrl} from "../../api/index.js"
 import "./Transaction.scss";
-const Transaction = ({ transaction }) => {
+import { useState } from 'react';
+const Transaction = ({ provider,transaction, _delete }) => {
+    const [showModal, setShowModal] = useState(false)
     // #################################################
 
     const getIcon = () => {
@@ -22,6 +26,20 @@ const Transaction = ({ transaction }) => {
         }
     };
 
+
+    const deleteTransaction = async ()=>{
+        const res = await fetch(`${backendUrl}accounts/delete-transaction/${transaction._id}`,{
+            method: "DELETE",
+            headers: {authorization: provider.authorization}
+        })
+        const {success, result, error, message} = await res.json()
+        if(!success){
+            console.log(error,message);
+        } else{
+            provider.setAccount(result)
+            setShowModal(false)
+        }
+    }
     // #################################################
 
     const date = new Date(transaction?.date);
@@ -30,9 +48,21 @@ const Transaction = ({ transaction }) => {
 
     return (
         <>
+        {showModal?<section>
+            <article>
+                <p>Do you really want to delete this Transaction?</p>
+                <div>
+                <button onClick={deleteTransaction}>YES</button>
+                <button onClick={()=>setShowModal(false)}>NO</button>
+                </div>
+            </article>
+        </section>:null}
             <main className="transaction">
                 <div>
-                    <img src={activeCard} alt="" />
+                    {_delete===true && provider.account.owner === provider.activeUser._id || _delete===true && transaction.owner === provider.activeUser._id ?<img src={deleteIcon} onClick={()=>setShowModal(true)} alt="" />:null}
+                </div>
+                <div>
+                    <img src={getIcon()} alt="" />
                     <div>
                         <h3>{transaction?.category}</h3>
                         <p>{`${date
