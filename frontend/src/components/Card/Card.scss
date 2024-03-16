@@ -4,7 +4,7 @@
 	border-radius: 1.5vmax;
 	background-color: #a1a1a19b;
 	box-shadow: 1px -1px 5px rgba(92, 92, 92, 0.643);
-	aspect-ratio: 2/1.1;
+	aspect-ratio: 2/1;
 	.pattern {
 		border-radius: 1.5vmax;
 		width: 100%;
@@ -68,6 +68,10 @@
 				justify-content: space-between;
 				color: rgb(209, 209, 209);
 				font-weight: 600;
+				img {
+					width: 6vmax;
+					aspect-ratio: 3 / 2;
+				}
 			}
 		}
 	}
