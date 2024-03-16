@@ -9,6 +9,7 @@ import getAllAccounts from "../../utils/getAllAccounts";
 import magnifire from "../../../public/magnifire.svg";
 import calendar from "../../../public/calendar.svg";
 import Navbar from "../../components/Navbar/Navbar";
+import { mediaUrl } from "../../api";
 
 const AllTransaction = ({ provider }) => {
     const [expenseTotal, setExpenseTotal] = useState(0);
@@ -71,7 +72,7 @@ const AllTransaction = ({ provider }) => {
                         <div className="userInfo">
                             <img src={logo} alt="finco logo" />
                             <img
-                                src={`http://localhost:3001/${provider.activeUser?.profileImage}`}
+                                src={`${mediaUrl}${provider.activeUser?.profileImage}`}
                                 alt=""
                             />
                         </div>
@@ -133,7 +134,9 @@ const AllTransaction = ({ provider }) => {
                                 <TransactionDay
                                     date={date}
                                     key={i}
-                                    transactions={provider.account?.transactions}
+                                    transactions={
+                                        provider.account?.transactions
+                                    }
                                 />
                             ))}
                     </section>

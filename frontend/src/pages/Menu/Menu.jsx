@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { backendUrl } from "../../api";
+import { backendUrl, mediaUrl } from "../../api";
 import arrowright from "../../../public/ArrowRight.svg";
 import feather from "../../../public/feather.svg";
 import bell from "../../../public/bell.svg";
@@ -33,7 +33,7 @@ const Menu = ({ provider }) => {
                 </div>
                 <div className="profile_img_wrapper">
                     <img
-                        src={`http://localhost:3001/${provider?.activeUser?.profileImage}`}
+                        src={`${mediaUrl}${provider?.activeUser?.profileImage}`}
                         alt="profile picture."
                     />
                 </div>

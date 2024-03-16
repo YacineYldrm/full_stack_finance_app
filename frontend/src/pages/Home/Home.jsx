@@ -1,7 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import "./Home.scss";
 import { useEffect, useState } from "react";
-import { backendUrl } from "../../api";
+import { backendUrl, mediaUrl } from "../../api";
 import incomeIcon from "../../../public/incomeIcon.svg";
 import expenseIcon from "../../../public/expenseIcon.svg";
 import limitIcon from "../../../public/limitIcon.svg";
@@ -100,12 +100,12 @@ const Home = ({ provider }) => {
                     <div className="profile_img_wrapper">
                         <img
                             onClick={() => navigate("/menu")}
-                            src={`http://localhost:3001/${provider?.activeUser?.profileImage}`}
+                            src={`${mediaUrl}${provider?.activeUser?.profileImage}`}
                             alt="profile picture."
                         />
                     </div>
                 </div>
-                <Card account={provider.account} />
+                <Card provider={provider} account={provider.account} />
                 <h5>Total wallet</h5>
                 <section>
                     <div>

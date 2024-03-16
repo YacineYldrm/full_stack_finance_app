@@ -8,7 +8,7 @@ import { useState } from "react";
 import Arrow from "../../../public/svg/Arrows/Arrow";
 
 import { useNavigate } from "react-router-dom";
-import { backendUrl } from "../../api";
+import { backendUrl, mediaUrl } from "../../api";
 
 const Settings = ({ provider }) => {
     const [userFirstName, userLastname] =
@@ -121,7 +121,7 @@ const Settings = ({ provider }) => {
                             src={
                                 image
                                     ? URL.createObjectURL(image)
-                                    : `http://localhost:3001/${provider?.activeUser?.profileImage}`
+                                    : `${mediaUrl}${provider?.activeUser?.profileImage}`
                             }
                             alt=""
                         />
