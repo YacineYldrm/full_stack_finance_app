@@ -21,12 +21,6 @@ const Reports = ({ provider }) => {
 
     const navigate = useNavigate();
 
-    // ####################################################################
-    useEffect(() => {
-        getAllAccounts(provider);
-        provider.setAccount(provider.accounts[provider.cardIndex]);
-    }, [provider, provider.authorization]);
-
     // #######################render loadmore #############################
 
     useEffect(() => {
@@ -102,7 +96,7 @@ const Reports = ({ provider }) => {
         legend: [{ show: true, itemGap: 30 }],
         tooltip: {},
         animationEasing: "circularIn",
-        color: ["#da6e53", "#409474"],
+        color: ["#da6e53"],
         textStyle: {
             fontFamily: "urbanist",
             fontSize: "16px",
@@ -115,7 +109,7 @@ const Reports = ({ provider }) => {
             right: 10,
         },
         dataset: {
-            dimensions: ["period", "expense", "difference"],
+            dimensions: ["period", "expense"],
             source: [],
         },
         xAxis: { type: "category" },
@@ -132,7 +126,7 @@ const Reports = ({ provider }) => {
                 },
             },
             {
-                type: "line",
+                type: "none",
             },
         ],
     };
