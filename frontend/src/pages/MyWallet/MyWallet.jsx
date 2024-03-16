@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import { useEffect, useState } from "react";
 import getAllAccounts from "../../utils/getAllAccounts";
+import Button from "../../components/Button/Button";
 
 const MyWallet = ({ provider }) => {
     const navigate = useNavigate();
@@ -190,10 +191,13 @@ const MyWallet = ({ provider }) => {
                                         Family Account
                                     </option>
                                 </select>
+                                <div>
+                                    <Button
+                                        btnContent={"Add bank account"}
+                                        btnFunction={createAccount}
+                                    />
+                                </div>
                             </form>
-                            <button onClick={() => createAccount()}>
-                                Add bank account
-                            </button>
                         </div>
 
                         <div
@@ -209,7 +213,9 @@ const MyWallet = ({ provider }) => {
                         </div>
                         <div className="option_inputs_container">
                             <form>
+                                <label htmlFor="card_num">Card number </label>
                                 <input
+                                    name="card_num"
                                     onChange={(e) => {
                                         setAccountInfo({
                                             ...accountInfo,
@@ -220,42 +226,43 @@ const MyWallet = ({ provider }) => {
                                     defaultValue={provider.account?.cardNumber}
                                 />
 
-                                <label>
-                                    Account type:{" "}
-                                    <select
-                                        onChange={(e) => {
-                                            setAccountInfo({
-                                                ...accountInfo,
-                                                type: e.target.value,
-                                            });
-                                        }}
-                                        defaultValue="default"
-                                        name=""
-                                    >
-                                        <option disabled value="default">
-                                            {provider.account?.type}
-                                        </option>
-                                        <option value="Credit Card">
-                                            Credit Card
-                                        </option>
-                                        <option value="Savings account">
-                                            Savings Account
-                                        </option>
-                                        <option value="Business Account">
-                                            Business Account
-                                        </option>
-                                        <option value="Business Account">
-                                            Basic Account
-                                        </option>
-                                        <option value="Business Account">
-                                            Family Account
-                                        </option>
-                                    </select>
-                                </label>
+                                <label htmlFor="type">Account type </label>
+                                <select
+                                    onChange={(e) => {
+                                        setAccountInfo({
+                                            ...accountInfo,
+                                            type: e.target.value,
+                                        });
+                                    }}
+                                    name="type"
+                                    defaultValue="default"
+                                >
+                                    <option disabled value="default">
+                                        {provider.account?.type}
+                                    </option>
+                                    <option value="Credit Card">
+                                        Credit Card
+                                    </option>
+                                    <option value="Savings account">
+                                        Savings Account
+                                    </option>
+                                    <option value="Business Account">
+                                        Business Account
+                                    </option>
+                                    <option value="Business Account">
+                                        Basic Account
+                                    </option>
+                                    <option value="Business Account">
+                                        Family Account
+                                    </option>
+                                </select>
+                                <div>
+                                    <Button
+                                        btnContent={"Confirm"}
+                                        btnFunction={editAccount}
+                                    />
+                                </div>
                             </form>
-                            <button onClick={() => editAccount()}>
-                                Confirm
-                            </button>
                         </div>
 
                         <div
@@ -278,8 +285,13 @@ const MyWallet = ({ provider }) => {
                                     type="text"
                                     placeholder="e.g. member@email.com"
                                 />
+                                <div>
+                                    <Button
+                                        btnContent={"Confirm"}
+                                        btnFunction={addMember}
+                                    />
+                                </div>
                             </form>
-                            <button onClick={() => addMember()}>Confirm</button>
                         </div>
                     </article>
 
@@ -298,21 +310,23 @@ const MyWallet = ({ provider }) => {
                         <div className="option_inputs_container">
                             <form>
                                 <label>
-                                    {" "}
                                     Enter your Password and confirm to delete
                                     your selected Account.
-                                    <input
-                                        onChange={(e) =>
-                                            setPassword(e.target.value)
-                                        }
-                                        type="password"
-                                        placeholder="Password"
-                                    />
                                 </label>
+                                <input
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
+                                    type="password"
+                                    placeholder="Password"
+                                />
+                                <div>
+                                    <Button
+                                        btnContent={"Confirm"}
+                                        btnFunction={deleteAccount}
+                                    />
+                                </div>
                             </form>
-                            <button onClick={() => deleteAccount()}>
-                                Confirm
-                            </button>
                         </div>
                     </article>
                 </section>

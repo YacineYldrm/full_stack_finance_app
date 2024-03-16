@@ -1,13 +1,14 @@
 .button {
-	cursor: pointer;
-	width: 100%;
-	height: 6vmax;
-	margin: 0 auto;
-	font-size: 2.2vmax;
-	max-width: 40vmax;
-	padding: 1.5vh;
-	border-radius: 3vmax;
-	background: linear-gradient(180deg, #9f9f9f 0%, #000000 100%);
-	color: white;
-	border: none;
+    cursor: pointer;
+    width: 100%;
+    height: 6vmax;
+    margin: 0 auto;
+    font-size: 2.2vmax;
+    max-width: 40vmax;
+    padding: 1.5vh;
+    border-radius: 3vmax;
+    background: linear-gradient(180deg, #9f9f9f 0%, #000000 100%);
+    line-height: 120%;
+    color: white;
+    border: none;
 }
