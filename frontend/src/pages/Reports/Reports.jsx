@@ -51,47 +51,6 @@ const Reports = ({ provider }) => {
     }, [provider.account]);
 
     // ###############################################################
-
-    const monthlyView = {
-        legend: [{ show: true, itemGap: 30 }],
-        tooltip: {},
-        animationEasing: "circularIn",
-        color: ["#409474", "#da6e53"],
-        textStyle: {
-            fontFamily: "urbanist",
-            fontSize: "16px",
-        },
-        grid: {
-            left: 10,
-            containLabel: true,
-            bottom: 10,
-            top: 50,
-            right: 10,
-        },
-        dataset: {
-            dimensions: ["period", "income", "expense"],
-            source: [
-                { period: "Jan", income: 0, expense: 0 },
-                { period: "Feb", income: 0, expense: 0 },
-                { period: "Mar", income: 0, expense: 0 },
-                { period: "Apr", income: 0, expense: 0 },
-                { period: "May", income: 0, expense: 0 },
-                { period: "Jun", income: 0, expense: 0 },
-                { period: "Jul", income: 0, expense: 0 },
-                { period: "Aug", income: 0, expense: 0 },
-                { period: "Sep", income: 0, expense: 0 },
-                { period: "Oct", income: 0, expense: 0 },
-                { period: "Nov", income: 0, expense: 0 },
-                { period: "Dec", income: 0, expense: 0 },
-            ],
-        },
-        xAxis: { type: "category" },
-        yAxis: { axisLabel: false, splitNumber: 6 },
-        // Declare several bar series, each will be mapped
-        // to a column of dataset.source by default.
-        series: [{ type: "bar" }, { type: "bar" }],
-    };
-
     const dailyView = {
         legend: [{ show: true, itemGap: 30 }],
         tooltip: {},
@@ -181,6 +140,46 @@ const Reports = ({ provider }) => {
             });
             dailyView.dataset.source = sourceArray;
         });
+    };
+
+    const monthlyView = {
+        legend: [{ show: true, itemGap: 30 }],
+        tooltip: {},
+        animationEasing: "circularIn",
+        color: ["#da6e53", "#409474"],
+        textStyle: {
+            fontFamily: "urbanist",
+            fontSize: "16px",
+        },
+        grid: {
+            left: 10,
+            containLabel: true,
+            bottom: 10,
+            top: 50,
+            right: 10,
+        },
+        dataset: {
+            dimensions: ["period", "expense", "income"],
+            source: [
+                { period: "Jan", income: 0, expense: 0 },
+                { period: "Feb", income: 0, expense: 0 },
+                { period: "Mar", income: 0, expense: 0 },
+                { period: "Apr", income: 0, expense: 0 },
+                { period: "May", income: 0, expense: 0 },
+                { period: "Jun", income: 0, expense: 0 },
+                { period: "Jul", income: 0, expense: 0 },
+                { period: "Aug", income: 0, expense: 0 },
+                { period: "Sep", income: 0, expense: 0 },
+                { period: "Oct", income: 0, expense: 0 },
+                { period: "Nov", income: 0, expense: 0 },
+                { period: "Dec", income: 0, expense: 0 },
+            ],
+        },
+        xAxis: { type: "category" },
+        yAxis: { axisLabel: false, splitNumber: 6 },
+        // Declare several bar series, each will be mapped
+        // to a column of dataset.source by default.
+        series: [{ type: "bar" }, { type: "bar" }],
     };
 
     setMonthlyView();

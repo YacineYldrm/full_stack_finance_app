@@ -63,6 +63,9 @@ function App() {
     useEffect(() => {
         if (provider.authorization) getAllAccounts(provider);
     }, [authorization]);
+
+    // #################################################
+
     useEffect(() => {
         if (account) calcTotal(account, provider);
     }, [incomeTotal, expenseTotal]);
