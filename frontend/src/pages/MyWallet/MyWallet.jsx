@@ -18,7 +18,7 @@ const MyWallet = ({ provider }) => {
     const [password, setPassword] = useState(null);
 
     useEffect(() => {
-        provider.setAccount(provider.accounts[provider.cardIndex]);
+        provider.setAccount(provider?.accounts[provider?.cardIndex]);
     }, [provider]);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const MyWallet = ({ provider }) => {
     }, [provider.account]);
 
     const createAccount = async () => {
-        const authorization = provider.authorization;
+        const authorization = provider?.authorization;
         const response = await fetch(
             "http://localhost:3001/api/v1/" + "accounts/create",
             {
@@ -50,7 +50,7 @@ const MyWallet = ({ provider }) => {
     };
 
     const editAccount = async () => {
-        const authorization = provider.authorization;
+        const authorization = provider?.authorization;
         const response = await fetch(
             "http://localhost:3001/api/v1/" + "accounts/edit",
             {
@@ -70,13 +70,16 @@ const MyWallet = ({ provider }) => {
     };
 
     const addMember = async () => {
-        const authorization = provider.authorization;
+        const authorization = provider?.authorization;
         const response = await fetch(
             "http://localhost:3001/api/v1/" + "accounts/edit",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json", authorization },
-                body: JSON.stringify(newMember),
+                body: JSON.stringify({
+                    _id: provider.account?._id,
+                    newMember,
+                }),
             }
         );
         const { success, result, error, message } = await response.json();
@@ -90,7 +93,7 @@ const MyWallet = ({ provider }) => {
     };
 
     const deleteAccount = async () => {
-        const authorization = provider.authorization;
+        const authorization = provider?.authorization;
         const response = await fetch(
             "http://localhost:3001/api/v1/" + "accounts/delete",
             {
