@@ -238,7 +238,7 @@ const Home = ({ provider }) => {
 									/>
 								</div>
 								<div>
-									<p>Expected expenses</p>
+									<p>Estimated expenses</p>
 									<h2>
 										{expectedExpenses?.toLocaleString(
 											'de-DE',
