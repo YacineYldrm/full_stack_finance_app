@@ -132,6 +132,7 @@ const AllTransaction = ({ provider }) => {
                             .reverse()
                             .map((date, i) => (
                                 <TransactionDay
+                                    provider={provider}
                                     date={date}
                                     key={i}
                                     transactions={
