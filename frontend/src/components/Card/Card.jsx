@@ -40,6 +40,7 @@ const Card = ({ provider, account }) => {
         cardBg8,
         cardBg9,
     ];
+
     const cardColorNum = Number(account?.cardNumber?.slice(-4));
     const cardColorIndex = Number((cardColorNum * 128).toString().split("")[3]);
 
@@ -70,7 +71,6 @@ const Card = ({ provider, account }) => {
 
     useEffect(() => {
         getAllMembers();
-        console.log("all", allMembers);
     }, [account?.members]);
 
     // ####################  SWIPE  ##########################
@@ -85,12 +85,9 @@ const Card = ({ provider, account }) => {
 
     useEffect(() => {
         checkDirection();
-        console.log("touchStart", touchStartX);
-        console.log("touchEnd", touchEndX);
     }, [direction, touchEndX]);
 
     const changeCard = (direction) => {
-        console.log(direction);
         if (direction === "left") {
             if (provider?.accounts?.length > provider?.cardIndex + 1) {
                 provider.setCardIndex(provider?.cardIndex + 1);

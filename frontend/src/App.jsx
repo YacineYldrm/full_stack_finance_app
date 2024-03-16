@@ -27,6 +27,8 @@ function App() {
     const [cardIndex, setCardIndex] = useState(0);
     const [expenseTotal, setExpenseTotal] = useState(0);
     const [incomeTotal, setIncomeTotal] = useState(0);
+    const [monthlyIncome, setMonthlyIncome] = useState(null);
+    const [monthlyExpense, setMonthlyExpense] = useState(null);
 
     const provider = {
         authorization,
@@ -45,6 +47,10 @@ function App() {
         setExpenseTotal,
         incomeTotal,
         setIncomeTotal,
+        monthlyIncome,
+        setMonthlyIncome,
+        monthlyExpense,
+        setMonthlyExpense,
     };
 
     // ############### Refresh Token on pagereload ###############
@@ -57,6 +63,9 @@ function App() {
     useEffect(() => {
         if (provider.authorization) getAllAccounts(provider);
     }, [authorization]);
+
+    // #################################################
+
     useEffect(() => {
         if (account) calcTotal(account, provider);
     }, [incomeTotal, expenseTotal]);
