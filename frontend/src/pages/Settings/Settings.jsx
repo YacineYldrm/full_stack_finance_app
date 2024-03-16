@@ -2,6 +2,7 @@ import changePasswordIcon from "../../../public/changePassword.svg";
 import changeUser from "../../../public/changeUser.svg";
 import changeMail from "../../../public/changeMail.svg";
 import deleteUserIcon from "../../../public/deleteUser.svg";
+import editPen from "../../../public/edit_pen.svg";
 import arrowright from "../../../public/ArrowRight.svg";
 import "./Settings.scss";
 import { useState } from "react";
@@ -9,6 +10,7 @@ import Arrow from "../../../public/svg/Arrows/Arrow";
 
 import { useNavigate } from "react-router-dom";
 import { backendUrl, mediaUrl } from "../../api";
+import Button from "../../components/Button/Button";
 
 const Settings = ({ provider }) => {
     const [userFirstName, userLastname] =
@@ -116,32 +118,48 @@ const Settings = ({ provider }) => {
                 </div>
                 <h3>Settings</h3>
                 <section>
-                    <div>
-                        <img
-                            src={
-                                image
-                                    ? URL.createObjectURL(image)
-                                    : `${mediaUrl}${provider?.activeUser?.profileImage}`
-                            }
-                            alt=""
-                        />
-                        <input
-                            type="file"
-                            name=""
-                            accept="image/*"
-                            id=""
-                            onChange={(e) => setImage(e.target.files[0])}
-                        />
-                        {image ? (
-                            <button onClick={() => setImage(null)}>
-                                use old
-                            </button>
-                        ) : (
-                            <p>Drop your image here ⬆️ </p>
-                        )}
-                        {image ? (
-                            <button onClick={editUser}>upload new image</button>
-                        ) : null}
+                    <div className="image_edit_main">
+                        <form className="image_edit_wrapper">
+                            <img
+                                src={
+                                    image
+                                        ? URL.createObjectURL(image)
+                                        : `${mediaUrl}${provider?.activeUser?.profileImage}`
+                                }
+                                alt=""
+                            />
+                            <input
+                                type="file"
+                                name=""
+                                accept="image/*"
+                                id=""
+                                onChange={(e) => setImage(e.target.files[0])}
+                            />
+                        </form>
+                        <div>
+                            {image ? (
+                                <div>
+                                    <Button
+                                        btnContent={"⟲"}
+                                        btnFunction={setImage}
+                                    />
+                                </div>
+                            ) : (
+                                <img
+                                    className="edit_icon"
+                                    src={editPen}
+                                    alt="edit icon"
+                                />
+                            )}
+                            {image && (
+                                <div>
+                                    <Button
+                                        btnContent={"⇧"}
+                                        btnFunction={editUser}
+                                    />
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <article className="my_profile_options">
                         <div
@@ -178,10 +196,13 @@ const Settings = ({ provider }) => {
                                         setNewPassword(e.target.value)
                                     }
                                 />
+                                <div>
+                                    <Button
+                                        btnContent={"Change Password"}
+                                        btnFunction={changePassword}
+                                    />
+                                </div>
                             </form>
-                            <button onClick={changePassword}>
-                                Change Password
-                            </button>
                         </div>
 
                         <div
@@ -204,8 +225,13 @@ const Settings = ({ provider }) => {
                                     placeholder="e.g. user@email.com"
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
+                                <div>
+                                    <Button
+                                        btnContent={"Change Email"}
+                                        btnFunction={changeEmail}
+                                    />
+                                </div>
                             </form>
-                            <button onClick={changeEmail}>Change Email</button>
                         </div>
 
                         <div
@@ -239,8 +265,13 @@ const Settings = ({ provider }) => {
                                         setLastName(e.target.value)
                                     }
                                 />
+                                <div>
+                                    <Button
+                                        btnContent={"Change Name"}
+                                        btnFunction={editUser}
+                                    />
+                                </div>
                             </form>
-                            <button onClick={editUser}>Change Name</button>
                         </div>
                     </article>
 
@@ -257,14 +288,26 @@ const Settings = ({ provider }) => {
                             <img src={arrowright} alt="" />
                         </div>
                         <div className="option_inputs_container">
-                            <label htmlFor="passwordconfirm">Password</label>
-                            <input
-                                type="password"
-                                name=""
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-
-                            <button onClick={deleteUser}>Delete Profile</button>
+                            <form action="">
+                                <label htmlFor="passwordconfirm">
+                                    Enter your password and confirm to delete
+                                    your profile.
+                                </label>
+                                <input
+                                    type="password"
+                                    name=""
+                                    placeholder="Password"
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
+                                />
+                                <div>
+                                    <Button
+                                        btnContent={"Delete Profile"}
+                                        btnFunction={deleteUser}
+                                    />
+                                </div>
+                            </form>
                         </div>
                     </article>
                 </section>
