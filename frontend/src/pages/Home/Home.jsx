@@ -9,7 +9,11 @@ import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import calcTotal from "../../utils/calcTotal";
-import getAllAccounts from "../../utils/getAllAccounts";
+import calcMonth from "../../utils/calcMonth";
+import calcExpectedExpenses from "../../utils/calcExpectedExpenses";
+import expectedGreen from "../../../public/expectedIcons/expectedGreen.svg";
+import expectedYellow from "../../../public/expectedIcons/expectedYellow.svg";
+import expectedRed from "../../../public/expectedIcons/expectedRed.svg";
 
 // #####################################################
 
@@ -19,6 +23,7 @@ const Home = ({ provider }) => {
     const [message, setMessage] = useState(null);
     const navigate = useNavigate();
     const [account, setAccount] = useState(0);
+    const [expectedExpenses, setExpectedExpenses] = useState(null);
 
     // #####################################################
 
@@ -30,7 +35,15 @@ const Home = ({ provider }) => {
 
     useEffect(() => {
         if (account) calcTotal(account, provider);
+        if (account) calcMonth(account, provider);
     }, [provider.account]);
+
+    // #####################################################
+
+    useEffect(() => {
+        if (provider.monthlyExpense)
+            setExpectedExpenses(calcExpectedExpenses(provider.monthlyExpense));
+    }, [provider.monthlyExpense]);
 
     // #####################################################
 
@@ -89,6 +102,23 @@ const Home = ({ provider }) => {
         } else provider.setCardIndex(0);
     };
 
+    // #####################################################
+
+    const expectedStatusColor = [expectedGreen, expectedYellow, expectedRed];
+
+    const expectedFeedback = () => {
+        if (
+            expectedExpenses < account?.limit &&
+            expectedExpenses > account?.limit - account?.limit / 10
+        ) {
+            return expectedStatusColor[1];
+        } else if (expectedExpenses < account?.limit) {
+            return expectedStatusColor[0];
+        } else {
+            return expectedStatusColor[2];
+        }
+    };
+
     return (
         <>
             <main className="home">
@@ -106,7 +136,25 @@ const Home = ({ provider }) => {
                     </div>
                 </div>
                 <Card provider={provider} account={provider.account} />
-                <h5>Total wallet</h5>
+                <div>
+                    <h5>Account Balance</h5>
+                    <h2
+                        style={{
+                            color:
+                                provider?.incomeTotal - provider?.expenseTotal <
+                                0
+                                    ? "#da6e53"
+                                    : "#409474",
+                        }}
+                    >
+                        {(
+                            provider?.incomeTotal - provider?.expenseTotal
+                        ).toLocaleString("de-DE", {
+                            style: "currency",
+                            currency: "EUR",
+                        })}
+                    </h2>
+                </div>
                 <section>
                     <div>
                         <article>
@@ -115,10 +163,13 @@ const Home = ({ provider }) => {
                                 <p>Income</p>
                             </div>
                             <h2>
-                                {provider.incomeTotal.toLocaleString("de-DE", {
-                                    style: "currency",
-                                    currency: "EUR",
-                                })}
+                                {provider?.monthlyIncome?.toLocaleString(
+                                    "de-DE",
+                                    {
+                                        style: "currency",
+                                        currency: "EUR",
+                                    }
+                                )}
                             </h2>
                         </article>
                         <article>
@@ -127,10 +178,13 @@ const Home = ({ provider }) => {
                                 <p>Expense</p>
                             </div>
                             <h2>
-                                {provider.expenseTotal.toLocaleString("de-DE", {
-                                    style: "currency",
-                                    currency: "EUR",
-                                })}
+                                {provider?.monthlyExpense?.toLocaleString(
+                                    "de-DE",
+                                    {
+                                        style: "currency",
+                                        currency: "EUR",
+                                    }
+                                )}
                             </h2>
                         </article>
                     </div>
@@ -163,6 +217,30 @@ const Home = ({ provider }) => {
                             <span></span>
                             <span></span>
                         </div>
+                    </article>
+                    <article className="limit_dislpay_wrapper">
+                        {expectedExpenses && (
+                            <>
+                                <div>
+                                    <img
+                                        src={expectedFeedback()}
+                                        alt="limit icon"
+                                    />
+                                </div>
+                                <div>
+                                    <p>Expected expenses</p>
+                                    <h2>
+                                        {expectedExpenses?.toLocaleString(
+                                            "de-DE",
+                                            {
+                                                style: "currency",
+                                                currency: "EUR",
+                                            }
+                                        )}
+                                    </h2>
+                                </div>
+                            </>
+                        )}
                     </article>
                 </section>
 
