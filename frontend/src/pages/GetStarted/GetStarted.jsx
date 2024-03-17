@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import bigPresent from '../../../public/GetStarted/bigPresent.svg';
+import bigPresent from '../../../public/splash/gift.png';
 
 import middlePresent from '../../../public/GetStarted/middlePresent.svg';
 
@@ -38,47 +38,47 @@ const GetStarted = () => {
 				/>
 				<img
 					className='dollar3'
-					src={middlePresent}
+					src={bigPresent}
 					alt=''
 				/>
 				<img
 					className='coin'
-					src={middlePresent}
+					src={bigPresent}
 					alt=''
 				/>
 				<img
 					className='coin1'
-					src={middlePresent}
+					src={bigPresent}
 					alt=''
 				/>
 				<img
 					className='coin2'
-					src={middlePresent}
+					src={bigPresent}
 					alt=''
 				/>
 				<img
 					className='coin3'
-					src={middlePresent}
+					src={bigPresent}
 					alt=''
 				/>
 				<img
 					className='redDollar'
-					src={smallPresent}
+					src={bigPresent}
 					alt=''
 				/>
 				<img
 					className='redDollar1'
-					src={smallPresent}
+					src={bigPresent}
 					alt=''
 				/>
 				<img
 					className='redDollar2'
-					src={smallPresent}
+					src={bigPresent}
 					alt=''
 				/>
 				<img
 					className='redDollar3'
-					src={smallPresent}
+					src={bigPresent}
 					alt=''
 				/>
 			</article>

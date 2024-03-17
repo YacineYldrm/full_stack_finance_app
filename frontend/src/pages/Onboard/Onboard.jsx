@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import bankCard from '../../../public/splash/bankCard.svg';
 import shadow from '../../../public/splash/shadow.svg';
-import dollar from '../../../public/splash/dollar.svg';
-import coin from '../../../public/splash/circle.svg';
-import redDollar from '../../../public/splash/redDollar.svg';
+import dollar from '../../../public/splash/moneyGreen.png';
+import coin from '../../../public/splash/dollar.png';
+import redDollar from '../../../public/splash/redDollar.png';
 import './Onboard.scss';
 import Button from '../../components/Button/Button';
 
@@ -25,6 +25,11 @@ const Onboard = () => {
 					/>
 					<img
 						className='dollar'
+						src={dollar}
+						alt=''
+					/>
+					<img
+						className='dollar1'
 						src={dollar}
 						alt=''
 					/>

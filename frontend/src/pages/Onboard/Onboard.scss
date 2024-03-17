@@ -25,11 +25,18 @@
 			margin-top: 2vh;
 		}
 		.dollar {
-			width: 3vmax;
+			width: 8vmax;
 			position: absolute;
 			animation: dollar 3.5s linear infinite;
 			transform: rotate(90deg);
 			margin-left: 40%;
+		}
+		.dollar1 {
+			width: 11vmax;
+			position: absolute;
+			animation: dollar 7s linear infinite;
+			transform: rotate(90deg);
+			margin-left: 80%;
 		}
 		.dollar2 {
 			width: 4vmax;
@@ -51,14 +58,14 @@
 			margin-left: 40%;
 		}
 		.redDollar1 {
-			width: 3vmax;
+			width: 12vmax;
 			position: absolute;
 			animation: coin 7s linear infinite;
 			transform: rotate(90deg);
 			margin-left: 40%;
 		}
 		.redDollar2 {
-			width: 4vmax;
+			width: 8vmax;
 			animation: coin 6s linear infinite;
 			position: absolute;
 		}
@@ -69,25 +76,25 @@
 			margin-left: 70%;
 		}
 		.coin {
-			width: 3vmax;
+			width: 9vmax;
 			animation: coin 9s linear infinite;
 			position: absolute;
 			margin-left: 50%;
 		}
 		.coin1 {
-			width: 3vmax;
+			width: 12vmax;
 			animation: dollar 6s linear infinite;
 			position: absolute;
 			margin-left: 80%;
 		}
 		.coin2 {
-			width: 4vmax;
+			width: 9vmax;
 			animation: dollar 8s linear infinite;
 			position: absolute;
 			margin-left: 65%;
 		}
 		.coin3 {
-			width: 2vmax;
+			width: 8vmax;
 			animation: coin 9s linear infinite;
 			position: absolute;
 			margin-right: 35%;
