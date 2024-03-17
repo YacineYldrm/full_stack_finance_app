@@ -1,15 +1,14 @@
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="48" height="48" rx="24" fill="url(#paint0_linear_2280_286)"/>
-<path d="M25.7143 19.8575C24.295 19.8575 23.1429 21.0088 23.1429 22.4289C23.1429 23.8489 24.295 25.001 25.7143 25.001C27.1351 25.001 28.2856 23.8497 28.2856 22.4289C28.2856 21.008 27.1343 19.8575 25.7143 19.8575ZM25.7143 24.1431C24.7697 24.1431 24.0001 23.3742 24.0001 22.428C24.0001 21.4819 24.7689 20.7138 25.7143 20.7138C26.6604 20.7138 27.4285 21.4827 27.4285 22.428C27.4285 23.3734 26.6596 24.1431 25.7143 24.1431Z" fill="white" stroke="#30B083" stroke-width="0.256"/>
-<path d="M15.4283 16V28.8572H35.9999V16H15.4283ZM35.1436 18.8999V28.0001H16.2863V16.8571H35.1436V18.8999Z" fill="white" stroke="#30B083" stroke-width="0.256"/>
-<path d="M31.4031 29.7152H14.5714V17.7151H13.7142V30.5723H34.2866V29.7152H33.4295H31.4031Z" fill="white" stroke="#30B083" stroke-width="0.256"/>
-<path d="M29.6888 31.4293H12.8571V19.4292H12V32.2864H32.5724V31.4293H31.7153H29.6888Z" fill="white" stroke="#30B083" stroke-width="0.256"/>
-<path d="M17.5719 17.7413H20.1432V18.5984H17.5719V17.7413Z" fill="white" stroke="#30B083" stroke-width="0.256"/>
-<path d="M17.5719 26.2866H20.1432V27.1437H17.5719V26.2866Z" fill="white" stroke="#30B083" stroke-width="0.256"/>
-<path d="M31.2863 17.7413H33.8576V18.5984H31.2863V17.7413Z" fill="white" stroke="#30B083" stroke-width="0.256"/>
-<path d="M31.2863 26.2866H33.8576V27.1437H31.2863V26.2866Z" fill="white" stroke="#30B083" stroke-width="0.256"/>
+<rect width="48" height="48" rx="24" fill="url(#paint0_linear_2284_309)"/>
+<path d="M25 20C23.3441 20 22 21.343 22 22.9995C22 24.6561 23.3441 26 25 26C26.6578 26 28 24.657 28 22.9995C28 21.342 26.6568 20 25 20ZM25 24.9992C23.898 24.9992 23 24.1023 23 22.9986C23 21.8948 23.897 20.9989 25 20.9989C26.1039 20.9989 27 21.8958 27 22.9986C27 24.1014 26.103 24.9992 25 24.9992Z" fill="white"/>
+<path d="M12 15V31H37V15H12ZM35.9593 18.6088V29.9333H13.0427V16.0667H35.9593V18.6088Z" fill="white"/>
+<path d="M31.4958 31.9333H11.0416V17H10V33H35V31.9333H33.9584H31.4958Z" fill="white" fill-opacity="0.65"/>
+<path d="M15 17H18V18H15V17Z" fill="white"/>
+<path d="M15 28H18V29H15V28Z" fill="white"/>
+<path d="M32 17H35V18H32V17Z" fill="white"/>
+<path d="M32 28H35V29H32V28Z" fill="white"/>
 <defs>
-<linearGradient id="paint0_linear_2280_286" x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_2284_309" x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
 <stop stop-color="#44CD9B"/>
 <stop offset="1" stop-color="#0B7856"/>
 </linearGradient>
