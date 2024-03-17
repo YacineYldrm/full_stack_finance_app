@@ -18,6 +18,9 @@ import Settings from "./pages/Settings/Settings";
 import MyWallet from "./pages/MyWallet/MyWallet";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import Onboard from "./pages/Onboard/Onboard";
+import GetStarted from "./pages/GetStarted/GetStarted";
+import Splash from "./pages/Splash/Splash";
 
 function App() {
     // #################################################
@@ -123,6 +126,9 @@ function App() {
                     />
                     <Route path="/forgot-password" element={<ForgotPassword/>}/>
                     <Route path="/reset-password/:resetToken" element={<ResetPassword/>}/>
+                    <Route path="/splash" element={<Splash/>}/>
+                    <Route path="/onboard" element={<Onboard/>}/>
+                    <Route path="/get-started" element={<GetStarted/>}/>
                 </Routes>
             </BrowserRouter>
         </>
