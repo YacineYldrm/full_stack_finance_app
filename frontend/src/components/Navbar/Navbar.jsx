@@ -20,7 +20,7 @@ const Navbar = () => {
 	};
 	return (
 		<nav className='navbar'>
-			<NavLink to='/'>
+			<NavLink to='/home'>
 				<h3>Home</h3>
 				<div>
 					<HomeIcon />

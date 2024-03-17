@@ -5,6 +5,7 @@ import './Register.scss';
 import Button from '../../components/Button/Button';
 import closedEye from '../../../public/eye/closedEye.svg';
 import openEye from '../../../public/eye/openEye.svg';
+import { backendUrl } from '../../api';
 
 const Register = () => {
 	const [userInfo, setUserInfo] = useState({});
@@ -27,14 +28,11 @@ const Register = () => {
 			return;
 		}
 
-		const response = await fetch(
-			'http://localhost:3001/api/v1/' + 'users/register',
-			{
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(userInfo),
-			},
-		);
+		const response = await fetch(backendUrl + 'users/register', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(userInfo),
+		});
 
 		const { success, result, error, message } = await response.json();
 		if (!success) {
@@ -59,8 +57,10 @@ const Register = () => {
 			<div>
 				<h1>Create an account</h1>
 				<p>
-				Welcome to Finco! Take control of your finances by creating an account. Track your spending and income to keep your finances organized and your goals within reach. Let's start your financial journey together!
-					
+					Welcome to Finco! Take control of your finances by creating
+					an account. Track your spending and income to keep your
+					finances organized and your goals within reach. Let's start
+					your financial journey together!
 				</p>
 			</div>
 			<div>

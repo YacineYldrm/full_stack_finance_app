@@ -74,6 +74,7 @@ const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 							type='date'
 							name=''
 							id=''
+							defaultValue={null}
 							onChange={(e) => setDate(e.target.value)}
 						/>
 						<img
@@ -83,10 +84,12 @@ const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 					</label>
 				</article>
 				<article>
-					<p>{search}</p>
 					<div>
-						{result?.map((transaction) => (
-							<Transaction transaction={transaction} />
+						{result?.map((transaction, index) => (
+							<Transaction
+								key={index}
+								transaction={transaction}
+							/>
 						))}
 					</div>
 				</article>

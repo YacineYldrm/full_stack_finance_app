@@ -41,7 +41,7 @@ const Login = ({ provider }) => {
 				provider.setAuthorization(`Bearer ${accessToken}`);
 				provider.setActiveUser(result);
 				silentRefresh(accessToken, provider.setAuthorization);
-				navigate('/');
+				navigate('/home');
 			}
 		}
 	};
