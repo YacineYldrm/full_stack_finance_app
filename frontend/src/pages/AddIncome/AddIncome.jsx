@@ -75,6 +75,7 @@ const AddIncome = ({ provider }) => {
 				<div className='userInfo'>
 					<Arrow onClick={() => navigate('/')} />
 					<img
+						onClick={() => navigate('/menu')}
 						src={`${mediaUrl}${provider.activeUser?.profileImage}`}
 						alt=''
 					/>
