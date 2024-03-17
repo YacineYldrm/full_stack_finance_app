@@ -6,6 +6,7 @@ import closedEye from '../../../public/eye/closedEye.svg';
 import openEye from '../../../public/eye/openEye.svg';
 import Button from '../../components/Button/Button';
 import './ResetPassword.scss';
+
 const ResetPassword = () => {
 	const [newPassword, setNewPassword] = useState();
 	const [confirmNewPassword, setConfirmNewPassword] = useState();
