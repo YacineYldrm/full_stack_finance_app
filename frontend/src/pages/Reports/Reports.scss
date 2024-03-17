@@ -1,12 +1,13 @@
 .report_main {
 	transition: all 600ms linear;
 	> section:nth-of-type(1) {
-		position: sticky;
-		top: 0;
 		width: 100vw;
 		background-color: #fff;
 		padding: 2.5% 5%;
 		border-bottom: 1px solid #80808017;
+		h1 {
+			font-size: 3.2vmax;
+		}
 		.userInfo {
 			width: 100%;
 			display: flex;
@@ -70,41 +71,44 @@
 				}
 			}
 		}
-		.bar_chart {
-			border-top: 1px solid #80808017;
-			padding: 0;
-			padding-top: 1vh;
-			position: relative;
-			padding: 5%;
-			article {
-				position: absolute;
-				color: white;
-				width: 6vmax;
-				height: 6vmax;
-				font-size: 1.3vmax;
-				text-shadow: 0 0 1px black;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-weight: 800;
-				border-radius: 50%;
-				background: center / cover no-repeat;
-				text-align: center;
-				cursor: pointer;
-				padding: 2.5%;
-				top: 1.3vh;
-				&:nth-of-type(1) {
-					background-image: url(../../../public/monthlyBg.svg);
-					z-index: 2;
+	}
+	.bar_chart {
+		border-top: 1px solid #80808017;
+		padding: 0;
+		padding-top: 1vh;
+		position: relative;
+		padding: 5%;
+		position: sticky;
+		top: 0;
+		background-color: white;
+		article {
+			position: absolute;
+			color: white;
+			width: 6vmax;
+			height: 6vmax;
+			font-size: 1.3vmax;
+			text-shadow: 0 0 1px black;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 800;
+			border-radius: 50%;
+			background: center / cover no-repeat;
+			text-align: center;
+			cursor: pointer;
+			padding: 2.5%;
+			top: 1.3vh;
+			&:nth-of-type(1) {
+				background-image: url(../../../public/monthlyBg.svg);
+				z-index: 2;
 
-					left: 0;
-				}
-				&:nth-of-type(2) {
-					background-image: url(../../../public/expenseBg.svg);
-					z-index: 2;
+				left: 5%;
+			}
+			&:nth-of-type(2) {
+				background-image: url(../../../public/expenseBg.svg);
+				z-index: 2;
 
-					right: 0;
-				}
+				right: 5%;
 			}
 		}
 	}

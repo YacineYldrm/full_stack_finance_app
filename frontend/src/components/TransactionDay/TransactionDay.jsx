@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import Transaction from '../Transaction/Transaction';
 import './TransactionDay.scss';
-const TransactionDay = ({ date, transactions,provider }) => {
+
+const TransactionDay = ({ date, transactions, provider }) => {
 	const newdate = new Date(date);
 
 	// #################################################
@@ -35,31 +37,49 @@ const TransactionDay = ({ date, transactions,provider }) => {
 
 	// #################################################
 
+	const ToggleDeleteBtn = () => {
+		const group = document.getElementById(date);
+		group.classList.toggle('showDeleteBtn');
+	};
+	// #################################################
+
 	return (
 		<>
 			<main className='transactionsDay'>
-				<div>
-					<h6>{getDay()}</h6>
-					<h5>
-						{newdate
-							.toISOString()
-							.replace(/T.*/, '')
-							.split('-')
-							.reverse()
-							.join('-')}
-					</h5>
+				<div className='groupInfo'>
+					<div>
+						<h6>{getDay()}</h6>
+						<h5>
+							{newdate
+								.toISOString()
+								.replace(/T.*/, '')
+								.split('-')
+								.reverse()
+								.join('-')}
+						</h5>
+					</div>
+					<div onClick={() => ToggleDeleteBtn()}>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
 				</div>
-				<div>
-					{filteredTransactions.sort(
-				(transOne, transTwo) => transTwo.date - transOne.date,
-			).map((transaction) => (
-						<Transaction
-							provider={provider}
-							_delete={true}
-							key={transaction._id}
-							transaction={transaction}
-						/>
-					))}
+
+				<div id={date}>
+					{filteredTransactions
+						.sort(
+							(transOne, transTwo) =>
+								transTwo.date - transOne.date,
+						)
+						.map((transaction) => (
+							<Transaction
+								provider={provider}
+								_delete={true}
+								key={transaction._id}
+								transaction={transaction}
+								groupDate={date}
+							/>
+						))}
 				</div>
 			</main>
 		</>
