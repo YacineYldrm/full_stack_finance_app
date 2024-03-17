@@ -59,8 +59,8 @@ const Register = () => {
 			<div>
 				<h1>Create an account</h1>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adip sicing elit,
-					sed do eiusmod.
+				Welcome to Finco! Take control of your finances by creating an account. Track your spending and income to keep your finances organized and your goals within reach. Let's start your financial journey together!
+					
 				</p>
 			</div>
 			<div>
