@@ -11,7 +11,7 @@
 			width: 4vmax;
 		}
 		&:nth-of-type(2) {
-			margin-top: 10vh;
+			margin-top: 15vh;
 			h2 {
 				text-align: center;
 				font-size: 3.5vmax;
@@ -42,18 +42,34 @@
 		padding-bottom: 1%;
 		display: flex;
 		flex-direction: column;
-
-		input {
-			display: block;
-			margin: 2vh auto;
-			font-size: 2vmax;
-			width: 40vmax;
-			padding: 1.5vmax;
-			border-radius: 3vmax;
-			font-weight: 400;
-			border: 1px solid gray;
-			&::placeholder {
-				color: rgb(81, 81, 81);
+		align-items: center;
+		div {
+			width: fit-content;
+			label {
+				display: flex;
+				align-items: center;
+				position: relative;
+				width: fit-content;
+				margin: 0 auto;
+				input {
+					display: block;
+					margin: 1vh auto;
+					font-size: 2vmax;
+					width: 40vmax;
+					padding: 1.5vmax;
+					border-radius: 3vmax;
+					font-weight: 400;
+					border: 1px solid gray;
+					&::placeholder {
+						color: rgb(81, 81, 81);
+					}
+				}
+				img {
+					position: absolute;
+					width: 2vmax;
+					right: 5%;
+					margin-top: 1%;
+				}
 			}
 		}
 	}
