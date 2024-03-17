@@ -5,10 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../public/logo.png';
 import { silentRefresh } from '../../utils/refresh';
 import Button from '../../components/Button/Button';
+import closedEye from '../../../public/eye/closedEye.svg';
+import openEye from '../../../public/eye/openEye.svg';
 
 const Login = ({ provider }) => {
 	const [loginInfo, setLoginInfo] = useState({});
 	const [message, setMessage] = useState(null);
+	const [seePassword, setSeePassword] = useState(false);
 	const navigate = useNavigate();
 
 	// #################################################
@@ -60,29 +63,40 @@ const Login = ({ provider }) => {
 				</div>
 				<form>
 					<div>
-						<input
-							type='email'
-							placeholder='Email'
-							onChange={(e) =>
-								setLoginInfo({
-									...loginInfo,
-									email: e.target.value,
-								})
-							}
-						/>
-						<input
-							type='password'
-							placeholder='Password'
-							onChange={(e) =>
-								setLoginInfo({
-									...loginInfo,
-									password: e.target.value,
-								})
-							}
-						/>
+						<label>
+							<input
+								type='email'
+								placeholder='Email'
+								onChange={(e) =>
+									setLoginInfo({
+										...loginInfo,
+										email: e.target.value,
+									})
+								}
+							/>
+						</label>
+						<label>
+							<input
+								type={seePassword ? 'text' : 'password'}
+								placeholder='Password'
+								onChange={(e) =>
+									setLoginInfo({
+										...loginInfo,
+										password: e.target.value,
+									})
+								}
+							/>
+							<img
+								onClick={() => setSeePassword(!seePassword)}
+								src={seePassword ? openEye : closedEye}
+								alt=''
+							/>
+						</label>
 					</div>
 
-					<h6>Forgot password?</h6>
+					<h6 onClick={() => navigate('/forgot-password')}>
+						Forgot password?
+					</h6>
 
 					<Button
 						btnContent={'Login'}
