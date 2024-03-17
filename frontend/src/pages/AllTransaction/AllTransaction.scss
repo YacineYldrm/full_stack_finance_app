@@ -27,13 +27,16 @@
 		align-items: center;
 		justify-content: space-between;
 		margin-block: 3vh;
+
+		h1 {
+			font-size: 3.5vmax;
+		}
 		div {
 			display: flex;
 			gap: 2vmax;
 			div {
 				padding: 2.5%;
 				border-radius: 50%;
-				border: 2px solid black;
 				width: 5vmax;
 				height: 5vmax;
 				aspect-ratio: 1 / 1;
