@@ -186,13 +186,19 @@ const Reports = ({ provider }) => {
     setDailyView();
 
     const [dailyOption, setDailyOption] = useState(monthlyView);
+    // ###################### HEADER ON SCROLL EFFEKT  ##############################
+
+    const hideOnScroll = () => {
+        const header = document.getElementById("reports_header");
+    };
+
     // ###############################################################
 
     return (
         <>
             <main className="report_main">
                 <section>
-                    <div className="userInfo">
+                    <div id="reports_header" className="userInfo">
                         <Arrow onClick={() => navigate("/")} />
                         <img
                             src={`${mediaUrl}${provider.activeUser?.profileImage}`}
