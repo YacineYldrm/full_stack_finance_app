@@ -38,6 +38,7 @@
 				align-items: center;
 				position: relative;
 				width: fit-content;
+				overflow: hidden;
 
 				background-color: #f7f7f7;
 				border-radius: 3vmax;
@@ -47,7 +48,7 @@
 						width: 5.5vmax;
 						height: 5.5vmax;
 						position: relative;
-						left: -10%;
+						left: -9%;
 						font-size: 4vmax;
 						z-index: 1;
 						color: rgba(255, 0, 0, 0);
@@ -55,6 +56,9 @@
 						border: none;
 						&:focus {
 							outline: none;
+						}
+						&::placeholder {
+							display: none;
 						}
 					}
 					img {
@@ -78,6 +82,9 @@
 					border-radius: 3vmax;
 				}
 			}
+		}
+		&:nth-of-type(3) {
+			margin-top: 3vh;
 		}
 	}
 }
