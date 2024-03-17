@@ -8,4 +8,40 @@
 		font-weight: 700;
 		margin-bottom: 2vh;
 	}
+	.groupInfo {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		> div {
+			span {
+				display: inline-block;
+				width: 0.5vmax;
+				aspect-ratio: 1 / 1;
+				background-color: rgb(98, 98, 98);
+				border-radius: 50%;
+				margin-right: 0.6vmax;
+			}
+		}
+	}
+	.showDeleteBtn {
+		div {
+			.transaction {
+				.deleteIcon {
+					display: none;
+				}
+				div {
+					background-color: aqua;
+					img {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+.showDeleteBtn {
+	.deleteIcon {
+		display: block;
+	}
 }

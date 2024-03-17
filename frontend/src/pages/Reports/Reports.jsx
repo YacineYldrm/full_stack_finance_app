@@ -201,11 +201,12 @@ const Reports = ({ provider }) => {
                     <div id="reports_header" className="userInfo">
                         <Arrow onClick={() => navigate("/")} />
                         <img
+                            onClick={() => navigate("/menu")}
                             src={`${mediaUrl}${provider.activeUser?.profileImage}`}
                             alt=""
                         />
                     </div>
-                    <h1>Report</h1>
+                    <h1>Reports</h1>
                     <div>
                         <article>
                             <div>
@@ -236,16 +237,16 @@ const Reports = ({ provider }) => {
                             </div>
                         </article>
                     </div>
-                    <article className="bar_chart">
-                        <ReactECharts option={dailyOption} />
-                        <article onClick={() => setDailyOption(monthlyView)}>
-                            Monthly
-                        </article>
-                        <article onClick={() => setDailyOption(dailyView)}>
-                            Daily
-                        </article>
-                    </article>
                 </section>
+                <article className="bar_chart">
+                    <ReactECharts option={dailyOption} />
+                    <article onClick={() => setDailyOption(monthlyView)}>
+                        Monthly
+                    </article>
+                    <article onClick={() => setDailyOption(dailyView)}>
+                        Daily
+                    </article>
+                </article>
                 <section>
                     {renderedTransactions?.map((transaction) => (
                         <Transaction

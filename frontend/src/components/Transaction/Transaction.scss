@@ -5,9 +5,16 @@
 	margin-bottom: 3vh;
 	border-bottom: 1px solid rgba(128, 128, 128, 0.09);
 	padding-bottom: 1vh;
+	.deleteIcon {
+		display: none;
+	}
+	.categoryInfo {
+		flex: 2;
+	}
 	> div {
 		display: flex;
 		align-items: center;
+
 		img {
 			width: 6vmax;
 			margin-right: 2vmax;

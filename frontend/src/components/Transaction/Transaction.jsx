@@ -10,7 +10,7 @@ import activeCard from "../../../public/activeCard.svg";
 import { backendUrl } from "../../api/index.js";
 import "./Transaction.scss";
 import { useState } from "react";
-const Transaction = ({ provider, transaction, _delete }) => {
+const Transaction = ({ provider, transaction, _delete, groupDate }) => {
     const [showModal, setShowModal] = useState(false);
     // #################################################
 
@@ -70,7 +70,7 @@ const Transaction = ({ provider, transaction, _delete }) => {
                 </section>
             ) : null}
             <main className="transaction">
-                <div>
+                <div className="deleteIcon">
                     {(_delete === true &&
                         provider.account.owner === provider.activeUser._id) ||
                     (_delete === true &&
@@ -82,7 +82,7 @@ const Transaction = ({ provider, transaction, _delete }) => {
                         />
                     ) : null}
                 </div>
-                <div>
+                <div className="categoryInfo">
                     <img src={getIcon()} alt="" />
                     <div>
                         <h3>{transaction?.category}</h3>
