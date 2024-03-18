@@ -1,11 +1,10 @@
 const getCards = () => {
     const cards = document.body.getElementsByClassName("card");
-    return Array.prototype.slice.call(cards)
+    return Array.prototype.slice.call(cards);
 };
 
 const changeCardOnSwipe = () => {
     const cards = getCards();
-
 
     const activeCard = cards.find(
         (card) =>
