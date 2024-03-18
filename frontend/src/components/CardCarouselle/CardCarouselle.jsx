@@ -3,8 +3,6 @@ import changeCardOnSwipe from '../../utils/changeCardOnSwipe';
 import Card from '../Card/Card';
 import showActiveCard from '../../utils/showActiveCard';
 
-import changeCardOnSwipe from "../../utils/changeCardOnSwipe";
-import Card from "../Card/Card";
 
 const CardCourouselle = ({ provider }) => {
     return (
