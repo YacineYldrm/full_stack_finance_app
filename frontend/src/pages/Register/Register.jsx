@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../public/logo.png';
+import logo from '../../../public/Logo.svg';
 import { useEffect, useState } from 'react';
 import './Register.scss';
 import Button from '../../components/Button/Button';
@@ -55,12 +55,10 @@ const Register = () => {
 				/>
 			</div>
 			<div>
-				<h1>Create an account</h1>
+				<h2>Create an account</h2>
 				<p>
-					Welcome to Finco! Take control of your finances by creating
-					an account. Track your spending and income to keep your
-					finances organized and your goals within reach. Let's start
-					your financial journey together!
+					Welcome to Finco! Take control of your finances. Track your
+					spending and income to keep your finances organized.
 				</p>
 			</div>
 			<div>
