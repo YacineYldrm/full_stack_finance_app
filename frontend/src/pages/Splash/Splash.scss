@@ -1,0 +1,78 @@
+.splash {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	perspective: 300px;
+	width: 100vw;
+	height: 100vh;
+	section {
+		transform-style: preserve-3d;
+		display: flex;
+		animation: rotate 1000ms 2s 1 ease-in-out;
+		justify-content: center;
+		img {
+			position: relative;
+			width: 5.5vmax;
+		}
+		.left {
+			animation: left 400ms 1 linear none;
+			left: 1vmax;
+			top: 5vmax;
+			transform: translate(0, -50%);
+			transition: all 500ms ease-in-out;
+		}
+		.right {
+			left: 1.5vmax;
+			top: 5vmax;
+			animation: right 1300ms 1 ease-in-out none;
+			transform: translate(0, -50%);
+			transition: all 500ms ease-in-out;
+		}
+		.circle {
+			width: 4vmax;
+			top: -1vmax;
+			left: -4.5vmax;
+			animation: top 1800ms 1 ease-in-out none;
+			transform: translate(0, -50%);
+			transition: all 500ms ease-in-out;
+		}
+	}
+}
+
+@keyframes left {
+	0% {
+		left: -50vw;
+	}
+	100% {
+		left: 1vmax;
+	}
+}
+
+@keyframes right {
+	0% {
+		left: 200vw;
+	}
+	100% {
+		left: 1.5vmax;
+	}
+}
+
+@keyframes top {
+	0% {
+		top: -600vh;
+	}
+	100% {
+		top: -1vh;
+	}
+}
+@keyframes rotate {
+	0% {
+		transform: rotateY(0deg);
+	}
+	// 50% {
+	// 	transform: rotateY(360deg);
+	// }
+	100% {
+		transform: rotatey(360deg);
+	}
+}

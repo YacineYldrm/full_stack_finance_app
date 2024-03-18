@@ -1,15 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import bigPresent from '../../../public/GetStarted/bigPresent.svg';
-import bigPresentShadow from '../../../public/GetStarted/bigPresentShadow.svg';
-import magneticStripe from '../../../public/GetStarted/magneticStripe.svg';
+import bigPresent from '../../../public/splash/gift.png';
+
 import middlePresent from '../../../public/GetStarted/middlePresent.svg';
-import shadowBigPresent from '../../../public/GetStarted/shadowBigPresent.svg';
-import cardShadow from '../../../public/GetStarted/shadowCard.svg';
-import shadowMiddlePresent from '../../../public/GetStarted/shadowMiddlePresent.svg';
-import shadowSmallPresent from '../../../public/GetStarted/shadowSmallPresent.svg';
+
 import smallPresent from '../../../public/GetStarted/smallPresent.svg';
-import underBodyCard from '../../../public/GetStarted/underBodyCard.svg';
-import upperBodyCard from '../../../public/GetStarted/upperBodyCard.svg';
+
+import bankCard from '../../../public/splash/giftCard.svg';
+import shadow from '../../../public/splash/shadow.svg';
 
 import './GetStarted.scss';
 import Button from '../../components/Button/Button';
@@ -17,60 +14,77 @@ import Button from '../../components/Button/Button';
 const GetStarted = () => {
 	const navigate = useNavigate();
 	return (
-		<main>
-			<section>
-				<article>
-					<img
-						src={smallPresent}
-						alt=''
-					/>
-					<img
-						src={shadowSmallPresent}
-						alt=''
-					/>
-					<img
-						src={middlePresent}
-						alt=''
-					/>
-					<img
-						src={shadowMiddlePresent}
-						alt=''
-					/>
-					<img
-						src={bigPresent}
-						alt=''
-					/>
-					<img
-						src={shadowBigPresent}
-						alt=''
-					/>
-					<img
-						src={bigPresentShadow}
-						alt=''
-					/>
-					<div>
-						<img
-							src={upperBodyCard}
-							alt=''
-						/>
-						<img
-							src={magneticStripe}
-							alt=''
-						/>
-						<img
-							src={underBodyCard}
-							alt=''
-						/>
-					</div>
-					<img
-						src={cardShadow}
-						alt=''
-					/>
-				</article>
-			</section>
+		<main className='getStarted'>
+			<article>
+				<img
+					className='giftCard'
+					src={bankCard}
+					alt=''
+				/>
+				<img
+					className='shadow'
+					src={shadow}
+					alt=''
+				/>
+				<img
+					className='dollar'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='dollar2'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='dollar3'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='coin'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='coin1'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='coin2'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='coin3'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='redDollar'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='redDollar1'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='redDollar2'
+					src={bigPresent}
+					alt=''
+				/>
+				<img
+					className='redDollar3'
+					src={bigPresent}
+					alt=''
+				/>
+			</article>
 			<section>
 				<div>
-					<h1>Analyze your spending!</h1>
+					<h2>Analyze your spending!</h2>
 					<p>
 						Get started with Finco and dive into a comprehensive
 						analysis of your spending habits. Gain valuable

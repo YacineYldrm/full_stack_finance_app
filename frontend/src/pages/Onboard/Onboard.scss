@@ -1,4 +1,4 @@
-.getStarted {
+.onBoarding {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -13,23 +13,30 @@
 		flex-direction: column;
 		justify-content: center;
 		position: relative;
-		.giftCard {
+		.bankCard {
 			width: 35vmax;
 			margin: 0 auto;
-			animation: giftCard 4s ease infinite;
+			animation: card 2s ease infinite;
 		}
 		.shadow {
-			animation: shadow 4s ease infinite;
+			animation: shadow 2s ease infinite;
 			width: 80%;
 			margin: 0 auto;
 			margin-top: 2vh;
 		}
 		.dollar {
-			width: 3vmax;
+			width: 8vmax;
 			position: absolute;
 			animation: dollar 3.5s linear infinite;
 			transform: rotate(90deg);
 			margin-left: 40%;
+		}
+		.dollar1 {
+			width: 11vmax;
+			position: absolute;
+			animation: dollar 7s linear infinite;
+			transform: rotate(90deg);
+			margin-left: 80%;
 		}
 		.dollar2 {
 			width: 4vmax;
@@ -37,7 +44,7 @@
 			position: absolute;
 		}
 		.dollar3 {
-			width: 7vmax;
+			width: 5vmax;
 			animation: dollar 4s linear infinite;
 			position: absolute;
 			margin-left: 70%;
@@ -51,43 +58,43 @@
 			margin-left: 40%;
 		}
 		.redDollar1 {
-			width: 9vmax;
+			width: 12vmax;
 			position: absolute;
 			animation: coin 7s linear infinite;
 			transform: rotate(90deg);
 			margin-left: 40%;
 		}
 		.redDollar2 {
-			width: 4vmax;
+			width: 8vmax;
 			animation: coin 6s linear infinite;
 			position: absolute;
 		}
 		.redDollar3 {
-			width: 13vmax;
+			width: 5vmax;
 			animation: coin 8s linear infinite;
 			position: absolute;
 			margin-left: 70%;
 		}
 		.coin {
-			width: 3vmax;
+			width: 9vmax;
 			animation: coin 9s linear infinite;
 			position: absolute;
 			margin-left: 50%;
 		}
 		.coin1 {
-			width: 3vmax;
+			width: 12vmax;
 			animation: dollar 6s linear infinite;
 			position: absolute;
 			margin-left: 80%;
 		}
 		.coin2 {
-			width: 4vmax;
+			width: 9vmax;
 			animation: dollar 8s linear infinite;
 			position: absolute;
 			margin-left: 65%;
 		}
 		.coin3 {
-			width: 2vmax;
+			width: 8vmax;
 			animation: coin 9s linear infinite;
 			position: absolute;
 			margin-right: 35%;
@@ -101,12 +108,12 @@
 		h2 {
 			margin-block: 3vh;
 			font-size: 3vmax;
-			width: 80%;
+			width: 70%;
 			margin-inline: auto;
 		}
 		p {
 			margin-bottom: 2vh;
-			width: 80%;
+			width: 85%;
 			margin-inline: auto;
 			font-size: 2vmax;
 		}
@@ -120,15 +127,15 @@
 				margin: 0 auto;
 				margin-top: 5vh;
 				min-width: 70vmax;
-
+				padding-left: 5vmax;
 				a {
 					display: inline-block;
 					margin: 0 auto;
 					font-size: 2vmax;
 				}
 				.button {
-					max-width: 25vmax;
-					transform: scale(0.8);
+					max-width: 20vmax;
+					transform: scale(0.6);
 					margin-left: auto;
 					font-size: 2.5vmax;
 					font-weight: 600;
@@ -138,7 +145,7 @@
 	}
 }
 
-@keyframes giftCard {
+@keyframes card {
 	0% {
 		transform: translate(0, 0);
 	}
@@ -146,7 +153,7 @@
 		transform: translate(0, -1vmax);
 	}
 	100% {
-		transform: translate(0, 0) rotateY(360deg);
+		transform: translate(0, 0);
 	}
 }
 
@@ -176,19 +183,19 @@
 	}
 
 	50% {
-		transform: translate(-40vw, -20vh) rotate(-90deg);
+		transform: translate(-10vw, -20vh) rotate(-90deg);
 	}
 	75% {
-		transform: translate(20vw, -10vh) rotate(45deg);
+		transform: translate(10vw, -10vh) rotate(45deg);
 	}
 	100% {
-		transform: translate(0, 0) rotate(360deg);
+		transform: translate(0, 0) rotateY(90deg);
 		display: none;
 	}
 }
 @keyframes coin {
 	100% {
-		transform: translate(-5vw, -60vh) rotate(360deg);
+		transform: translate(-5vw, -60vh) rotate(0);
 		display: block;
 	}
 	75% {
@@ -207,7 +214,7 @@
 		transform: translate(10vw, -10vh) rotate(45deg);
 	}
 	0% {
-		transform: translate(0, 0) rotate(360deg);
+		transform: translate(0, 0) rotateY(90deg);
 		display: none;
 	}
 }
