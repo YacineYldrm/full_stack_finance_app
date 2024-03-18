@@ -14,12 +14,14 @@ const Menu = ({ provider }) => {
     const logout = async () => {
         const res = await fetch(`${backendUrl}users/logout`, {
             method: "GET",
+            credentials: "include",
             headers: { authorization: provider.authorization },
         });
-        const { success, result, error, message } = await res.json();
+        const { success, error, message } = await res.json();
         if (!success) {
             console.log(error, message);
         } else {
+            console.log(message);
             provider.setAuthorization("");
             navigate("/login");
         }
