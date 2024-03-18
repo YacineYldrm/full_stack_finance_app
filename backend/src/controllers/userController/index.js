@@ -10,7 +10,7 @@ import changePasswordCtrl from "./changePasswordCtrl.js";
 import changeEmailCtrl from "./changeEmailCtrl.js";
 import deleteUserCtrl from "./deleteUserCtrl.js";
 import resetPasswordCtrl from "./resetPasswordCtrl.js";
-
+import newVcodeCtrl from "./newVcodeCtrl.js";
 
 
 const userController = {
@@ -26,6 +26,7 @@ const userController = {
     changeEmail: changeEmailCtrl,
     deleteUser: deleteUserCtrl,
     resetPassword: resetPasswordCtrl,
+    newVcode: newVcodeCtrl,
 };
 
 export default userController;

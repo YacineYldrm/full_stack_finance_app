@@ -30,6 +30,7 @@ const Home = ({ provider }) => {
 	useEffect(() => {
 		setAccount(provider?.account);
 	}, [provider.account]);
+	
 
 	// #####################################################
 

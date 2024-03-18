@@ -9,6 +9,7 @@ import verify from "./verify.js";
 import changeEmail from "./changeEmail.js";
 import deleteUser from "./deleteUser.js";
 import resetPassword from "./resetPassword.js";
+import newVcode from "./newVcode.js";
 const userServices = {
     getAllUser,
     edit,
@@ -20,7 +21,8 @@ const userServices = {
     changePassword,
     changeEmail,
     resetPassword,
-    deleteUser
+    deleteUser,
+    newVcode,
 };
 
 export default userServices;

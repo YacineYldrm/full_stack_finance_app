@@ -67,7 +67,7 @@ const Verify = () => {
 							placeholder='Verification Code'
 							onChange={(e) =>
 								setVerifyInfo({
-									...verifyInfo,
+                                    ...verifyInfo,
 									v_code: e.target.value,
 								})
 							}
@@ -75,7 +75,7 @@ const Verify = () => {
 						
 					</div>
 
-					<h6>Didn't get your Code?</h6>
+					<h6 onClick={()=>navigate("/forgot-verification")}>Didn't get your Code?</h6>
 
 					<Button
 						btnContent={'Verify'}

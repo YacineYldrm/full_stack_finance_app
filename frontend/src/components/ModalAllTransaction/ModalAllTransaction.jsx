@@ -12,14 +12,28 @@ const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 	const [result, setResult] = useState(transactions);
 
 	// #################################################
-
+	console.log(transactions);
 	useEffect(() => {
 		const filterResult = transactions?.filter((transaction) => {
 			if (search !== '' && date !== '') {
 				return (
-					JSON.stringify(transaction)
+					transaction?.category
 						.toLowerCase()
 						.includes(search.toLowerCase()) &&
+						new Date(
+							transaction?.date -
+								new Date().getTimezoneOffset() * 60000,
+						)
+							.toISOString()
+							.slice(0, 10) === date || 
+						 transaction?.amount.toString() === search &&
+						 new Date(
+							 transaction?.date -
+								 new Date().getTimezoneOffset() * 60000,
+						 )
+							 .toISOString()
+							 .slice(0, 10) === date ||
+						transaction?.type.toLowerCase().includes(search.toLowerCase()) &&
 					new Date(
 						transaction?.date -
 							new Date().getTimezoneOffset() * 60000,
@@ -28,9 +42,11 @@ const ModalAllTransaction = ({ transactions, modal, setModal, provider }) => {
 						.slice(0, 10) === date
 				);
 			} else if (search !== '' && date === '') {
-				return JSON.stringify(transaction)
-					.toLowerCase()
-					.includes(search.toLowerCase());
+				return transaction?.category
+				.toLowerCase()
+				.includes(search.toLowerCase()) || 
+				 transaction?.amount.toString() === search ||
+				transaction?.type.toLowerCase().includes(search.toLowerCase())
 			} else if (search == '' && date !== '') {
 				return (
 					new Date(

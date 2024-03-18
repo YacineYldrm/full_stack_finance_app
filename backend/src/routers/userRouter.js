@@ -18,4 +18,5 @@ const userRouter = express
     .post("/change-email", makeJwtAuth(), userController.changeEmail)
     .delete("/delete", makeJwtAuth(), userController.deleteUser)
     .post("/reset-password", userController.resetPassword)
+    .post("/new-verification-code", userController.newVcode)
 export default userRouter;
