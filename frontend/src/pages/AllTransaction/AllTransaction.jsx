@@ -25,6 +25,7 @@ const AllTransaction = ({ provider }) => {
 	const getDates = () => {
 		let updatedDates = [];
 		provider.account?.transactions?.forEach((transaction) => {
+
 			const newdate = new Date(
 				transaction.date - new Date().getTimezoneOffset() * 60000,
 			)
@@ -41,6 +42,7 @@ const AllTransaction = ({ provider }) => {
 		setDates([...new Set(allDates)]);
 	}, [allDates]);
 
+		
 	// #################################################
 
 	useEffect(() => {
