@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Login.scss';
 import { backendUrl } from '../../api';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../public/logo.png';
+import logo from '../../../public/Logo.svg';
 import { silentRefresh } from '../../utils/refresh';
 import Button from '../../components/Button/Button';
 import closedEye from '../../../public/eye/closedEye.svg';

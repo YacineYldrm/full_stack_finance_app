@@ -6,6 +6,7 @@ import PlusIcon from '../../../public/svg/plusIcon';
 import ReportIcon from '../../../public/svg/reportIcon';
 
 const Navbar = () => {
+	const navigate = useNavigate();
 	const jumpUp = (e) => {
 		e.preventDefault();
 		const allActive = document.getElementsByClassName('active');
