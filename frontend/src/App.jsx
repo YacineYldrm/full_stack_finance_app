@@ -30,7 +30,7 @@ function App() {
     const [accounts, setAccounts] = useState([]);
     const [account, setAccount] = useState(null);
     const [transactions, setTransactions] = useState([]);
-    const [cardIndex, setCardIndex] = useState(null);
+    const [cardIndex, setCardIndex] = useState(0);
     const [expenseTotal, setExpenseTotal] = useState(0);
     const [incomeTotal, setIncomeTotal] = useState(0);
     const [monthlyIncome, setMonthlyIncome] = useState(null);
@@ -78,8 +78,9 @@ function App() {
 
     // #################################################
     useEffect(() => {
-        setAccount(accounts[cardIndex]);
-    }, [cardIndex, accounts]);
+        setAccount(accounts[0]);
+    }, [provider]);
+
     // #################################################
 
     return (

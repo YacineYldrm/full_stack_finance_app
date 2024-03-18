@@ -7,6 +7,7 @@ import activeCardIndex from "../../utils/activeCardIndex";
 
 const CardCourouselle = ({ provider }) => {
     const [index, setIndex] = useState(null);
+
     // const [foundCard, setFoundCard] = useState(null);
 
     // useEffect(() => {
@@ -27,25 +28,25 @@ const CardCourouselle = ({ provider }) => {
     // }, [index]);
 
     const handleScroll = (e) => {
-        showActiveCard(provider);
+        handleEndScroll();
     };
 
-    // const handleEndScroll = useMemo(
-    //     () =>
-    //         _.debounce(() => {
-
-    //         }, 3000),
-    //     []
-    // );
+    const handleEndScroll = useMemo(
+        () =>
+            _.debounce(() => {
+                changeCardOnSwipe(provider);
+            }, 100),
+        [provider]
+    );
 
     return (
         <article
+            // onScroll={() => changeCardOnSwipe(provider)}
             onScroll={(e) => handleScroll(e)}
-            // onScroll={() => provider?.setCardIndex(changeCardOnSwipe())}
             className="cards_carouselle_wrapper"
             id="carouselle"
         >
-            {provider.accounts.map((account) => {
+            {provider?.accounts?.map((account) => {
                 return (
                     <Card
                         key={account._id}
