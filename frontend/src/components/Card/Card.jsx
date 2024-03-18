@@ -112,6 +112,7 @@ const Card = ({ cardId, provider, account }) => {
                 <article>
                     <img src={chip} alt="" />
                     <h4>09/25</h4>
+                    {/* <h4>{account?.expirationDate.replace("-","/")}</h4> */}
                 </article>
             </section>
         </section>
