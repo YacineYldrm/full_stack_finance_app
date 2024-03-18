@@ -1,0 +1,55 @@
+.image_edit_main {
+    .image_edit_wrapper {
+        position: relative;
+        max-width: 40%;
+        overflow: hidden;
+        aspect-ratio: 1/1;
+        margin: 0 auto;
+        margin-bottom: 4vh;
+        input[type="file"] {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            aspect-ratio: 1/1;
+            border-radius: 3vmax;
+            color: rgba(240, 248, 255, 0);
+            border: none;
+            &::file-selector-button {
+                display: none;
+            }
+            &:focus {
+                outline: none;
+            }
+            top: 0;
+            bottom: 0;
+        }
+        img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 3vmax;
+        }
+    }
+    > div {
+        display: flex;
+        gap: 13vmax;
+        justify-content: center;
+
+        div {
+            border-radius: 50%;
+            width: 9.7%;
+            margin-bottom: 2vh;
+        }
+        .edit_icon {
+            width: 6%;
+            position: relative;
+            top: -6.5vmax;
+            right: -11vmax;
+            background-color: #f2f2f2;
+
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.328);
+            border-radius: 1vmax;
+            padding: 1%;
+        }
+    }
+}

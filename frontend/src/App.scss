@@ -21,7 +21,8 @@ select:after {
     justify-self: end;
 }
 
-input {
+input,
+select {
     &:focus {
         outline: 1px solid black;
     }
