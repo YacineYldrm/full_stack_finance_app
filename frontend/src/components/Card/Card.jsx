@@ -14,7 +14,7 @@ import chip from "../../../public/chip.svg";
 import { useEffect, useState } from "react";
 import { backendUrl, mediaUrl } from "../../api";
 
-const Card = ({ provider, account }) => {
+const Card = ({ cardId, provider, account }) => {
     const colors = [
         "#005eb060",
         "#b0000060",
@@ -75,24 +75,40 @@ const Card = ({ provider, account }) => {
 
     // ####################  SWIPE  ##########################
 
-    const checkDirection = () => {
-        if (touchEndX < touchStartX) setDirection("left");
-        else setDirection("right");
-        setTimeout(() => {
-            changeCard(direction);
-        }, 500);
-    };
+    // const checkDirection = () => {
+    //     if (touchEndX < touchStartX) setDirection("left");
+    //     else setDirection("right");
+    //     setTimeout(() => {
+    //         changeCard(direction);
+    //     }, 500);
+    // };
 
-    useEffect(() => {
-        checkDirection();
-    }, [direction, touchEndX]);
+    // useEffect(() => {
+    //     checkDirection();
+    // }, [direction, touchEndX]);
 
-    const changeCard = (direction) => {
-        if (direction === "left") {
-            if (provider?.accounts?.length > provider?.cardIndex + 1) {
-                provider.setCardIndex(provider?.cardIndex + 1);
-            } else provider.setCardIndex(0);
-        }
+    // const changeCard = (direction) => {
+    //     if (direction === "left") {
+    //         if (provider?.accounts?.length > provider?.cardIndex + 1) {
+    //             provider.setCardIndex(provider?.cardIndex + 1);
+    //         } else provider.setCardIndex(0);
+    //     }
+    // };
+
+    // #####################################################
+
+    const changeCardOnSwipe = (cardId) => {
+        let bounding = card?.getBoundingClientRect();
+
+        if (
+            bounding?.top >= 0 &&
+            bounding?.left >= 0 &&
+            bounding?.right <=
+                (window.innerWidth || document.documentElement.clientWidth) &&
+            bounding.bottom <=
+                (window.innerHeight || document.documentElement.clientHeight)
+        )
+            console.log("Element is in the viewport!");
     };
 
     // #####################################################
@@ -100,14 +116,14 @@ const Card = ({ provider, account }) => {
     return (
         <section
             className="card"
-            id="card_container"
-            onTouchStart={(e) =>
-                setTouchStartX(Math.floor(e.changedTouches[0].screenX))
-            }
-            onTouchEnd={(e) => {
-                setTouchEndX(Math.floor(e.changedTouches[0].screenX));
-                checkDirection();
-            }}
+            id={cardId}
+            // onTouchStart={(e) =>
+            //     setTouchStartX(Math.floor(e.changedTouches[0].screenX))
+            // }
+            // onTouchEnd={(e) => {
+            //     setTouchEndX(Math.floor(e.changedTouches[0].screenX)); checkDirection();
+            // }}
+
             style={{ backgroundColor: `${colors[cardColorIndex]}` }}
         >
             <img className="pattern" src={cardBgs[cardColorIndex]} alt="" />
