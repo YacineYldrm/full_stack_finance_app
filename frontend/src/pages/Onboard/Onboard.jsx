@@ -1,64 +1,95 @@
 import { Link, useNavigate } from 'react-router-dom';
-import bigBill from '../../../public/Onboard/bigBill.svg';
-import bigBillShadow from '../../../public/Onboard/bigBillShadow.svg';
-import bills from '../../../public/Onboard/bills.svg';
-import cardShadow from '../../../public/Onboard/cardShadow.svg';
-import magneticStrip from '../../../public/Onboard/magneticStrip.svg';
-import smallBallShadow from '../../../public/Onboard/smallBallShadow.svg';
-import underBodyCard from '../../../public/Onboard/underBodyCard.svg';
-import upperBodyCard from '../../../public/Onboard/upperBodyCard.svg';
+import bankCard from '../../../public/splash/bankCard.svg';
+import shadow from '../../../public/splash/shadow.svg';
+import dollar from '../../../public/splash/moneyGreen.png';
+import coin from '../../../public/splash/dollar.png';
+import redDollar from '../../../public/splash/redDollar.png';
+import './Onboard.scss';
 import Button from '../../components/Button/Button';
 
 const Onboard = () => {
 	const navigate = useNavigate();
 	return (
 		<>
-			<main>
-				<section>
-					<article>
-						<img
-							src={bills}
-							alt=''
-						/>
-						<img
-							src={smallBallShadow}
-							alt=''
-						/>
-						<img
-							src={bigBill}
-							alt=''
-						/>
-						<img
-							src={bigBillShadow}
-							alt=''
-						/>
-						<div>
-							<img
-								src={upperBodyCard}
-								alt=''
-							/>
-							<img
-								src={magneticStrip}
-								alt=''
-							/>
-							<img
-								src={underBodyCard}
-								alt=''
-							/>
-						</div>
-						<img
-							src={cardShadow}
-							alt=''
-						/>
-					</article>
-				</section>
+			<main className='onBoarding'>
+				<article>
+					<img
+						className='bankCard'
+						src={bankCard}
+						alt=''
+					/>
+					<img
+						className='shadow'
+						src={shadow}
+						alt=''
+					/>
+					<img
+						className='dollar'
+						src={dollar}
+						alt=''
+					/>
+					<img
+						className='dollar1'
+						src={dollar}
+						alt=''
+					/>
+					<img
+						className='dollar2'
+						src={dollar}
+						alt=''
+					/>
+					<img
+						className='dollar3'
+						src={dollar}
+						alt=''
+					/>
+					<img
+						className='coin'
+						src={coin}
+						alt=''
+					/>
+					<img
+						className='coin1'
+						src={coin}
+						alt=''
+					/>
+					<img
+						className='coin2'
+						src={coin}
+						alt=''
+					/>
+					<img
+						className='coin3'
+						src={coin}
+						alt=''
+					/>
+					<img
+						className='redDollar'
+						src={redDollar}
+						alt=''
+					/>
+					<img
+						className='redDollar1'
+						src={redDollar}
+						alt=''
+					/>
+					<img
+						className='redDollar2'
+						src={redDollar}
+						alt=''
+					/>
+					<img
+						className='redDollar3'
+						src={redDollar}
+						alt=''
+					/>
+				</article>
 				<section>
 					<div>
-						<h1>Track your spend and income</h1>
+						<h2>Track your spend and income</h2>
 						<p>
-							Welcome to Finco! Start your journey to financial
-							empowerment. Begin your exploration by clicking
-							below. Let's navigate your financial future together
+							Start your journey to financial empowerment. Let's
+							navigate your financial future together
 						</p>
 					</div>
 					<div>
