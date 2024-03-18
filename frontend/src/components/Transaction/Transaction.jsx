@@ -81,9 +81,9 @@ const Transaction = ({ provider, transaction, _delete, groupDate }) => {
 			<main className='transaction'>
 				<div className='deleteIcon'>
 					{(_delete === true &&
-						provider.account.owner === provider.activeUser._id) ||
+						provider?.account?.owner === provider?.activeUser?._id) ||
 					(_delete === true &&
-						transaction.owner === provider.activeUser._id) ? (
+						transaction?.owner === provider?.activeUser?._id) ? (
 						<img
 							src={deleteIcon}
 							onClick={() => setShowModal(true)}

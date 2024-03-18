@@ -145,7 +145,7 @@ function App() {
 					/>
 					<Route
 						path='/'
-						element={<Splash />}
+						element={<Splash provider={provider}/>}
 					/>
 					<Route
 						path='/onboard'
