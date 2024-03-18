@@ -23,6 +23,7 @@ const accountSchema = new mongoose.Schema(
         owner: { type: mongoose.Types.ObjectId, required: true },
         members: [{ type: mongoose.Types.ObjectId, required: true }],
         transactions: [transactionSchema],
+        expirationDate: {type: String}
     },
     { collection: "accounts", timestamps: true }
 );

@@ -118,7 +118,11 @@ const MyWallet = ({ provider }) => {
 
         optionSibling.classList.toggle("display_option_inputs");
     };
-
+    const minDate = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 7);
+    
+    console.log(accountInfo);
     return (
         <>
             <main className="my_wallet_main">
@@ -185,6 +189,17 @@ const MyWallet = ({ provider }) => {
                                         Family Account
                                     </option>
                                 </select>
+                                <input
+                                    onChange={(e) => {
+                                        setAccountInfo({
+                                            ...accountInfo,
+                                            expirationDate: e.target.value,
+                                        });
+                                    }}
+                                    type="month"
+                                    min={minDate}
+                                    placeholder="Card Number"
+                                />
                                 <div>
                                     <Button
                                         btnContent={"Add bank account"}
@@ -250,6 +265,18 @@ const MyWallet = ({ provider }) => {
                                         Family Account
                                     </option>
                                 </select>
+                                <input
+                                    onChange={(e) => {
+                                        setAccountInfo({
+                                            ...accountInfo,
+                                            expirationDate: e.target.value,
+                                        });
+                                    }}
+                                    type="month"
+                                    min={minDate}
+                                    // defaultValue={accountInfo?.expirationDate}
+                                    placeholder="Card Number"
+                                />
                                 <div>
                                     <Button
                                         btnContent={"Confirm"}
