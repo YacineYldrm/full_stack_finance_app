@@ -8,7 +8,9 @@
     min-height: 90vh;
     margin: 0 auto;
     > div {
-        padding-bottom: 2vh;
+        &:nth-last-of-type(2) {
+            padding-bottom: 2vh;
+        }
 
         > img {
             margin-top: 2vh;
@@ -18,7 +20,7 @@
             text-align: center;
             margin-bottom: 1vh;
             h2 {
-                margin-top: 8vh;
+                margin-top: 3vh;
                 margin-bottom: 1vh;
                 font-size: 3vmax;
                 font-weight: 600;

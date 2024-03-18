@@ -109,6 +109,8 @@ const SetupAccount = ({ provider }) => {
                     <option value="Basic Account">Basic Account</option>
                     <option value="Family Account">Family Account</option>
                 </select>
+                <h4>Valid until</h4>
+                <input type="month" />
                 <h4>{message}</h4>
                 <Button
                     btnContent={"Create"}
