@@ -1,8 +1,7 @@
 .card {
-	min-width: 45vmax;
+	min-width: 47vmax;
 	position: relative;
 	border-radius: 1.5vmax;
-	background-color: #a1a1a19b;
 	box-shadow: 1px -1px 5px rgba(92, 92, 92, 0.643);
 	aspect-ratio: 3/1.7;
 	scroll-snap-align: none center;
@@ -15,7 +14,6 @@
 		inset: 0;
 		bottom: 0;
 		object-fit: cover;
-		mix-blend-mode: luminosity;
 	}
 	section {
 		article {

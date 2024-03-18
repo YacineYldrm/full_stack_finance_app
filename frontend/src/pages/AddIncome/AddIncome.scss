@@ -22,7 +22,7 @@
 		color: #409474;
 		font-size: 2.5vmax;
 		font-weight: 600;
-		margin-block: 1vh;
+		margin-block: 1vh 1.5vh;
 		line-height: 100%;
 	}
 	form {
@@ -64,7 +64,7 @@
 				margin-top: 0.8vh;
 				display: flex;
 				text-align: center;
-				height: 7vmax;
+				height: 6vmax;
 				font-size: 2vmax;
 				&::-webkit-calendar-picker-indicator {
 					display: none;
@@ -87,7 +87,7 @@
 			}
 		}
 		select {
-			height: 7vmax;
+			height: 6vmax;
 			font-size: 2vmax;
 			appearance: none;
 			-webkit-appearance: none;
