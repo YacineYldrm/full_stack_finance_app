@@ -13,6 +13,7 @@ import Button from "../../components/Button/Button";
 import { backendUrl } from "../../api";
 import changeCardOnSwipe from "../../utils/changeCardOnSwipe";
 import CardCourouselle from "../../components/CardCarouselle/CardCarouselle";
+import calendar from "../../../public/calendar.svg";
 
 const MyWallet = ({ provider }) => {
     const navigate = useNavigate();
@@ -118,11 +119,13 @@ const MyWallet = ({ provider }) => {
 
         optionSibling.classList.toggle("display_option_inputs");
     };
-    const minDate = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-    .toISOString()
-    .slice(0, 7);
-    
-    console.log(accountInfo);
+
+    const minDate = new Date(
+        Date.now() - new Date().getTimezoneOffset() * 60000
+    )
+        .toISOString()
+        .slice(0, 7);
+
     return (
         <>
             <main className="my_wallet_main">
@@ -189,17 +192,21 @@ const MyWallet = ({ provider }) => {
                                         Family Account
                                     </option>
                                 </select>
-                                <input
-                                    onChange={(e) => {
-                                        setAccountInfo({
-                                            ...accountInfo,
-                                            expirationDate: e.target.value,
-                                        });
-                                    }}
-                                    type="month"
-                                    min={minDate}
-                                    placeholder="Card Number"
-                                />
+                                <h4>Expiry date</h4>
+                                <label>
+                                    <input
+                                        onChange={(e) => {
+                                            setAccountInfo({
+                                                ...accountInfo,
+                                                expirationDate: e.target.value,
+                                            });
+                                        }}
+                                        type="month"
+                                        min={minDate}
+                                        placeholder="Card Number"
+                                    />
+                                    <img src={calendar} alt="" />
+                                </label>
                                 <div>
                                     <Button
                                         btnContent={"Add bank account"}
@@ -265,18 +272,21 @@ const MyWallet = ({ provider }) => {
                                         Family Account
                                     </option>
                                 </select>
-                                <input
-                                    onChange={(e) => {
-                                        setAccountInfo({
-                                            ...accountInfo,
-                                            expirationDate: e.target.value,
-                                        });
-                                    }}
-                                    type="month"
-                                    min={minDate}
-                                    // defaultValue={accountInfo?.expirationDate}
-                                    placeholder="Card Number"
-                                />
+                                <h4>Expiry date</h4>
+                                <label>
+                                    <input
+                                        onChange={(e) => {
+                                            setAccountInfo({
+                                                ...accountInfo,
+                                                expirationDate: e.target.value,
+                                            });
+                                        }}
+                                        type="month"
+                                        min={minDate}
+                                        placeholder="Card Number"
+                                    />
+                                    <img src={calendar} alt="" />
+                                </label>
                                 <div>
                                     <Button
                                         btnContent={"Confirm"}

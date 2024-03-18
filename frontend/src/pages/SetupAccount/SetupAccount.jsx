@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { backendUrl } from "../../api";
 import ProfileImageUpload from "../../components/ProfileImageUpload/ProfileImageUpload";
 import Button from "../../components/Button/Button";
+import calendar from "../../../public/calendar.svg";
 
 const SetupAccount = ({ provider }) => {
     const [imgFile, setImgFile] = useState(null);
@@ -66,6 +67,12 @@ const SetupAccount = ({ provider }) => {
 
     // #################################################
 
+    const minDate = new Date(
+        Date.now() - new Date().getTimezoneOffset() * 60000
+    )
+        .toISOString()
+        .slice(0, 7);
+
     return (
         <main className="account_setup">
             <div>
@@ -109,8 +116,21 @@ const SetupAccount = ({ provider }) => {
                     <option value="Basic Account">Basic Account</option>
                     <option value="Family Account">Family Account</option>
                 </select>
-                <h4>Valid until</h4>
-                <input type="month" />
+                <h4>Expiry date</h4>
+                <label>
+                    <input
+                        onChange={(e) => {
+                            setAccountInfo({
+                                ...accountInfo,
+                                expirationDate: e.target.value,
+                            });
+                        }}
+                        type="month"
+                        min={minDate}
+                        placeholder="Card Number"
+                    />
+                    <img src={calendar} alt="" />
+                </label>
                 <h4>{message}</h4>
                 <Button
                     btnContent={"Create"}
