@@ -44,9 +44,6 @@ const Card = ({ cardId, provider, account }) => {
     const cardColorNum = Number(account?.cardNumber?.slice(-4));
     const cardColorIndex = Number((cardColorNum * 128).toString().split("")[3]);
 
-    const [direction, setDirection] = useState("");
-    const [touchStartX, setTouchStartX] = useState(0);
-    const [touchEndX, setTouchEndX] = useState(0);
     const [allMembers, setAllMembers] = useState([]);
 
     // ############### GET ALL MEMBERS #################
@@ -73,57 +70,12 @@ const Card = ({ cardId, provider, account }) => {
         getAllMembers();
     }, [account?.members]);
 
-    // ####################  SWIPE  ##########################
-
-    // const checkDirection = () => {
-    //     if (touchEndX < touchStartX) setDirection("left");
-    //     else setDirection("right");
-    //     setTimeout(() => {
-    //         changeCard(direction);
-    //     }, 500);
-    // };
-
-    // useEffect(() => {
-    //     checkDirection();
-    // }, [direction, touchEndX]);
-
-    // const changeCard = (direction) => {
-    //     if (direction === "left") {
-    //         if (provider?.accounts?.length > provider?.cardIndex + 1) {
-    //             provider.setCardIndex(provider?.cardIndex + 1);
-    //         } else provider.setCardIndex(0);
-    //     }
-    // };
-
-    // #####################################################
-
-    const changeCardOnSwipe = (cardId) => {
-        let bounding = card?.getBoundingClientRect();
-
-        if (
-            bounding?.top >= 0 &&
-            bounding?.left >= 0 &&
-            bounding?.right <=
-                (window.innerWidth || document.documentElement.clientWidth) &&
-            bounding.bottom <=
-                (window.innerHeight || document.documentElement.clientHeight)
-        )
-            console.log("Element is in the viewport!");
-    };
-
     // #####################################################
 
     return (
         <section
             className="card"
             id={cardId}
-            // onTouchStart={(e) =>
-            //     setTouchStartX(Math.floor(e.changedTouches[0].screenX))
-            // }
-            // onTouchEnd={(e) => {
-            //     setTouchEndX(Math.floor(e.changedTouches[0].screenX)); checkDirection();
-            // }}
-
             style={{ backgroundColor: `${colors[cardColorIndex]}` }}
         >
             <img className="pattern" src={cardBgs[cardColorIndex]} alt="" />

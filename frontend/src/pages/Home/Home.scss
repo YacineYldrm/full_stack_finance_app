@@ -25,19 +25,6 @@
             }
         }
     }
-    .cards_carouselle_wrapper {
-        display: flex;
-        grid-gap: 10vmax;
-        overflow-x: scroll;
-        padding-block: 2vh;
-        padding-inline: 5vmax;
-        white-space: nowrap;
-        scroll-snap-type: x mandatory;
-        cursor: grab;
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
     h5,
     h2 {
         font-size: 2.2vmax;
