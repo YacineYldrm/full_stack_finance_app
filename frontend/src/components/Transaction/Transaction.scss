@@ -1,3 +1,21 @@
+.question {
+	padding: 2.5%;
+	p {
+		text-align: center;
+		font-size: 1.9vmax;
+		font-weight: 600;
+	}
+	div {
+		display: flex;
+		padding: 5% 2.5%;
+		gap: 5%;
+		.button {
+			transform: scale(0.8);
+			font-weight: 600;
+		}
+	}
+}
+
 .transaction {
 	display: flex;
 	width: 100%;
@@ -5,8 +23,11 @@
 	margin-bottom: 3vh;
 	border-bottom: 1px solid rgba(128, 128, 128, 0.09);
 	padding-bottom: 1vh;
+	align-items: center;
 	.deleteIcon {
 		display: none;
+		width: 2.5vmax;
+		margin-right: 2vmax;
 	}
 	.categoryInfo {
 		flex: 2;
@@ -16,7 +37,7 @@
 		align-items: center;
 
 		img {
-			width: 6vmax;
+			width: 5vmax;
 			margin-right: 2vmax;
 		}
 
