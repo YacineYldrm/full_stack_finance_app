@@ -12,7 +12,6 @@ const edit = async (authorizedUserId, accountInfo) => {
         );
 
     if (accountInfo.newMember) {
-        console.log("####", accountInfo.newMember);
         const foundMember = await User.findOne({
             email: accountInfo.newMember,
         });

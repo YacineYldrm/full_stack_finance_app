@@ -14,6 +14,8 @@ import calcExpectedExpenses from "../../utils/calcExpectedExpenses";
 import expectedGreen from "../../../public/expectedIcons/expectedGreen.svg";
 import expectedYellow from "../../../public/expectedIcons/expectedYellow.svg";
 import expectedRed from "../../../public/expectedIcons/expectedRed.svg";
+import changeCardOnSwipe from "../../utils/changeCardOnSwipe";
+import CardCourouselle from "../../components/CardCarouselle/CardCarouselle";
 
 // #####################################################
 
@@ -119,12 +121,11 @@ const Home = ({ provider }) => {
         }
     };
 
+    // #####################################################
+
     return (
         <>
-            <main
-                onMouseUp={() => console.log("DragEnd")}
-                className="home_main_wrapper"
-            >
+            <main className="home_main_wrapper">
                 <div>
                     <div>
                         <p>Welcome back.</p>
@@ -138,21 +139,7 @@ const Home = ({ provider }) => {
                         />
                     </div>
                 </div>
-                <article
-                    onClick={() => console.log("test")}
-                    className="cards_carouselle_wrapper"
-                >
-                    {provider.accounts.map((account) => {
-                        return (
-                            <Card
-                                key={account._id}
-                                cardId={account._id}
-                                provider={provider}
-                                account={account}
-                            />
-                        );
-                    })}
-                </article>
+                <CardCourouselle provider={provider} />
                 <div>
                     <h5>Account Balance</h5>
                     <h2
