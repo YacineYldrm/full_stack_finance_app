@@ -139,7 +139,7 @@ const Home = ({ provider }) => {
                     </div>
                 </div>
                 <article
-                    onScroll={() => console.log("test")}
+                    onClick={() => console.log("test")}
                     className="cards_carouselle_wrapper"
                 >
                     {provider.accounts.map((account) => {

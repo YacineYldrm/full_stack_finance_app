@@ -117,13 +117,13 @@ const Card = ({ cardId, provider, account }) => {
         <section
             className="card"
             id={cardId}
-            onTouchStart={(e) =>
-                setTouchStartX(Math.floor(e.changedTouches[0].screenX))
-            }
-            onScrollEnd={() => {
-                changeCardOnSwipe(cardId);
-                // setTouchEndX(Math.floor(e.changedTouches[0].screenX));
-            }}
+            // onTouchStart={(e) =>
+            //     setTouchStartX(Math.floor(e.changedTouches[0].screenX))
+            // }
+            // onTouchEnd={(e) => {
+            //     setTouchEndX(Math.floor(e.changedTouches[0].screenX)); checkDirection();
+            // }}
+
             style={{ backgroundColor: `${colors[cardColorIndex]}` }}
         >
             <img className="pattern" src={cardBgs[cardColorIndex]} alt="" />
