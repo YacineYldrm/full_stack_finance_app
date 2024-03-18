@@ -11,19 +11,18 @@ const showActiveCard = (provider) => {
     const cards = getCards();
     // console.log(cards);
     const activeCard = cards[provider?.cardIndex];
-    // console.log(activeCard.getBoundingClientRect());
+    // console.log(activeCard);
+    console.log(activeCard?.getBoundingClientRect());
     const activeCardPosition = activeCard?.getBoundingClientRect();
 
-    if (activeCardPosition?.left > 0 && activeCardPosition?.right > 0) {
-        console.log("changing card index");
-        provider?.setCardIndex(changeCardOnSwipe());
-        return;
-    } else {
-        setTimeout(() => {
-            console.log("active card not in view");
-            carouselle?.scrollTo(activeCardPosition?.x, activeCardPosition?.y);
-        }, 1000);
-    }
+    // if (activeCardPosition?.left < 0 && activeCardPosition?.right < 0) {
+    //     console.log("active card not in view");
+    //     carouselle?.scrollTo(activeCardPosition?.x, activeCardPosition?.y);
+    //     return;
+    // } else {
+    //     console.log("changing card index");
+    //     provider?.setCardIndex(changeCardOnSwipe());
+    // }
 };
 
 export default showActiveCard;
