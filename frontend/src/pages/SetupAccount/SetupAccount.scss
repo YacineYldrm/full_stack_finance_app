@@ -38,6 +38,7 @@
         h4 {
             margin-inline: auto;
             margin-block: 1vh;
+            font-size: 2vmax;
         }
 
         input,
@@ -51,6 +52,41 @@
             border: 1px solid gray;
             &::placeholder {
                 color: rgb(81, 81, 81);
+            }
+        }
+        label {
+            display: flex;
+            align-items: center;
+            position: relative;
+            width: fit-content;
+            overflow: hidden;
+            border-radius: 3vmax;
+
+            input[type="month"] {
+                margin-top: 0.8vh;
+                width: 40vmax;
+                display: flex;
+                text-align: center;
+                height: 6vmax;
+                font-size: 2vmax;
+                &::-webkit-calendar-picker-indicator {
+                    position: absolute;
+                    position: absolute;
+                    right: 10%;
+                    width: 3.5vmax;
+                    height: 3.5vmax;
+                    transform: translate(50%, 0);
+                    z-index: 2;
+                    filter: opacity(0);
+                }
+
+                color: rgb(65, 65, 65);
+            }
+            img {
+                position: absolute;
+                right: 10%;
+                width: 3.5vmax;
+                transform: translate(50%, 0);
             }
         }
 

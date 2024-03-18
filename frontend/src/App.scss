@@ -31,6 +31,14 @@ select {
             outline: none;
         }
     }
+    &[type="month"] {
+        border: none;
+        &:focus {
+            outline: none;
+        }
+        -webkit-appearance: none;
+        color: rgb(65, 65, 65);
+    }
 }
 
 a {
