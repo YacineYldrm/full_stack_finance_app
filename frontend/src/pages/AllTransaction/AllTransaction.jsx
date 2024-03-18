@@ -41,6 +41,7 @@ const AllTransaction = ({ provider }) => {
 		setDates([...new Set(allDates)]);
 	}, [allDates]);
 
+		
 	// #################################################
 
 	useEffect(() => {

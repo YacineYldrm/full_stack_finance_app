@@ -21,6 +21,7 @@ import ResetPassword from './pages/ResetPassword/ResetPassword';
 import Onboard from './pages/Onboard/Onboard';
 import GetStarted from './pages/GetStarted/GetStarted';
 import Splash from './pages/Splash/Splash';
+import ForgotVerification from './pages/ForgotVerification/ForgotVerification';
 
 function App() {
 	// #################################################
@@ -150,6 +151,7 @@ function App() {
 						path='/get-started'
 						element={<GetStarted />}
 					/>
+                    <Route path='/forgot-verification' element={<ForgotVerification/>}/>
 				</Routes>
 			</BrowserRouter>
 		</>

@@ -23,12 +23,16 @@ const Transaction = ({ provider, transaction, _delete, groupDate }) => {
             return insurance;
         } else if (transaction?.category === "Rent") {
             return rent;
-        } else if (transaction?.category === "Other Expenses") {
+        } else if (transaction?.category === "Other Expense") {
             return otherExpense;
         } else if (transaction?.category === "Salary") {
             return salary;
-        } else {
+        } else if(transaction?.category === "Other Icome"){
             return otherIncome;
+        } else if(transaction?.category === "" && transaction?.type === "expense"){
+            return otherExpense
+        } else{
+            return otherIncome
         }
     };
 
