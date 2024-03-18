@@ -5,13 +5,17 @@ import circle from '../../../public/splash/circle.svg';
 import './Splash.scss';
 import { useNavigate } from 'react-router-dom';
 
-const Splash = () => {
+const Splash = ({provider}) => {
 	const navigate = useNavigate();
 	useEffect(() => {
 		setTimeout(() => {
-			navigate('/onboard');
+			if(provider.authorization){
+				navigate("/home")
+			}else{
+			navigate('/onboard');}
 		}, 4000);
-	}, []);
+	}, [provider.authorization]);
+	
 	return (
 		<>
 			<main className='splash'>

@@ -21,7 +21,7 @@ const AllTransaction = ({ provider }) => {
 	const navigate = useNavigate();
 
 	// #################################################
-
+	console.log(provider);
 	const getDates = () => {
 		let updatedDates = [];
 		provider.account?.transactions?.forEach((transaction) => {

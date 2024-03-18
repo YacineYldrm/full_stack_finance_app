@@ -136,7 +136,7 @@ function App() {
                         path="/reset-password/:resetToken"
                         element={<ResetPassword />}
                     />
-                    <Route path="/" element={<Splash />} />
+                    <Route path="/" element={<Splash provider={provider}/>} />
                     <Route path="/onboard" element={<Onboard />} />
                     <Route path="/get-started" element={<GetStarted />} />
                     <Route
