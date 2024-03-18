@@ -5,24 +5,26 @@
 	padding-bottom: 0;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-evenly;
 	min-height: 90vh;
 	div {
-		img {
+		> img {
 			width: 4vmax;
+			margin-bottom: 4vh;
 		}
 		&:nth-of-type(2) {
-			margin-top: 15vh;
+			margin-top: 8vh;
 			h2 {
 				text-align: center;
 				font-size: 3.5vmax;
 				font-weight: 600;
-				margin-bottom: 3vh;
+				margin-bottom: 1vh;
 			}
 			p {
 				max-width: 80%;
 				text-align: center;
 				margin: 0 auto;
-				font-size: 2vmax;
+				font-size: 1.9vmax;
 			}
 		}
 	}
@@ -32,14 +34,14 @@
 		font-size: 1.8vmax;
 		width: 40vmax;
 		margin: 0 auto;
-		margin-bottom: 3vh;
+		margin-bottom: 4vh;
 		font-weight: 500;
 		color: gray;
 	}
 	form {
 		width: 100%;
 		padding: 2.5%;
-		padding-bottom: 1%;
+		padding-block: 1%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -69,6 +71,7 @@
 					width: 2vmax;
 					right: 5%;
 					margin-top: 1%;
+					align-self: center;
 				}
 			}
 		}

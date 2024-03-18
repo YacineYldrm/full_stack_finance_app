@@ -1,20 +1,19 @@
 const getCards = () => {
     const cards = document.body.getElementsByClassName("card");
-
-    return cards;
+    return Array.prototype.slice.call(cards)
 };
 
 const changeCardOnSwipe = () => {
     const cards = getCards();
 
-    const cardsArray = Array.prototype.slice.call(cards);
-    const activeCard = cardsArray.find(
+
+    const activeCard = cards.find(
         (card) =>
             card.getBoundingClientRect().left > 0 &&
             card.getBoundingClientRect().right > 0
     );
 
-    return cardsArray?.indexOf(activeCard);
+    return cards?.indexOf(activeCard);
 };
 
 export default changeCardOnSwipe;
