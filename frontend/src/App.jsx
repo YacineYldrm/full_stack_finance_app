@@ -22,6 +22,7 @@ import Onboard from "./pages/Onboard/Onboard";
 import GetStarted from "./pages/GetStarted/GetStarted";
 import Splash from "./pages/Splash/Splash";
 import ForgotVerification from "./pages/ForgotVerification/ForgotVerification";
+import calcMonth from "./utils/calcMonth";
 
 function App() {
     // #################################################
@@ -35,6 +36,7 @@ function App() {
     const [incomeTotal, setIncomeTotal] = useState(0);
     const [monthlyIncome, setMonthlyIncome] = useState(null);
     const [monthlyExpense, setMonthlyExpense] = useState(null);
+    const [activeCard, setActiveCard] = useState(0);
 
     const provider = {
         authorization,
@@ -57,6 +59,8 @@ function App() {
         setMonthlyIncome,
         monthlyExpense,
         setMonthlyExpense,
+        activeCard,
+        setActiveCard,
     };
 
     // ############### Refresh Token on pagereload ###############
@@ -78,8 +82,8 @@ function App() {
 
     // #################################################
     useEffect(() => {
-        setAccount(accounts[0]);
-    }, [provider]);
+        setAccount(accounts[cardIndex]);
+    }, [cardIndex, provider]);
 
     // #################################################
 

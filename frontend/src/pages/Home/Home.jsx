@@ -14,7 +14,7 @@ import calcExpectedExpenses from "../../utils/calcExpectedExpenses";
 import expectedGreen from "../../../public/expectedIcons/expectedGreen.svg";
 import expectedYellow from "../../../public/expectedIcons/expectedYellow.svg";
 import expectedRed from "../../../public/expectedIcons/expectedRed.svg";
-import changeCardOnSwipe from "../../utils/changeCardOnSwipe";
+
 import CardCourouselle from "../../components/CardCarouselle/CardCarouselle";
 
 // #####################################################
@@ -45,8 +45,8 @@ const Home = ({ provider }) => {
     // #####################################################
 
     useEffect(() => {
-        setAccount(provider?.accounts[0]);
-    }, [provider]);
+        setAccount(provider?.accounts[provider?.cardIndex]);
+    }, [provider?.cardIndex, provider]);
 
     // #####################################################
 
@@ -305,7 +305,7 @@ const Home = ({ provider }) => {
                         </div>
                     </article>
                 </div>
-                <Navbar provider={provider} />
+                <Navbar providerNav={provider} />
             </main>
         </>
     );

@@ -8,24 +8,21 @@ import activeCardIndex from "../../utils/activeCardIndex";
 const CardCourouselle = ({ provider }) => {
     const [index, setIndex] = useState(null);
 
-    // const [foundCard, setFoundCard] = useState(null);
-
-    // useEffect(() => {
-    //     const index = activeCardIndex(provider);
-    //     setFoundCard(index);
-    // }, [provider]);
-
-    // useEffect(() => {
-    //     console.log("foundCard", foundCard);
-    //     console.log("activeCardIndex", activeCardIndex(provider));
-    //     provider?.setCardIndex(activeCardIndex(provider));
-    //     setIndex(activeCardIndex(provider));
-    // }, [foundCard]);
-
-    // useEffect(() => {
-    //     console.log("indexState", index);
-    //     showActiveCard(provider);
-    // }, [index]);
+    useEffect(() => {
+        const slicedCardsArrayStartToActive = provider?.accounts?.slice(
+            provider?.activeCard
+        );
+        const slicedCardsArrayActiveToEnd = provider?.accounts?.slice(
+            0,
+            provider?.activeCard
+        );
+        const newAccountsArray = [
+            ...slicedCardsArrayStartToActive,
+            ...slicedCardsArrayActiveToEnd,
+        ];
+        provider?.setAccounts(newAccountsArray);
+        provider?.setCardIndex(0);
+    }, []);
 
     const handleScroll = (e) => {
         handleEndScroll();
@@ -34,14 +31,14 @@ const CardCourouselle = ({ provider }) => {
     const handleEndScroll = useMemo(
         () =>
             _.debounce(() => {
-                changeCardOnSwipe(provider);
-            }, 100),
+                provider?.setActiveCard(changeCardOnSwipe(provider));
+                provider?.setCardIndex(changeCardOnSwipe(provider));
+            }, 500),
         [provider]
     );
 
     return (
         <article
-            // onScroll={() => changeCardOnSwipe(provider)}
             onScroll={(e) => handleScroll(e)}
             className="cards_carouselle_wrapper"
             id="carouselle"
