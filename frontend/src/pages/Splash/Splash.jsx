@@ -1,21 +1,27 @@
-import { useEffect } from 'react';
-import left from '../../../public/splash/left.svg';
-import right from '../../../public/splash/right.svg';
-import circle from '../../../public/splash/circle.svg';
-import './Splash.scss';
-import { useNavigate } from 'react-router-dom';
+// -------------------------Imports---------------------------
 
-const Splash = ({provider}) => {
+import './Splash.scss';
+import { left, right, circle, useNavigate, useEffect } from '../../utils/files';
+
+// -------------------------Imports---------------------------
+
+const Splash = ({ provider }) => {
 	const navigate = useNavigate();
+
+	//---------timeout for navigation at animation end--------
+
 	useEffect(() => {
 		setTimeout(() => {
-			if(provider.authorization){
-				navigate("/home")
-			}else{
-			navigate('/onboard');}
+			if (provider.authorization) {
+				navigate('/home');
+			} else {
+				navigate('/onboard');
+			}
 		}, 4000);
 	}, [provider.authorization]);
-	
+
+	// ---------------------------------------------------------------------
+
 	return (
 		<>
 			<main className='splash'>

@@ -1,32 +1,40 @@
-import { useState } from 'react';
+// -------------------------Imports---------------------------
 import './Login.scss';
-import { backendUrl } from '../../api';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../public/Logo.svg';
-import { silentRefresh } from '../../utils/refresh';
-import Button from '../../components/Button/Button';
-import closedEye from '../../../public/eye/closedEye.svg';
-import openEye from '../../../public/eye/openEye.svg';
+import {
+	logo,
+	useNavigate,
+	useState,
+	backendUrl,
+	Link,
+	silentRefresh,
+	Button,
+	closedEye,
+	openEye,
+} from '../../utils/files';
+
+// -------------------------Imports---------------------------
 
 const Login = ({ provider }) => {
+	// -------------------------States---------------------------
+
 	const [loginInfo, setLoginInfo] = useState({});
 	const [message, setMessage] = useState(null);
 	const [seePassword, setSeePassword] = useState(false);
 	const navigate = useNavigate();
 
-	// #################################################
+	// --------------------Triggers on click-----------------------
+	//    Logs the User in and gets AccessToken and RefreshToken
+	// ----------------------------------------------------------
 
 	const login = async () => {
 		event.preventDefault();
-
-		const res = await fetch(`${backendUrl}users/login`, {
+		const loginFetch = await fetch(`${backendUrl}users/login`, {
 			method: 'POST',
 			credentials: 'include',
 			body: JSON.stringify(loginInfo),
 			headers: { 'Content-Type': 'application/json' },
 		});
-
-		const { success, result, accessToken, error } = await res.json();
+		const { success, result, accessToken, error } = await loginFetch.json();
 		if (!success) {
 			console.log(error);
 		} else {
@@ -46,7 +54,7 @@ const Login = ({ provider }) => {
 		}
 	};
 
-	// #################################################
+	// ---------------------------------------------------------------------
 
 	return (
 		<>

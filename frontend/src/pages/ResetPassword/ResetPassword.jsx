@@ -1,13 +1,22 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { backendUrl } from '../../api';
-import { useState } from 'react';
-import logo from '../../../public/Logo.svg';
-import closedEye from '../../../public/eye/closedEye.svg';
-import openEye from '../../../public/eye/openEye.svg';
-import Button from '../../components/Button/Button';
+// -------------------------Imports---------------------------
+
 import './ResetPassword.scss';
 
+import {
+	Button,
+	backendUrl,
+	useNavigate,
+	useState,
+	logo,
+	closedEye,
+	openEye,
+	useParams,
+} from '../../utils/files';
+// -------------------------Imports---------------------------
+
 const ResetPassword = () => {
+	// -------------------------States---------------------------
+
 	const [newPassword, setNewPassword] = useState();
 	const [confirmNewPassword, setConfirmNewPassword] = useState();
 	const [message, setMessage] = useState('');
@@ -16,15 +25,27 @@ const ResetPassword = () => {
 	const params = useParams();
 	const authorization = `Bearer ${params.resetToken}`;
 	const navigate = useNavigate();
+
+	// --------------------Renders on click-----------------------------
+	//    sends new Password to server and updates the user PasswordHash
+	// -----------------------------------------------------------------
+
 	const resetPassword = async () => {
 		event.preventDefault();
 		if (newPassword === confirmNewPassword) {
-			const res = await fetch(`${backendUrl}users/change-password`, {
-				method: 'POST',
-				body: JSON.stringify({ newPassword, forgotPassword: true }),
-				headers: { 'Content-Type': 'application/json', authorization },
-			});
-			const { success, result, error, message } = await res.json();
+			const resetPasswordFetch = await fetch(
+				`${backendUrl}users/change-password`,
+				{
+					method: 'POST',
+					body: JSON.stringify({ newPassword, forgotPassword: true }),
+					headers: {
+						'Content-Type': 'application/json',
+						authorization,
+					},
+				},
+			);
+			const { success, result, error, message } =
+				await resetPasswordFetch.json();
 			if (!success) {
 				console.log(error, message);
 			} else {
@@ -32,6 +53,9 @@ const ResetPassword = () => {
 			}
 		} else setMessage("Passwords don't match! please try again");
 	};
+
+	// ---------------------------------------------------------------------
+
 	return (
 		<>
 			<main className='resetPassword'>
