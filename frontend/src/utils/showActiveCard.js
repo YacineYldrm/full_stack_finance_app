@@ -1,5 +1,3 @@
-import changeCardOnSwipe from "./changeCardOnSwipe";
-
 const getCards = () => {
     const cards = document.body.getElementsByClassName("card");
     return cards;

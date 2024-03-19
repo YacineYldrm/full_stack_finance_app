@@ -1,5 +1,3 @@
-import showActiveCard from "./showActiveCard";
-
 const getCards = () => {
     const cards = document.body.getElementsByClassName("card");
 
