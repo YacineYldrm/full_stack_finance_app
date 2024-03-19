@@ -34,7 +34,9 @@ const Home = ({ provider }) => {
 	const [expectedExpenses, setExpectedExpenses] = useState(null);
 
 	// -------------------------States---------------------------
-
+	useEffect(() => {
+		setAccount(provider?.accounts[provider?.cardIndex]);
+	}, [provider?.cardIndex, provider]);
 	// --------------------triggers on account change--------------------
 	//    calculates totalExpenses and Incomes ad groups by Day
 	// -----------------------------------------------------------------

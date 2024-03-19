@@ -2,11 +2,11 @@
 
 import './ProfileImageUpload.scss';
 
-import { placeholderImage, Button, editPen } from '../../utils/files';
+import { placeholderImage, Button, editPen, mediaUrl } from '../../utils/files';
 
 // -------------------------Imports---------------------------
 
-const ProfileImageUpload = ({ provider, image, setImage }) => {
+const ProfileImageUpload = ({ provider, image, setImage, editUser }) => {
 	return (
 		<div className='image_edit_main'>
 			<form className='image_edit_wrapper'>

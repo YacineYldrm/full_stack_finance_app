@@ -2,6 +2,7 @@ import Account from "../../models/Account.js";
 import User from "../../models/User.js";
 
 const edit = async (authorizedUserId, accountInfo) => {
+    console.log(accountInfo);
     const foundAccount = await Account.findById(accountInfo._id);
 
     if (!foundAccount) throw new Error("Account doesn't exist anymore!");

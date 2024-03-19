@@ -7,6 +7,11 @@
     align-items: center;
     min-height: 90vh;
     margin: 0 auto;
+    .image_edit_main{
+        .button{
+            display: none;
+        }
+    }
     > div {
         &:nth-last-of-type(2) {
             padding-bottom: 2vh;

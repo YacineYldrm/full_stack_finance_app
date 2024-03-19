@@ -38,6 +38,7 @@ const Settings = ({ provider }) => {
 	// ----------------------------------------------------------
 
 	const deleteUser = async () => {
+		event.preventDefault()
 		const deleteUserFetch = await fetch(`${backendUrl}users/delete`, {
 			method: 'DELETE',
 			body: JSON.stringify({ password }),
@@ -61,6 +62,7 @@ const Settings = ({ provider }) => {
 	// ----------------------------------------------------------
 
 	const editUser = async () => {
+		event.preventDefault()
 		const fd = new FormData();
 		const userInfo = JSON.stringify({ firstName, lastName });
 		fd.append('userInfo', userInfo);
@@ -71,14 +73,14 @@ const Settings = ({ provider }) => {
 		const editUserFetch = await fetch(`${backendUrl}users/edit`, {
 			method: 'POST',
 			body: fd,
-			headers: { authorization: provider.authorization },
+			headers: { authorization: provider?.authorization },
 		});
 		const { success, result, error, message } = await editUserFetch.json();
 		if (!success) {
 			console.log(error, message);
 		} else {
 			console.log(result);
-			provider.setActiveUser(result);
+			provider?.setActiveUser(result);
 		}
 	};
 
@@ -87,6 +89,7 @@ const Settings = ({ provider }) => {
 	// ----------------------------------------------------------
 
 	const changePassword = async () => {
+		event.preventDefault()
 		const passwordInfo = { oldPassword, newPassword };
 		const changePasswordFetch = await fetch(
 			`${backendUrl}users/change-password`,
@@ -114,6 +117,7 @@ const Settings = ({ provider }) => {
 	// ----------------------------------------------------------
 
 	const changeEmail = async () => {
+		event.preventDefault()
 		const res = await fetch(`${backendUrl}users/change-email`, {
 			method: 'POST',
 			body: JSON.stringify({ email }),
@@ -174,7 +178,7 @@ const Settings = ({ provider }) => {
 								<div>
 									<Button
 										btnContent={'←'}
-										btnFunction={setImage}
+										btnFunction={()=>setImage(null)}
 									/>
 								</div>
 							) : (

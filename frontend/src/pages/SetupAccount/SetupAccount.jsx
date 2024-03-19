@@ -30,8 +30,10 @@ const SetupAccount = ({ provider }) => {
 	// ----------------------------------------------------------
 
 	const profileEdit = async () => {
-		const authorization = provider.authorization;
-		const userInfo = JSON.stringify(provider.activeUser);
+		const authorization = provider?.authorization;
+		const [firstName, lastName] = provider?.activeUser?.user?.split(" ")
+		
+		const userInfo = JSON.stringify({...provider?.activeUser,firstName,lastName});
 		const fd = new FormData();
 		fd.append('userInfo', userInfo);
 		image ? fd.append('image', image) : null;
@@ -109,6 +111,7 @@ const SetupAccount = ({ provider }) => {
 					provider={provider}
 					image={image}
 					setImage={setImage}
+					editUser={profileEdit}
 				/>
 			</div>
 			<form>
