@@ -2,11 +2,13 @@
 
 import './TransactionDay.scss';
 
-import { Transaction } from '../../utils/files';
+import { Transaction, useState } from '../../utils/files';
+import { useEffect } from 'react';
 
 // -------------------------Imports---------------------------
 
 const TransactionDay = ({ date, transactions, provider }) => {
+	const [renderTransactions, setRenderTransactions] = useState([]);
 	const newdate = new Date(date);
 
 	// --------------------Triggers on render--------------------
@@ -51,6 +53,10 @@ const TransactionDay = ({ date, transactions, provider }) => {
 		group.classList.toggle('showDeleteBtn');
 	};
 
+	useEffect(() => {
+		setRenderTransactions(filteredTransactions);
+	}, []);
+
 	// ---------------------------------------------------------------------
 
 	return (
@@ -76,21 +82,20 @@ const TransactionDay = ({ date, transactions, provider }) => {
 				</div>
 
 				<div id={date}>
-					{filteredTransactions &&
-						filteredTransactions
-							.sort(
-								(transOne, transTwo) =>
-									transTwo.date - transOne.date,
-							)
-							.map((transaction) => (
-								<Transaction
-									provider={provider}
-									_delete={true}
-									key={transaction._id}
-									transaction={transaction}
-									groupDate={date}
-								/>
-							))}
+					{renderTransactions
+						.sort(
+							(transOne, transTwo) =>
+								transTwo.date - transOne.date,
+						)
+						.map((transaction) => (
+							<Transaction
+								provider={provider}
+								_delete={true}
+								key={transaction._id}
+								transaction={transaction}
+								setRenderTransactions={setRenderTransactions}
+							/>
+						))}
 				</div>
 			</main>
 		</>

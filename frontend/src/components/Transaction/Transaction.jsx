@@ -1,9 +1,9 @@
 // -------------------------Imports---------------------------
 
 import './Transaction.scss';
+import deleteIcon from '../../../public/transactionIcons/deleteIcon.svg';
 
 import {
-	deleteIcon,
 	useState,
 	backendUrl,
 	food,
@@ -15,10 +15,16 @@ import {
 	salary,
 	Button,
 } from '../../utils/files';
+import { useEffect } from 'react';
 
 // -------------------------Imports---------------------------
 
-const Transaction = ({ provider, transaction, _delete }) => {
+const Transaction = ({
+	provider,
+	transaction,
+	_delete,
+	setRenderTransactions,
+}) => {
 	// -------------------------States---------------------------
 
 	const [showModal, setShowModal] = useState(false);
@@ -68,10 +74,12 @@ const Transaction = ({ provider, transaction, _delete }) => {
 		if (!success) {
 			console.log(error, message);
 		} else {
-			provider.setAccount(result);
+			console.log(result);
+			setRenderTransactions(result.transactions);
 			setShowModal(false);
 		}
 	};
+
 	// --------sets the transactions Date based on unix Time---------
 
 	const date = new Date(transaction?.date);
