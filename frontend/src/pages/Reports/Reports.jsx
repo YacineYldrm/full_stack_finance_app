@@ -57,7 +57,7 @@ const Reports = ({ provider }) => {
         color: ["#da6e53"],
         textStyle: {
             fontFamily: "urbanist",
-            fontSize: "16px",
+            fontSize: "14px",
         },
         grid: {
             left: 10,
@@ -148,7 +148,7 @@ const Reports = ({ provider }) => {
         color: ["#da6e53", "#409474"],
         textStyle: {
             fontFamily: "urbanist",
-            fontSize: "16px",
+            fontSize: "14px",
         },
         grid: {
             left: 10,
@@ -245,12 +245,12 @@ const Reports = ({ provider }) => {
                 </section>
                 <article className="bar_chart">
                     <ReactECharts option={dailyOption} />
-                    <article onClick={() => setDailyOption(monthlyView)}>
-                        Monthly
-                    </article>
-                    <article onClick={() => setDailyOption(dailyView)}>
-                        Daily
-                    </article>
+                    <article
+                        onClick={() => setDailyOption(monthlyView)}
+                    ></article>
+                    <article
+                        onClick={() => setDailyOption(dailyView)}
+                    ></article>
                 </article>
                 <section>
                     {renderedTransactions?.map((transaction) => (
