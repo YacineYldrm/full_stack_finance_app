@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { backendUrl } from '../../api';
 import { useState } from 'react';
-import logo from '../../../public/logo.png';
+import logo from '../../../public/Logo.svg';
 import closedEye from '../../../public/eye/closedEye.svg';
 import openEye from '../../../public/eye/openEye.svg';
 import Button from '../../components/Button/Button';
