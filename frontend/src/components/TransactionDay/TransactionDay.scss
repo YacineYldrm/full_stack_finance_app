@@ -24,24 +24,10 @@
 		}
 	}
 	.showDeleteBtn {
-		div {
-			.transaction {
-				.deleteIcon {
-					display: none;
-				}
-				div {
-					background-color: aqua;
-					img {
-						display: none;
-					}
-				}
+		.transaction {
+			.deleteIcon {
+				display: block;
 			}
 		}
-	}
-}
-
-.showDeleteBtn {
-	.deleteIcon {
-		display: block;
 	}
 }
