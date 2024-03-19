@@ -7,7 +7,6 @@ import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
 import getAllAccounts from "../../utils/getAllAccounts";
 import calcTotal from "../../utils/calcTotal";
-import CardCourouselle from "../../components/CardCarouselle/CardCarouselle";
 
 const AddIncome = ({ provider }) => {
     const [transactionInfo, setTransactionInfo] = useState({});
@@ -23,6 +22,41 @@ const AddIncome = ({ provider }) => {
     );
     const [file, setFile] = useState();
     const navigate = useNavigate();
+
+    // #################################################
+    useEffect(() => {
+        const slicedCardsArrayStartToActive = provider?.accounts?.slice(
+            provider?.activeCard
+        );
+        const slicedCardsArrayActiveToEnd = provider?.accounts?.slice(
+            0,
+            provider?.activeCard
+        );
+        const newAccountsArray = [
+            ...slicedCardsArrayStartToActive,
+            ...slicedCardsArrayActiveToEnd,
+        ];
+        provider?.setAccounts(newAccountsArray);
+        provider?.setCardIndex(0);
+    }, []);
+
+    // #################################################
+
+    const updateArray = () => {
+        const slicedCardsArrayStartToActive = provider?.accounts?.slice(
+            provider?.activeCard
+        );
+        const slicedCardsArrayActiveToEnd = provider?.accounts?.slice(
+            0,
+            provider?.activeCard
+        );
+        const newAccountsArray = [
+            ...slicedCardsArrayStartToActive,
+            ...slicedCardsArrayActiveToEnd,
+        ];
+        provider?.setAccounts(newAccountsArray);
+        provider?.setCardIndex(0);
+    };
 
     // #################################################
 
@@ -60,10 +94,9 @@ const AddIncome = ({ provider }) => {
             console.log(message);
         } else {
             getAllAccounts(provider);
+            provider?.setAccount(result);
             calcTotal(result, provider);
-            provider.setAccount(result);
-            console.log(result);
-
+            // updateArray();
             navigate("/home");
         }
     };
@@ -83,7 +116,11 @@ const AddIncome = ({ provider }) => {
                 </div>
 
                 <h1>Add income</h1>
-                <CardCourouselle provider={provider} />
+                <Card
+                    provider={provider}
+                    cardId={provider?.account._id}
+                    account={provider?.account}
+                />
                 <form>
                     <input
                         type="number"

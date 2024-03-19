@@ -9,7 +9,7 @@ import Arrow from "../../../public/svg/Arrows/Arrow";
 import Card from "../../components/Card/Card";
 import Navbar from "../../components/Navbar/Navbar";
 import calcTotal from "../../utils/calcTotal";
-import CardCourouselle from "../../components/CardCarouselle/CardCarouselle";
+import calcMonth from "../../utils/calcMonth";
 
 const AddExpense = ({ provider }) => {
     const [transactionInfo, setTransactionInfo] = useState({});
@@ -25,12 +25,47 @@ const AddExpense = ({ provider }) => {
             .toISOString()
             .slice(11, 16)
     );
-
     // #################################################
 
     useEffect(() => {
-        if (provider.authorization) getAllAccounts(provider);
-    }, [provider.authorization]);
+        const slicedCardsArrayStartToActive = provider?.accounts?.slice(
+            provider?.activeCard
+        );
+        const slicedCardsArrayActiveToEnd = provider?.accounts?.slice(
+            0,
+            provider?.activeCard
+        );
+        const newAccountsArray = [
+            ...slicedCardsArrayStartToActive,
+            ...slicedCardsArrayActiveToEnd,
+        ];
+        provider?.setAccounts(newAccountsArray);
+        provider?.setCardIndex(0);
+    }, []);
+
+    // #################################################
+
+    const updateArray = () => {
+        const slicedCardsArrayStartToActive = provider?.accounts?.slice(
+            provider?.activeCard
+        );
+        const slicedCardsArrayActiveToEnd = provider?.accounts?.slice(
+            0,
+            provider?.activeCard
+        );
+        const newAccountsArray = [
+            ...slicedCardsArrayStartToActive,
+            ...slicedCardsArrayActiveToEnd,
+        ];
+        provider?.setAccounts(newAccountsArray);
+        provider?.setCardIndex(0);
+    };
+
+    // #################################################
+
+    // useEffect(() => {
+    //     if (provider.authorization) getAllAccounts(provider);
+    // }, [provider.authorization]);
 
     // #################################################
 
@@ -64,10 +99,10 @@ const AddExpense = ({ provider }) => {
             console.log(error);
             console.log(message);
         } else {
-            getAllAccounts(provider);
             calcTotal(result, provider);
-            console.log(result);
-            provider.setAccount(result);
+            getAllAccounts(provider);
+            provider?.setAccount(result);
+            // updateArray();
             navigate("/home");
         }
     };
@@ -86,7 +121,11 @@ const AddExpense = ({ provider }) => {
                     />
                 </div>
                 <h1>Add Expense</h1>
-                <CardCourouselle provider={provider} />
+                <Card
+                    provider={provider}
+                    cardId={provider?.account._id}
+                    account={provider?.account}
+                />
 
                 <form>
                     <input
