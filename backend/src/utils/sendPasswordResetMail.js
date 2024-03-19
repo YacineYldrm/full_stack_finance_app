@@ -10,7 +10,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const FRONTEND_URL = process.env.FRONTEND_URL + "/verify";
 
-console.log(REFRESH_TOKEN);
+
 const OAuth = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
 OAuth.setCredentials({ refresh_token: REFRESH_TOKEN });
@@ -41,7 +41,7 @@ const sendPasswordResetMail = async (token, userInfo) => {
                 cid: "persianspacex@gmail.com"
             }]
         });
-        console.log(mailResult);
+
     } catch (error) {
         console.log(error);
     }

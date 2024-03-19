@@ -3,7 +3,7 @@ import catchAsync from "../../utils/catchAsync.js";
 import status from "../../utils/status.js";
 
 const deleteTransactionCtrl = catchAsync(async (req, res) => {
-    console.log(req.params.transactionId);
+
     const userId = req.authorizedUser;
     const transactionId = req.params.transactionId;
     const updatedAccount = await accountServices.deleteTransaction(

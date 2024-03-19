@@ -14,7 +14,7 @@ const makeJwtAuth = (tokenType = "access") =>
     });
 
 const extractToken = (req, tokenType) => {
-    console.log(tokenType);
+
 
     if (tokenType === "refresh") return req.session.refreshToken;
 
@@ -25,7 +25,7 @@ const extractToken = (req, tokenType) => {
 
     const [authType, token] = authorization.split(" ");
 
-    console.log(authType);
+
     if (authType !== "Bearer") throw new Error("invalid Authorization Type");
 
     if (!token) throw new Error("Token not found!!!");

@@ -1,15 +1,15 @@
-import { useNavigate } from 'react-router-dom';
-import bigPresent from '../../../public/splash/gift.png';
-
-import middlePresent from '../../../public/GetStarted/middlePresent.svg';
-
-import smallPresent from '../../../public/GetStarted/smallPresent.svg';
-
-import bankCard from '../../../public/splash/giftCard.svg';
-import shadow from '../../../public/splash/shadow.svg';
-
+// -------------------------Imports---------------------------
 import './GetStarted.scss';
-import Button from '../../components/Button/Button';
+import {
+	bigPresent,
+	useNavigate,
+	bankCard,
+	shadow,
+	Button,
+} from '../../utils/files';
+// -------------------------Imports---------------------------
+
+// ---------------------------------------------------------------------
 
 const GetStarted = () => {
 	const navigate = useNavigate();

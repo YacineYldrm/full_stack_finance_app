@@ -1,47 +1,70 @@
-import logo from '../../../public/Logo.svg';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { backendUrl } from '../../api';
-import { useEffect, useState } from 'react';
-import Button from '../../components/Button/Button';
+// -------------------------Imports---------------------------
 
 import './Verify.scss';
 
+import {
+	Button,
+	logo,
+	backendUrl,
+	useParams,
+	useNavigate,
+	useEffect,
+	useState,
+} from '../../utils/files';
+
+// -------------------------Imports---------------------------
+
 const Verify = () => {
+	// -------------------------States---------------------------
+
 	const params = useParams();
 	const userId = params.userId;
 	const [verifyInfo, setVerifyInfo] = useState({ userId });
 	const navigate = useNavigate();
 
+	// --------------------triggers on Load-----------------------
+	// gets Userdata from server to navigate client to the related page
+	// ----------------------------------------------------------
+
 	const getUser = async () => {
-		const res = await fetch(`${backendUrl}users/get-user`, {
+		const getUserFetch = await fetch(`${backendUrl}users/get-user`, {
 			method: 'POST',
 			body: JSON.stringify(verifyInfo),
 			headers: { 'Content-Type': 'application/json' },
 		});
-		const { success, result, error, message } = await res.json();
+		const { success, result, error, message } = await getUserFetch.json();
 		if (!success) {
 			navigate('/register');
 		} else if (result.verified) {
 			navigate('/login');
 		}
 	};
+
 	useEffect(() => {
 		getUser();
 	}, []);
+
+	// --------------------triggers on click-----------------------
+	// sends verificationData to server update user verified status
+	// ----------------------------------------------------------
+
 	const verify = async () => {
 		event.preventDefault();
-		const res = await fetch(`${backendUrl}users/verify`, {
+		const verifyFetch = await fetch(`${backendUrl}users/verify`, {
 			method: 'POST',
 			body: JSON.stringify(verifyInfo),
 			headers: { 'Content-Type': 'application/json' },
 		});
-		const { success, result, error, message } = await res.json();
+		const { success, result, error, message } = await verifyFetch.json();
 		if (!success) {
 			console.log(error, message);
 		} else {
 			navigate('/login');
 		}
 	};
+
+	// ---------------------------------------------------------------------
+
 	return (
 		<>
 			<main className='verify'>

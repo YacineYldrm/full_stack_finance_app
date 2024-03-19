@@ -1,19 +1,31 @@
-import food from '../../../public/transactionIcons/food.svg';
-import shopping from '../../../public/transactionIcons/shopping.svg';
-import insurance from '../../../public/transactionIcons/insurance.svg';
-import otherIncome from '../../../public/transactionIcons/otherIncome.svg';
-import otherExpense from '../../../public/transactionIcons/otherExpense.svg';
-import rent from '../../../public/transactionIcons/rent.svg';
-import salary from '../../../public/transactionIcons/salary.svg';
-import deleteIcon from '../../../public/transactionIcons/deleteIcon.svg';
-import activeCard from '../../../public/activeCard.svg';
-import { backendUrl } from '../../api/index.js';
+// -------------------------Imports---------------------------
+
 import './Transaction.scss';
-import { useState } from 'react';
-import Button from '../Button/Button.jsx';
-const Transaction = ({ provider, transaction, _delete, groupDate }) => {
+
+import {
+	deleteIcon,
+	useState,
+	backendUrl,
+	food,
+	shopping,
+	insurance,
+	otherExpense,
+	otherIncome,
+	rent,
+	salary,
+	Button,
+} from '../../utils/files';
+
+// -------------------------Imports---------------------------
+
+const Transaction = ({ provider, transaction, _delete }) => {
+	// -------------------------States---------------------------
+
 	const [showModal, setShowModal] = useState(false);
-	// #################################################
+
+	// ------------Triggers on component render-----------------
+	//    sets the Category Icon for Transaction
+	// ----------------------------------------------------------
 
 	const getIcon = () => {
 		if (transaction?.category === 'Food & Drink') {
@@ -28,14 +40,21 @@ const Transaction = ({ provider, transaction, _delete, groupDate }) => {
 			return otherExpense;
 		} else if (transaction?.category === 'Salary') {
 			return salary;
-		} else if(transaction?.category === "Other Icome"){
+		} else if (transaction?.category === 'Other Icome') {
 			return otherIncome;
-        } else if(transaction?.category === "" && transaction?.type === "expense"){
-            return otherExpense
-        } else{
-            return otherIncome
+		} else if (
+			transaction?.category === '' &&
+			transaction?.type === 'expense'
+		) {
+			return otherExpense;
+		} else {
+			return otherIncome;
 		}
 	};
+
+	// --------------------Triggers on click-----------------------
+	//   sends the transaction Id to the server to fin and delete the transaction
+	// ----------------------------------------------------------
 
 	const deleteTransaction = async () => {
 		const res = await fetch(
@@ -53,11 +72,11 @@ const Transaction = ({ provider, transaction, _delete, groupDate }) => {
 			setShowModal(false);
 		}
 	};
-	// #################################################
+	// --------sets the transactions Date based on unix Time---------
 
 	const date = new Date(transaction?.date);
 
-	// #################################################
+	// ---------------------------------------------------------------------
 
 	return (
 		<>
@@ -81,7 +100,8 @@ const Transaction = ({ provider, transaction, _delete, groupDate }) => {
 			<main className='transaction'>
 				<div className='deleteIcon'>
 					{(_delete === true &&
-						provider?.account?.owner === provider?.activeUser?._id) ||
+						provider?.account?.owner ===
+							provider?.activeUser?._id) ||
 					(_delete === true &&
 						transaction?.owner === provider?.activeUser?._id) ? (
 						<img

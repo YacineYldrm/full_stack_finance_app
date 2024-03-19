@@ -1,32 +1,44 @@
-import changePasswordIcon from '../../../public/changePassword.svg';
-import changeUser from '../../../public/changeUser.svg';
-import changeMail from '../../../public/changeMail.svg';
-import deleteUserIcon from '../../../public/deleteUser.svg';
-import editPen from '../../../public/edit_pen.svg';
-import arrowright from '../../../public/ArrowRight.svg';
-import './Settings.scss';
-import { useState } from 'react';
-import Arrow from '../../../public/svg/Arrows/Arrow';
+// -------------------------Imports---------------------------
 
-import { useNavigate } from 'react-router-dom';
-import { backendUrl, mediaUrl } from '../../api';
-import Button from '../../components/Button/Button';
+import './Settings.scss';
+
+import {
+	editPen,
+	changeUser,
+	arrowright,
+	Arrow,
+	Button,
+	backendUrl,
+	mediaUrl,
+	useNavigate,
+	useState,
+	changePasswordIcon,
+	changeMail,
+	deleteUserIcon,
+} from '../../utils/files';
+
+// -------------------------Imports---------------------------
 
 const Settings = ({ provider }) => {
+	// -------------------------States---------------------------
+
 	const [userFirstName, userLastname] =
 		provider?.activeUser?.user?.split(' ');
 	const [image, setImage] = useState();
 	const [oldPassword, setOldPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
-	const [changePwDropdown, setChangePwDropdown] = useState(false);
 	const [firstName, setFirstName] = useState(userFirstName);
 	const [lastName, setLastName] = useState(userLastname);
 	const [email, setEmail] = useState(provider.activeUser.email);
 	const [password, setPassword] = useState();
 	const navigate = useNavigate();
 
+	// --------------------Renders on click-----------------------
+	//    sends User Data to server to find and delete the user
+	// ----------------------------------------------------------
+
 	const deleteUser = async () => {
-		const res = await fetch(`${backendUrl}users/delete`, {
+		const deleteUserFetch = await fetch(`${backendUrl}users/delete`, {
 			method: 'DELETE',
 			body: JSON.stringify({ password }),
 			headers: {
@@ -34,7 +46,8 @@ const Settings = ({ provider }) => {
 				authorization: provider.authorization,
 			},
 		});
-		const { success, result, error, message } = await res.json();
+		const { success, result, error, message } =
+			await deleteUserFetch.json();
 		if (!success) {
 			console.log(error, message);
 		} else {
@@ -42,6 +55,11 @@ const Settings = ({ provider }) => {
 			navigate('/register');
 		}
 	};
+
+	// --------------------Renders on click-----------------------
+	//    sends newUser Data to server to find and update the user
+	// ----------------------------------------------------------
+
 	const editUser = async () => {
 		const fd = new FormData();
 		const userInfo = JSON.stringify({ firstName, lastName });
@@ -50,12 +68,12 @@ const Settings = ({ provider }) => {
 		{
 			image ? fd.append('image', image) : null;
 		}
-		const res = await fetch(`${backendUrl}users/edit`, {
+		const editUserFetch = await fetch(`${backendUrl}users/edit`, {
 			method: 'POST',
 			body: fd,
 			headers: { authorization: provider.authorization },
 		});
-		const { success, result, error, message } = await res.json();
+		const { success, result, error, message } = await editUserFetch.json();
 		if (!success) {
 			console.log(error, message);
 		} else {
@@ -64,17 +82,25 @@ const Settings = ({ provider }) => {
 		}
 	};
 
+	// --------------------Renders on click-----------------------
+	//    sends new password to server to find and update the user
+	// ----------------------------------------------------------
+
 	const changePassword = async () => {
 		const passwordInfo = { oldPassword, newPassword };
-		const res = await fetch(`${backendUrl}users/change-password`, {
-			method: 'POST',
-			body: JSON.stringify(passwordInfo),
-			headers: {
-				'Content-Type': 'application/json',
-				authorization: provider.authorization,
+		const changePasswordFetch = await fetch(
+			`${backendUrl}users/change-password`,
+			{
+				method: 'POST',
+				body: JSON.stringify(passwordInfo),
+				headers: {
+					'Content-Type': 'application/json',
+					authorization: provider.authorization,
+				},
 			},
-		});
-		const { success, result, error, message } = await res.json();
+		);
+		const { success, result, error, message } =
+			await changePasswordFetch.json();
 		if (!success) {
 			console.log(error, message);
 		} else {
@@ -82,6 +108,10 @@ const Settings = ({ provider }) => {
 			navigate('/login');
 		}
 	};
+
+	// --------------------Renders on click-----------------------
+	//    sends new email to server to find and update the user and send verification email
+	// ----------------------------------------------------------
 
 	const changeEmail = async () => {
 		const res = await fetch(`${backendUrl}users/change-email`, {
@@ -100,15 +130,18 @@ const Settings = ({ provider }) => {
 			navigate('/login');
 		}
 	};
+	// --------------------Renders on click-----------------------
+	//    		toggles the accordion open and close
+	// ----------------------------------------------------------
 
 	const toggleDisplayOption = (idName) => {
 		const option = document.getElementById(idName);
 		const optionSibling = document.getElementById(idName).nextSibling;
-
 		option.classList.toggle('rotate_arrow');
-
 		optionSibling.classList.toggle('display_option_inputs');
 	};
+
+	// ---------------------------------------------------------------------
 
 	return (
 		<>
