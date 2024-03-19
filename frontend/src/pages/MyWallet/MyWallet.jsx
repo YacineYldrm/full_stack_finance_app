@@ -54,6 +54,7 @@ const MyWallet = ({ provider }) => {
             body: JSON.stringify({
                 cardNumber: accountInfo.cardNumber,
                 type: accountInfo.type,
+				expirationDate: accountInfo.expirationDate,
             }),
         });
         const { success, result, error, message } =
