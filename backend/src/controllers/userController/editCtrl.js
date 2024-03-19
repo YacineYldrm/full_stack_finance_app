@@ -3,7 +3,7 @@ import catchAsync from "../../utils/catchAsync.js";
 import status from "../../utils/status.js";
 
 const editCtrl = catchAsync(async (req, res) => {
-    console.log(JSON.parse(req.body.userInfo));
+
     const userId = req.authorizedUser;
     const userInfo = JSON.parse(req.body.userInfo);
     const reqFile = req.file;

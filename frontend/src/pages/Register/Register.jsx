@@ -1,24 +1,34 @@
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../public/Logo.svg';
-import { useEffect, useState } from 'react';
+// -------------------------Imports---------------------------
+
 import './Register.scss';
-import Button from '../../components/Button/Button';
-import closedEye from '../../../public/eye/closedEye.svg';
-import openEye from '../../../public/eye/openEye.svg';
-import { backendUrl } from '../../api';
+import {
+	logo,
+	useNavigate,
+	useState,
+	backendUrl,
+	useEffect,
+	Link,
+	Button,
+	closedEye,
+	openEye,
+} from '../../utils/files';
+
+// -------------------------Imports---------------------------
 
 const Register = () => {
+	// -------------------------States---------------------------
+
 	const [userInfo, setUserInfo] = useState({});
 	const [message, setMessage] = useState('');
 	const [accepted, setAccepted] = useState(false);
 	const [seePassword, setSeePassword] = useState(false);
 	const navigate = useNavigate();
 
-	// #################################################
+	// -------------------------States---------------------------
 
-	useEffect(() => {}, [message]);
-
-	// #################################################
+	// --------------------Renders on click-----------------------------
+	//    sends UserData to server to create user in Database and send a verification email
+	// -----------------------------------------------------------------
 
 	const handleRegistration = async () => {
 		event.preventDefault();
@@ -28,13 +38,14 @@ const Register = () => {
 			return;
 		}
 
-		const response = await fetch(backendUrl + 'users/register', {
+		const registrationFetch = await fetch(backendUrl + 'users/register', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(userInfo),
 		});
 
-		const { success, result, error, message } = await response.json();
+		const { success, result, error, message } =
+			await registrationFetch.json();
 		if (!success) {
 			console.log(error, message);
 			setMessage(message);
@@ -44,8 +55,8 @@ const Register = () => {
 		}
 	};
 
-	// #################################################
-console.log(userInfo);
+	// ---------------------------------------------------------------------
+
 	return (
 		<main className='registration'>
 			<div>
@@ -150,7 +161,6 @@ console.log(userInfo);
 							placeholder='Phone'
 						/>
 					</label>
-
 					<label>
 						<input
 							onClick={() => setAccepted(true)}

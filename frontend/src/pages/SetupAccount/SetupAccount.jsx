@@ -1,16 +1,23 @@
-import { useState } from 'react';
-import logo from '../../../public/Logo.svg';
-import placeholderImage from '../../../public/PlaceHolderImage.svg';
+// -------------------------Imports---------------------------
+
 import './SetupAccount.scss';
-import { useNavigate } from 'react-router-dom';
-import { backendUrl } from '../../api';
-import ProfileImageUpload from '../../components/ProfileImageUpload/ProfileImageUpload';
-import Button from '../../components/Button/Button';
-import calendar from '../../../public/calendar.svg';
+
+import {
+	ProfileImageUpload,
+	Button,
+	backendUrl,
+	useNavigate,
+	useState,
+	logo,
+	calendar,
+} from '../../utils/files';
+
+// -------------------------Imports---------------------------
 
 const SetupAccount = ({ provider }) => {
-	const [imgFile, setImgFile] = useState(null);
-	const [cardNumber, setCardNumber] = useState(null);
+	// -------------------------States---------------------------
+
+	const [image, setImage] = useState(null);
 	const [accountInfo, setAccountInfo] = useState({
 		cardNumber: '',
 		type: '',
@@ -18,45 +25,53 @@ const SetupAccount = ({ provider }) => {
 	const [message, setMessage] = useState('');
 	const navigate = useNavigate();
 
-	// #################################################
+	// --------------------triggers on click-----------------------
+	//    Sends profile Data to server to update user in the Database
+	// ----------------------------------------------------------
 
 	const profileEdit = async () => {
 		const authorization = provider.authorization;
 		const userInfo = JSON.stringify(provider.activeUser);
 		const fd = new FormData();
 		fd.append('userInfo', userInfo);
-		imgFile ? fd.append('image', imgFile) : null;
-		const response = await fetch(backendUrl + 'users/edit', {
+		image ? fd.append('image', image) : null;
+		const profileEditFetch = await fetch(backendUrl + 'users/edit', {
 			method: 'POST',
 			headers: {
 				authorization,
 			},
 			body: fd,
 		});
-		const { success, result, error, message } = await response.json();
+		const { success, result, error, message } =
+			await profileEditFetch.json();
 		if (!success) {
 			console.log(error, message);
 			setMessage(message);
 		} else provider.setActiveUser(result);
 	};
 
-	// #################################################
+	// --------------------triggers on click-----------------------
+	//    Sends profile Data to server to create user in the Database
+	// ----------------------------------------------------------
 
 	const createAccount = async () => {
 		const authorization = provider.authorization;
-		const response = await fetch(backendUrl + 'accounts/create', {
+		const createAccountFetch = await fetch(backendUrl + 'accounts/create', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', authorization },
 			body: JSON.stringify(accountInfo),
 		});
-		const { success, result, error, message } = await response.json();
+		const { success, result, error, message } =
+			await createAccountFetch.json();
 		if (!success) {
 			console.log(error, message);
 			setMessage(message);
 		} else console.log(result);
 	};
 
-	// #################################################
+	// --------------------triggers on click-----------------------
+	//    Sends the initial accountdata and profile to server to create first account in the Database
+	// ----------------------------------------------------------
 
 	const handleAccountSetup = async () => {
 		event.preventDefault();
@@ -65,13 +80,17 @@ const SetupAccount = ({ provider }) => {
 		navigate('/home');
 	};
 
-	// #################################################
+	// --------------------triggers on click---------------------
+	//    gets the actual date to set as default dateinput value
+	// ----------------------------------------------------------
 
 	const minDate = new Date(
 		Date.now() - new Date().getTimezoneOffset() * 60000,
 	)
 		.toISOString()
 		.slice(0, 7);
+
+	// ---------------------------------------------------------------------
 
 	return (
 		<main className='account_setup'>
@@ -86,7 +105,11 @@ const SetupAccount = ({ provider }) => {
 				<p>Profile picture</p>
 			</div>
 			<div>
-				<ProfileImageUpload />
+				<ProfileImageUpload
+					provider={provider}
+					image={image}
+					setImage={setImage}
+				/>
 			</div>
 			<form>
 				<h4>Add your bank account</h4>

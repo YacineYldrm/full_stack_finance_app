@@ -1,20 +1,30 @@
-import { useState } from 'react';
-import logo from '../../../public/Logo.svg';
-import Button from '../../components/Button/Button';
-import { backendUrl } from '../../api';
+// -------------------------Imports---------------------------
+
 import './ForgotPassword.scss';
+import { Button, backendUrl, useState, logo } from '../../utils/files';
+
+// -------------------------Imports---------------------------
 
 const ForgotPassword = () => {
+	// -------------------------States---------------------------
+
 	const [email, setEmail] = useState('');
 	const [message, setMessage] = useState('');
-	const reset = async () => {
+
+	// ------------------resetPassword Fetch Function------------------
+
+	const resetPassword = async () => {
 		event.preventDefault();
-		const res = await fetch(`${backendUrl}users/reset-password`, {
-			method: 'POST',
-			body: JSON.stringify({ email }),
-			headers: { 'Content-Type': 'application/json' },
-		});
-		const { success, result, error, message } = await res.json();
+		const resetPasswordFetch = await fetch(
+			`${backendUrl}users/reset-password`,
+			{
+				method: 'POST',
+				body: JSON.stringify({ email }),
+				headers: { 'Content-Type': 'application/json' },
+			},
+		);
+		const { success, result, error, message } =
+			await resetPasswordFetch.json();
 		if (!success) {
 			console.log(error, message);
 			setMessage(message);
@@ -22,6 +32,9 @@ const ForgotPassword = () => {
 			setMessage(result);
 		}
 	};
+
+	// ---------------------------------------------------------------------
+
 	return (
 		<>
 			<main className='forgotPassword'>
@@ -51,7 +64,7 @@ const ForgotPassword = () => {
 
 					<Button
 						btnContent={'Confirm'}
-						btnFunction={reset}
+						btnFunction={resetPassword}
 					/>
 				</form>
 			</main>

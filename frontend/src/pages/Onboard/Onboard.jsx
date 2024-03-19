@@ -1,14 +1,23 @@
-import { Link, useNavigate } from 'react-router-dom';
-import bankCard from '../../../public/splash/bankCard.svg';
-import shadow from '../../../public/splash/shadow.svg';
-import dollar from '../../../public/splash/moneyGreen.png';
-import coin from '../../../public/splash/dollar.png';
-import redDollar from '../../../public/splash/redDollar.png';
+// -------------------------Imports---------------------------
 import './Onboard.scss';
-import Button from '../../components/Button/Button';
+import {
+	useNavigate,
+	bankCard,
+	shadow,
+	Button,
+	Link,
+	blueDollar,
+	coin,
+	greenDollar,
+} from '../../utils/files';
+
+// -------------------------Imports---------------------------
 
 const Onboard = () => {
 	const navigate = useNavigate();
+
+	// ---------------------------------------------------------------------
+
 	return (
 		<>
 			<main className='onBoarding'>
@@ -25,22 +34,22 @@ const Onboard = () => {
 					/>
 					<img
 						className='dollar'
-						src={dollar}
+						src={blueDollar}
 						alt=''
 					/>
 					<img
 						className='dollar1'
-						src={dollar}
+						src={blueDollar}
 						alt=''
 					/>
 					<img
 						className='dollar2'
-						src={dollar}
+						src={blueDollar}
 						alt=''
 					/>
 					<img
 						className='dollar3'
-						src={dollar}
+						src={blueDollar}
 						alt=''
 					/>
 					<img
@@ -65,22 +74,22 @@ const Onboard = () => {
 					/>
 					<img
 						className='redDollar'
-						src={redDollar}
+						src={greenDollar}
 						alt=''
 					/>
 					<img
 						className='redDollar1'
-						src={redDollar}
+						src={greenDollar}
 						alt=''
 					/>
 					<img
 						className='redDollar2'
-						src={redDollar}
+						src={greenDollar}
 						alt=''
 					/>
 					<img
 						className='redDollar3'
-						src={redDollar}
+						src={greenDollar}
 						alt=''
 					/>
 				</article>

@@ -1,19 +1,29 @@
-import { useState } from 'react';
-import logo from '../../../public/Logo.svg';
-import Button from '../../components/Button/Button';
+// -------------------------Imports---------------------------
+
+import { logo, useState, Button } from '../../utils/files';
+
+// -------------------------Imports---------------------------
 
 const ForgotVerification = () => {
+	// -------------------------States---------------------------
+
 	const [email, setEmail] = useState();
 	const [message, setMessage] = useState('');
 
+	// ------------------new verification Fetch Function------------------
+
 	const newVerification = async () => {
 		event.preventDefault();
-		const res = await fetch(`${backendUrl}users/new-verification-code`, {
-			method: 'POST',
-			body: JSON.stringify({ email }),
-			headers: { 'Content-Type': 'application/json' },
-		});
-		const { success, result, error, message } = await res.json();
+		const newVerificationFetch = await fetch(
+			`${backendUrl}users/new-verification-code`,
+			{
+				method: 'POST',
+				body: JSON.stringify({ email }),
+				headers: { 'Content-Type': 'application/json' },
+			},
+		);
+		const { success, result, error, message } =
+			await newVerificationFetch.json();
 		if (!success) {
 			console.log(error, message);
 			setMessage(message);
@@ -21,6 +31,9 @@ const ForgotVerification = () => {
 			setMessage(result);
 		}
 	};
+
+	// ---------------------------------------------------------------------
+
 	return (
 		<>
 			<main className='forgotPassword'>

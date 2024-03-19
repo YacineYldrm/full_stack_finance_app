@@ -2,7 +2,7 @@ import Account from "../../models/Account.js";
 import mongoose from "mongoose";
 
 const deleteTransaction = async (userId, transactionId) => {
-    console.log(userId);
+
     const foundAccount = await Account.findOne({
         transactions: {
             $elemMatch: {
@@ -11,7 +11,7 @@ const deleteTransaction = async (userId, transactionId) => {
         },
     });
 
-    
+
 
     if (!foundAccount)
         throw new Error("Account or transaction does not exist!");
@@ -19,7 +19,7 @@ const deleteTransaction = async (userId, transactionId) => {
     const foundTransaction = foundAccount.transactions.find(
         (transaction) => transaction._id.toString() === transactionId
     );
-    console.log(foundAccount);
+
 
     if (
         foundAccount.owner.toString() !== userId.toString() && foundTransaction.owner.toString() !== userId.toString()
