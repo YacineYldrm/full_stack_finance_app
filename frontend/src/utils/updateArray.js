@@ -1,20 +1,14 @@
-
-
 const updateArray = (provider) => {
-    const slicedCardsArrayStartToActive = provider?.accounts?.slice(
-        provider?.activeCard,
-    );
-    const slicedCardsArrayActiveToEnd = provider?.accounts?.slice(
-        0,
-        provider?.activeCard,
-    );
-    const newAccountsArray = [
-        ...slicedCardsArrayStartToActive,
-        ...slicedCardsArrayActiveToEnd,
-    ];
+    const accounts = [...provider?.accounts];
+    const newArray = accounts.splice(provider?.activeCard, 1);
+    console.log(newArray);
+    console.log(accounts);
+    const newAccountsArray = [...newArray, ...accounts];
+    console.log(newAccountsArray);
+
+    provider?.setAccount(newArray[0]);
     provider?.setAccounts(newAccountsArray);
     provider?.setCardIndex(0);
 };
-
 
 export default updateArray;

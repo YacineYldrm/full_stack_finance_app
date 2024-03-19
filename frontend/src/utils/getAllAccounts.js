@@ -1,4 +1,5 @@
 import { backendUrl } from "../api";
+import changeCardOnSwipe from "./changeCardOnSwipe";
 
 const getAllAccounts = async (provider) => {
     const response = await fetch(`${backendUrl}accounts`, {
@@ -11,6 +12,7 @@ const getAllAccounts = async (provider) => {
         console.log(error, message);
     } else {
         provider.setAccounts(result);
+        provider.setAccount(changeCardOnSwipe());
     }
 };
 
