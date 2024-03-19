@@ -1,8 +1,8 @@
 const calcTotal = (account, provider) => {
-    const incomes = account?.transactions.filter(
+    const incomes = account?.transactions?.filter(
         (transaction) => transaction.type === "income"
     );
-    const expenses = account?.transactions.filter(
+    const expenses = account?.transactions?.filter(
         (transaction) => transaction.type === "expense"
     );
     provider.setIncomeTotal(

@@ -1,17 +1,16 @@
 const calcMonth = (account, provider) => {
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth();
+    const currentMonth = new Date().getMonth();
 
-    const monthStart = new Date(year, month, 0).getTime();
-
-    const incomes = account.transactions.filter(
+    const incomes = account.transactions?.filter(
         (transaction) =>
-            transaction.type === "income" && transaction.date > monthStart
+            transaction.type === "income" &&
+            new Date(transaction.date).getMonth() === currentMonth
     );
 
-    const expenses = account.transactions.filter(
+    const expenses = account.transactions?.filter(
         (transaction) =>
-            transaction.type === "expense" && transaction.date > monthStart
+            transaction.type === "expense" &&
+            new Date(transaction.date).getMonth() === currentMonth
     );
 
     const monthlyIncomeTotal = incomes?.reduce(
