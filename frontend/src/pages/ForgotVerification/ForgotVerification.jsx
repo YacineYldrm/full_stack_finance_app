@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import logo from '../../../public/logo.png'
+import logo from '../../../public/Logo.svg';
 import Button from '../../components/Button/Button';
 
 const ForgotVerification = () => {
-    const [email, setEmail] = useState()
-    const [message, setMessage] = useState("")
+	const [email, setEmail] = useState();
+	const [message, setMessage] = useState('');
 
-    
-
-    const newVerification = async () => {
+	const newVerification = async () => {
 		event.preventDefault();
 		const res = await fetch(`${backendUrl}users/new-verification-code`, {
 			method: 'POST',
@@ -23,9 +21,9 @@ const ForgotVerification = () => {
 			setMessage(result);
 		}
 	};
-    return ( 
-        <>
-        <main className='forgotPassword'>
+	return (
+		<>
+			<main className='forgotPassword'>
 				<div>
 					<img
 						src={logo}
@@ -33,7 +31,7 @@ const ForgotVerification = () => {
 					/>
 				</div>
 				<div>
-                <h2>Forgot your Verification Code?</h2>
+					<h2>Forgot your Verification Code?</h2>
 					<p>
 						Don't panic, type in your E-mail and we will send you a
 						new verification code to verify your E-mail.
@@ -41,12 +39,11 @@ const ForgotVerification = () => {
 				</div>
 				<form>
 					<div>
-                    <input
+						<input
 							type='email'
 							placeholder='Email'
 							onChange={(e) => setEmail(e.target.value)}
 						/>
-						
 					</div>
 
 					<h6>{message}</h6>
@@ -56,10 +53,9 @@ const ForgotVerification = () => {
 						btnFunction={newVerification}
 					/>
 				</form>
-				
 			</main>
-        </>
-     );
-}
- 
+		</>
+	);
+};
+
 export default ForgotVerification;
