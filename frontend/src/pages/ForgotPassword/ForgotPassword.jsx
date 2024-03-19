@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from '../../../public/logo.png';
+import logo from '../../../public/Logo.svg';
 import Button from '../../components/Button/Button';
 import { backendUrl } from '../../api';
 import './ForgotPassword.scss';

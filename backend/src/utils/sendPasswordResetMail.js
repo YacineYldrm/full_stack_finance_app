@@ -36,8 +36,8 @@ const sendPasswordResetMail = async (token, userInfo) => {
             subject: "Link to reset Password!",
             html: createResetPasswordMail(token, userInfo, FRONTEND_URL),
             attachments: [{
-                filename: "logo.png",
-                path: "./logo.png",
+                filename: "Logo.svg",
+                path: "./Logo.svg",
                 cid: "persianspacex@gmail.com"
             }]
         });
