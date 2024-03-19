@@ -84,9 +84,9 @@
         article {
             position: absolute;
             color: white;
-            width: 6vmax;
-            height: 6vmax;
-            font-size: 1.3vmax;
+            width: 5vmax;
+            height: 5vmax;
+
             text-shadow: 0 0 1px black;
             display: flex;
             align-items: center;
@@ -98,14 +98,15 @@
             cursor: pointer;
             padding: 2.5%;
             top: 1.3vh;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.167);
             &:nth-of-type(1) {
-                background-image: url(../../../public/monthlyBg.svg);
+                background-image: url(../../../public/barChartIcon.svg);
                 z-index: 2;
 
                 left: 5%;
             }
             &:nth-of-type(2) {
-                background-image: url(../../../public/expenseBg.svg);
+                background-image: url(../../../public/waveChartIcon.svg);
                 z-index: 2;
 
                 right: 5%;
