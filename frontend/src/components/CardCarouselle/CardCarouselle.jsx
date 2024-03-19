@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import _ from "lodash";
 import changeCardOnSwipe from "../../utils/changeCardOnSwipe";
 import Card from "../Card/Card";
-import showActiveCard from "../../utils/showActiveCard";
-import activeCardIndex from "../../utils/activeCardIndex";
 
 const CardCourouselle = ({ provider }) => {
     const [index, setIndex] = useState(null);
