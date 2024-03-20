@@ -26,9 +26,13 @@ const joiError = () => {
         const { error } = validateUser(req.body);
 
         if (error) {
-            return res
-                .status(400)
-                .json({ success: false, error: error.details[0].message });
+            return res.status(400).json({
+                success: false,
+                error: error.details[0].message.includes("N")
+                    ? "First name and last name are " +
+                      error.details[0].message.split(" ").slice(2).join(" ")
+                    : error.details[0].message.replaceAll('"', ""),
+            });
         }
         next();
     };
