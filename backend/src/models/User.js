@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema(
         lastName: { type: String, required: true },
         email: { type: String, required: true },
         profileImage: { type: String, default: "placeholderImg.svg" },
-        phoneNumber: { type: String, required: true },
+        phoneNumber: { type: String },
         // birthDay: { type: Number, required: true },
         passwordHash: { type: String, required: true },
         saltHash: { type: String, required: true },
