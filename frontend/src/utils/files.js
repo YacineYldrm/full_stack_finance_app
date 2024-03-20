@@ -32,7 +32,8 @@ import magnifire from '../../public/magnifire.svg';
 import calendar from '../../public/calendar.svg';
 import bigPresent from '../../public/splash/gift.png';
 import greenDollar from '../../public/splash/greenDollar.png';
-import bankCard from '../../public/splash/giftCard.svg';
+import bankCard from '../../public/splash/bankCard.svg';
+import giftCard from '../../public/splash/giftCard.svg';
 import shadow from '../../public/splash/shadow.svg';
 import blueDollar from '../../public/splash/blueDollar.png';
 import coin from '../../public/splash/coin.png';
@@ -90,6 +91,7 @@ import { backendUrl, mediaUrl } from '../api';
 
 
 export {
+    giftCard,
     food,
     shopping,
     insurance,

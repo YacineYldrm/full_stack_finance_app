@@ -76,7 +76,7 @@ const Card = ({ cardId, provider, account }) => {
 	useEffect(() => {
 		setExpiry(account.expirationDate);
 		formatExpiry();
-	}, [account.expirationDate]);
+	}, [account?.expirationDate]);
 
 	const formatExpiry = () => {
 		if (expiry) {
