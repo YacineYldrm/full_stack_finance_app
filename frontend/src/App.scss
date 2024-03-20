@@ -23,8 +23,6 @@ select:after {
 
 input,
 select {
-	-webkit-appearance: none;
-	color: rgb(65, 65, 65);
 	&:focus {
 		outline: 1px solid black;
 	}
@@ -79,4 +77,9 @@ body {
 	&::-webkit-scrollbar {
 		display: none;
 	}
+}
+
+select {
+	-webkit-appearance: none;
+	color: rgb(65, 65, 65);
 }
