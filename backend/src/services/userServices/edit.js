@@ -5,8 +5,8 @@ import fsAsync from "fs/promises";
 const edit = async (userId, userInfo, reqFile) => {
     const foundUser = await User.findById(userId);
     if (!foundUser) throw new Error("User doesn't exist");
-    
-    if (reqFile && foundUser.profileImage !== "") {
+
+    if (reqFile && foundUser.profileImage !== "placeholderImg.svg") {
         const imageFile = fs.existsSync(`./data/${foundUser.profileImage}`);
         if (imageFile) {
             await fsAsync.unlink(
