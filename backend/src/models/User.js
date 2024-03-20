@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
 
-
 const userSchema = new mongoose.Schema(
     {
-        
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
         email: { type: String, required: true },
-        profileImage: { type: String, default: "" },
+        profileImage: { type: String, default: "placeholderImg.svg" },
         phoneNumber: { type: String, required: true },
         // birthDay: { type: Number, required: true },
         passwordHash: { type: String, required: true },
