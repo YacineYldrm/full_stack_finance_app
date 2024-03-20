@@ -21,6 +21,7 @@ import Transaction from '../components/Transaction/Transaction';
 import { useNavigate, Link, useParams, NavLink } from 'react-router-dom';
 import { useEffect, useState, useMemo } from 'react';
 import _ from 'lodash';
+import ReactECharts from 'echarts-for-react';
 
 // ######################SVG#######################
 import Arrow from '../../public/svg/Arrows/Arrow';
@@ -173,5 +174,6 @@ export {
     Transaction,
     Search,
     NavLink,
+    ReactECharts,
 
 }

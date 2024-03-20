@@ -1,105 +1,107 @@
 .account_setup {
-    max-width: 100vw;
-    padding: 2.5% 5%;
-    padding-bottom: 0;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    min-height: 90vh;
-    margin: 0 auto;
-    .image_edit_main{
-        .button{
-            display: none;
-        }
-    }
-    > div {
-        &:nth-last-of-type(2) {
-            padding-bottom: 2vh;
-        }
+	max-width: 100vw;
+	padding: 2.5% 5%;
+	padding-bottom: 0;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	min-height: 90vh;
+	margin: 0 auto;
+	.image_edit_main {
+		.button {
+			display: none;
+		}
+	}
+	> div {
+		&:nth-last-of-type(2) {
+			padding-bottom: 2vh;
+		}
 
-        > img {
-            margin-top: 2vh;
-            width: 4vmax;
-        }
-        &:nth-of-type(2) {
-            text-align: center;
-            margin-bottom: 1vh;
-            h2 {
-                margin-top: 3vh;
-                margin-bottom: 1vh;
-                font-size: 3vmax;
-                font-weight: 600;
-            }
-        }
-    }
-    > form {
-        width: fit-content;
-        display: flex;
-        flex-direction: column;
-        gap: 1.6vh;
-        padding: 1%;
-        padding-bottom: 1%;
-        margin: 0 auto;
-        h4 {
-            margin-inline: auto;
-            margin-block: 1vh;
-            font-size: 2vmax;
-        }
+		> img {
+			margin-top: 2vh;
+			width: 4vmax;
+		}
+		&:nth-of-type(2) {
+			text-align: center;
+			margin-bottom: 1vh;
+			h2 {
+				margin-top: 3vh;
+				margin-bottom: 1vh;
+				font-size: 3vmax;
+				font-weight: 600;
+			}
+		}
+	}
+	> form {
+		width: fit-content;
+		display: flex;
+		flex-direction: column;
+		gap: 1.6vh;
+		padding: 1%;
+		padding-bottom: 1%;
+		margin: 0 auto;
+		h4 {
+			margin-inline: auto;
+			margin-block: 0vh;
+			font-size: 2vmax;
+		}
 
-        input,
-        select {
-            display: block;
-            font-size: 2vmax;
-            width: 40vmax;
-            padding: 1.5vmax;
-            border-radius: 3vmax;
-            font-weight: 400;
-            border: 1px solid gray;
-            &::placeholder {
-                color: rgb(81, 81, 81);
-            }
-        }
-        label {
-            display: flex;
-            align-items: center;
-            position: relative;
-            width: fit-content;
-            overflow: hidden;
-            border-radius: 3vmax;
+		input,
+		select {
+			background-color: #fff;
+			display: block;
+			font-size: 2vmax;
+			width: 40vmax;
+			padding: 1.5vmax;
+			border-radius: 3vmax;
+			font-weight: 400;
+			border: 1px solid gray;
+			&::placeholder {
+				color: rgb(81, 81, 81);
+			}
+		}
+		label {
+			display: flex;
+			align-items: center;
+			position: relative;
+			width: fit-content;
+			overflow: hidden;
+			border-radius: 3vmax;
 
-            input[type="month"] {
-                margin-top: 0.8vh;
-                width: 40vmax;
-                display: flex;
-                text-align: center;
-                height: 6vmax;
-                font-size: 2vmax;
-                &::-webkit-calendar-picker-indicator {
-                    position: absolute;
-                    position: absolute;
-                    right: 10%;
-                    width: 3.5vmax;
-                    height: 3.5vmax;
-                    transform: translate(50%, 0);
-                    z-index: 2;
-                    filter: opacity(0);
-                }
+			input[type='month'] {
+				background-color: #fff;
+				margin-top: 0.8vh;
+				width: 40vmax;
+				display: flex;
+				text-align: center;
+				height: 6vmax;
+				font-size: 2vmax;
+				&::-webkit-calendar-picker-indicator {
+					position: absolute;
+					position: absolute;
+					right: 10%;
+					width: 3.5vmax;
+					height: 3.5vmax;
+					transform: translate(50%, 0);
+					z-index: 2;
+					filter: opacity(0);
+				}
 
-                color: rgb(65, 65, 65);
-            }
-            img {
-                position: absolute;
-                right: 10%;
-                width: 3.5vmax;
-                transform: translate(50%, 0);
-            }
-        }
+				color: rgb(65, 65, 65);
+			}
+			img {
+				position: absolute;
+				right: 10%;
+				width: 3.5vmax;
+				transform: translate(50%, 0);
+			}
+		}
 
-        img {
-            position: absolute;
-            width: 2vmax;
-            right: 5%;
-            margin-top: 1%;
-        }
-    }
+		img {
+			position: absolute;
+			width: 2vmax;
+			right: 5%;
+			margin-top: 1%;
+		}
+	}
 }
