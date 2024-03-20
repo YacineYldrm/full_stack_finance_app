@@ -105,11 +105,9 @@ const Login = ({ provider }) => {
                             />
                         </label>
                     </div>
-
                     <h6 onClick={() => navigate("/forgot-password")}>
                         Forgot password?
                     </h6>
-
                     <p style={{ color: "#CC4C30", fontWeight: "600" }}>
                         {message}
                     </p>
