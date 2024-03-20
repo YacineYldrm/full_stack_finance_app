@@ -24,16 +24,27 @@ const Settings = ({ provider }) => {
 	// -------------------------States---------------------------
 
 	const navigate = useNavigate();
-
-	const [userFirstName, userLastname] =
-		provider?.activeUser?.user?.split(' ');
 	const [image, setImage] = useState();
 	const [oldPassword, setOldPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
-	const [firstName, setFirstName] = useState(userFirstName);
-	const [lastName, setLastName] = useState(userLastname);
-	const [email, setEmail] = useState(provider.activeUser.email);
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState();
+
+	// --------------------Renders on load-----------------------
+	//    		gets UserData for the edit inputs
+	// ----------------------------------------------------------
+
+	useEffect(() => {
+		if (provider.activeUser !== '') {
+			const [userFirstname, userLastName] =
+				provider.activeUser.user.split(' ');
+			setEmail(provider.activeUser.email);
+			setFirstName(userFirstname);
+			setLastName(userLastName);
+		}
+	}, [provider.activeUser]);
 
 	// --------------------Renders on click-----------------------
 	//    sends User Data to server to find and delete the user
