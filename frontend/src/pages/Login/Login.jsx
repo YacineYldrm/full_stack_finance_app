@@ -101,11 +101,9 @@ const Login = ({ provider }) => {
 							/>
 						</label>
 					</div>
-
 					<h6 onClick={() => navigate('/forgot-password')}>
 						Forgot password?
 					</h6>
-
 					<Button
 						btnContent={'Login'}
 						btnFunction={login}

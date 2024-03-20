@@ -19,7 +19,6 @@ import {
 	expectedGreen,
 	expectedYellow,
 	expectedRed,
-	updateArray,
 	getAllAccounts,
 } from '../../utils/files';
 
@@ -34,7 +33,6 @@ const Home = ({ provider }) => {
 	const navigate = useNavigate();
 	const [account, setAccount] = useState(null);
 	const [expectedExpenses, setExpectedExpenses] = useState(null);
-	const [expectedIcon, setExpectedIcon] = useState(expectedGreen);
 
 	// -------------------------States---------------------------
 	useEffect(() => {
@@ -49,7 +47,7 @@ const Home = ({ provider }) => {
 	}, [provider.account]);
 
 	// --------------------triggers on account change--------------------
-	//    calculates totalExpenses and Incomes ad groups by Day
+	//    calculates totalExpenses and Incomes of groups by Day
 	// -----------------------------------------------------------------
 
 	useEffect(() => {
