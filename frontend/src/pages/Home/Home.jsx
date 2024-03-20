@@ -36,6 +36,14 @@ const Home = ({ provider }) => {
     const [account, setAccount] = useState(null);
     const [expectedExpenses, setExpectedExpenses] = useState(null);
 
+    useEffect(() => {
+		
+			if (!provider?.authorization) {
+				navigate('/');
+			} 
+		
+	}, [provider.authorization]);
+    
     // -------------------------States---------------------------
     useEffect(() => {
         setAccount(provider?.accounts[provider?.cardIndex]);
