@@ -23,7 +23,8 @@ const accountSchema = new mongoose.Schema(
         owner: { type: mongoose.Types.ObjectId, required: true },
         members: [{ type: mongoose.Types.ObjectId, required: true }],
         transactions: [transactionSchema],
-        expirationDate: {type: String}
+        expirationDate: {type: String},
+        currencyType: {type: Object, default: {country: "de-DE", style: "currency", currency: "EUR"}},
     },
     { collection: "accounts", timestamps: true }
 );

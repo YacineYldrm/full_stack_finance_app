@@ -137,18 +137,7 @@ const Register = () => {
 							alt=''
 						/>
 					</label>
-					<label>
-						<select defaultValue={"Choose your currency"} onChange={(e)=>{
-							const [country,style,currency] = e.target.value.split(" ")
-							setUserInfo({
-								...userInfo, currencyType: {country,style,currency}
-							})
-						}}>
-							<option value="Choose your currency" disabled> Choose your currency</option>
-							<option value="de-DE currency EUR">EURO</option>
-							<option value="en-US currency USD">US-DOLLAR</option>
-						</select>
-					</label>
+					
 					<label>
 						<input
 							onChange={(e) =>
