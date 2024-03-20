@@ -1,6 +1,6 @@
 .account_setup {
 	max-width: 100vw;
-	padding: 2.5% 5%;
+	padding: 0 5%;
 	padding-bottom: 0;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -18,7 +18,6 @@
 		}
 
 		> img {
-			margin-top: 2vh;
 			width: 4vmax;
 		}
 		&:nth-of-type(2) {
@@ -36,9 +35,8 @@
 		width: fit-content;
 		display: flex;
 		flex-direction: column;
-		gap: 1.6vh;
-		padding: 1%;
-		padding-bottom: 1%;
+		gap: 1.3vh;
+
 		margin: 0 auto;
 		h4 {
 			margin-inline: auto;

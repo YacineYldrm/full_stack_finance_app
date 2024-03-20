@@ -31,9 +31,13 @@ const SetupAccount = ({ provider }) => {
 
 	const profileEdit = async () => {
 		const authorization = provider?.authorization;
-		const [firstName, lastName] = provider?.activeUser?.user?.split(" ")
-		
-		const userInfo = JSON.stringify({...provider?.activeUser,firstName,lastName});
+		const [firstName, lastName] = provider?.activeUser?.user?.split(' ');
+
+		const userInfo = JSON.stringify({
+			...provider?.activeUser,
+			firstName,
+			lastName,
+		});
 		const fd = new FormData();
 		fd.append('userInfo', userInfo);
 		image ? fd.append('image', image) : null;
@@ -146,6 +150,27 @@ const SetupAccount = ({ provider }) => {
 					<option value='Basic Account'>Basic Account</option>
 					<option value='Family Account'>Family Account</option>
 				</select>
+				<label>
+					<select
+						defaultValue={'Choose your currency'}
+						onChange={(e) => {
+							const [country, style, currency] =
+								e.target.value.split(' ');
+							setAccountInfo({
+								...accountInfo,
+								currencyType: { country, style, currency },
+							});
+						}}>
+						<option
+							value='Choose your currency'
+							disabled>
+							{' '}
+							Choose your currency
+						</option>
+						<option value='de-DE currency EUR'>EURO</option>
+						<option value='en-US currency USD'>US-DOLLAR</option>
+					</select>
+				</label>
 				<h4>Expiry date</h4>
 				<label>
 					<input
@@ -164,18 +189,7 @@ const SetupAccount = ({ provider }) => {
 						alt=''
 					/>
 				</label>
-				<label>
-						<select defaultValue={"Choose your currency"} onChange={(e)=>{
-							const [country,style,currency] = e.target.value.split(" ")
-							setAccountInfo({
-								...accountInfo, currencyType: {country,style,currency}
-							})
-						}}>
-							<option value="Choose your currency" disabled> Choose your currency</option>
-							<option value="de-DE currency EUR">EURO</option>
-							<option value="en-US currency USD">US-DOLLAR</option>
-						</select>
-					</label>
+
 				<h4>{message}</h4>
 				<Button
 					btnContent={'Create'}

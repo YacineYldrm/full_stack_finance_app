@@ -16,11 +16,14 @@ import {
 	changeMail,
 	deleteUserIcon,
 } from '../../utils/files';
+import { useEffect } from 'react';
 
 // -------------------------Imports---------------------------
 
 const Settings = ({ provider }) => {
 	// -------------------------States---------------------------
+
+	const navigate = useNavigate();
 
 	const [userFirstName, userLastname] =
 		provider?.activeUser?.user?.split(' ');
@@ -31,14 +34,13 @@ const Settings = ({ provider }) => {
 	const [lastName, setLastName] = useState(userLastname);
 	const [email, setEmail] = useState(provider.activeUser.email);
 	const [password, setPassword] = useState();
-	const navigate = useNavigate();
 
 	// --------------------Renders on click-----------------------
 	//    sends User Data to server to find and delete the user
 	// ----------------------------------------------------------
 
 	const deleteUser = async () => {
-		event.preventDefault()
+		event.preventDefault();
 		const deleteUserFetch = await fetch(`${backendUrl}users/delete`, {
 			method: 'DELETE',
 			body: JSON.stringify({ password }),
@@ -62,7 +64,7 @@ const Settings = ({ provider }) => {
 	// ----------------------------------------------------------
 
 	const editUser = async () => {
-		event.preventDefault()
+		event.preventDefault();
 		const fd = new FormData();
 		const userInfo = JSON.stringify({ firstName, lastName });
 		fd.append('userInfo', userInfo);
@@ -89,7 +91,7 @@ const Settings = ({ provider }) => {
 	// ----------------------------------------------------------
 
 	const changePassword = async () => {
-		event.preventDefault()
+		event.preventDefault();
 		const passwordInfo = { oldPassword, newPassword };
 		const changePasswordFetch = await fetch(
 			`${backendUrl}users/change-password`,
@@ -117,7 +119,7 @@ const Settings = ({ provider }) => {
 	// ----------------------------------------------------------
 
 	const changeEmail = async () => {
-		event.preventDefault()
+		event.preventDefault();
 		const res = await fetch(`${backendUrl}users/change-email`, {
 			method: 'POST',
 			body: JSON.stringify({ email }),
@@ -178,7 +180,7 @@ const Settings = ({ provider }) => {
 								<div>
 									<Button
 										btnContent={'←'}
-										btnFunction={()=>setImage(null)}
+										btnFunction={() => setImage(null)}
 									/>
 								</div>
 							) : (
