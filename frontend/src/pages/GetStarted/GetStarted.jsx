@@ -3,7 +3,7 @@ import './GetStarted.scss';
 import {
 	bigPresent,
 	useNavigate,
-	bankCard,
+	giftCard,
 	shadow,
 	Button,
 } from '../../utils/files';
@@ -18,7 +18,7 @@ const GetStarted = () => {
 			<article>
 				<img
 					className='giftCard'
-					src={bankCard}
+					src={giftCard}
 					alt=''
 				/>
 				<img

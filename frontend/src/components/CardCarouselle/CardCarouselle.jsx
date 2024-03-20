@@ -1,58 +1,57 @@
 import {
-    Card,
-    useEffect,
-    useMemo,
-    _,
-    changeCardOnSwipe,
-    updateArray,
-} from "../../utils/files";
+	Card,
+	useEffect,
+	useMemo,
+	_,
+	changeCardOnSwipe,
+	updateArray,
+} from '../../utils/files';
 
 const CardCourouselle = ({ provider }) => {
-    // --------------------Renders on Load-----------------------
-    //                   Sets the Active Card
-    // ----------------------------------------------------------
+	// --------------------Renders on Load-----------------------
+	//                   Sets the Active Card
+	// ----------------------------------------------------------
 
-    // useEffect(() => {
-    //     updateArray(provider);
-    // }, []);
+	// useEffect(() => {
+	//     updateArray(provider);
+	// }, []);
 
-    // --------------------Renders on scroll---------------------
-    //stops toomany renders on Scroll and triggers the Handler on scroll end usind use Memo and loeDash
-    // ----------------------------------------------------------
+	// --------------------Renders on scroll---------------------
+	//stops toomany renders on Scroll and triggers the Handler on scroll end usind use Memo and loeDash
+	// ----------------------------------------------------------
 
-    const handleScroll = (e) => {
-        handleEndScroll();
-    };
+	const handleScroll = (e) => {
+		handleEndScroll();
+	};
 
-    const handleEndScroll = useMemo(
-        () =>
-            _.debounce(() => {
-                provider?.setActiveCard(changeCardOnSwipe(provider));
-                provider?.setCardIndex(changeCardOnSwipe(provider));
-            }, 500),
-        [provider]
-    );
+	const handleEndScroll = useMemo(
+		() =>
+			_.debounce(() => {
+				provider?.setActiveCard(changeCardOnSwipe(provider));
+				provider?.setCardIndex(changeCardOnSwipe(provider));
+			}, 100),
+		[provider],
+	);
 
-    // ---------------------------------------------------------------------
+	// ---------------------------------------------------------------------
 
-    return (
-        <article
-            onScroll={(e) => handleScroll(e)}
-            className="cards_carouselle_wrapper"
-            id="carouselle"
-        >
-            {provider?.accounts?.map((account) => {
-                return (
-                    <Card
-                        key={account._id}
-                        cardId={account._id}
-                        provider={provider}
-                        account={account}
-                    />
-                );
-            })}
-        </article>
-    );
+	return (
+		<article
+			onScroll={(e) => handleScroll(e)}
+			className='cards_carouselle_wrapper'
+			id='carouselle'>
+			{provider?.accounts?.map((account) => {
+				return (
+					<Card
+						key={account._id}
+						cardId={account._id}
+						provider={provider}
+						account={account}
+					/>
+				);
+			})}
+		</article>
+	);
 };
 
 export default CardCourouselle;

@@ -4,7 +4,6 @@ const updateArray = (provider) => {
 
     const newAccountsArray = [...newArray, ...accounts];
 
-
     provider?.setAccount(newArray[0]);
     provider?.setAccounts(newAccountsArray);
     provider?.setCardIndex(0);
