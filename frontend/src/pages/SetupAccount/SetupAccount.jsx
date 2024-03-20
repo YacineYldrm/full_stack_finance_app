@@ -164,6 +164,18 @@ const SetupAccount = ({ provider }) => {
 						alt=''
 					/>
 				</label>
+				<label>
+						<select defaultValue={"Choose your currency"} onChange={(e)=>{
+							const [country,style,currency] = e.target.value.split(" ")
+							setAccountInfo({
+								...accountInfo, currencyType: {country,style,currency}
+							})
+						}}>
+							<option value="Choose your currency" disabled> Choose your currency</option>
+							<option value="de-DE currency EUR">EURO</option>
+							<option value="en-US currency USD">US-DOLLAR</option>
+						</select>
+					</label>
 				<h4>{message}</h4>
 				<Button
 					btnContent={'Create'}
