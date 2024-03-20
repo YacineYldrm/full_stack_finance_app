@@ -2,11 +2,10 @@ import Account from "../../models/Account.js";
 import User from "../../models/User.js";
 
 const create = async (req) => {
-
     const owner = req.authorizedUser;
     const accountData = req.body;
     if (!accountData.cardNumber)
-        throw new Error("Cardnumber must be provided!!!");
+        throw new Error("Cardnumber must be provided!");
     const newAccount = {
         ...accountData,
         owner,

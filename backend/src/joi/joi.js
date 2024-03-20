@@ -1,9 +1,9 @@
-import Joi from 'joi'
+import Joi from "joi";
 
 const validateUser = (user) => {
     const schema = Joi.object({
-        firstName: Joi.string().min(3).max(30).required(),
-        lastName: Joi.string().min(3).max(30).required(),
+        firstName: Joi.string().min(1).max(30).required(),
+        lastName: Joi.string().min(1).max(30).required(),
         phoneNumber: Joi.number(),
         email: Joi.string().email({
             minDomainSegments: 2,
@@ -17,19 +17,21 @@ const validateUser = (user) => {
             // .regex(/[ -~]*[0-9][ -~]*/) // at least 1 number
             .min(8)
             .required(),
-    })
-    return schema.validate(user)
-}
+    });
+    return schema.validate(user);
+};
 
 const joiError = () => {
     return (req, res, next) => {
-        const { error } = validateUser(req.body)
+        const { error } = validateUser(req.body);
 
         if (error) {
-            return res.status(400).json({ success: false, error: error.details[0].message })
+            return res
+                .status(400)
+                .json({ success: false, error: error.details[0].message });
         }
-        next()
-    }
-}
+        next();
+    };
+};
 
-export default joiError
+export default joiError;
