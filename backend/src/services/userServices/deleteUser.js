@@ -15,7 +15,7 @@ const deleteUser = async (userId, password) => {
 
     if (!deletedUser) throw new Error("couldn't delete User");
 
-    if (deletedUser.profileImage !== "") {
+    if (deletedUser.profileImage !== "placeholderImg.svg") {
         const imageFile = fs.existsSync(`./data/${foundUser.profileImage}`);
         if (imageFile) {
             await fsAsync.unlink(
