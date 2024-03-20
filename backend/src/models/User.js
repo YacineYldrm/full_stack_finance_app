@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
     {
-        currencyType: {type: Object, default: {country: "de-DE", style: "currency", currency: "EUR"}},
+        
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
         email: { type: String, required: true },
