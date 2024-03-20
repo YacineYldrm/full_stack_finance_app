@@ -2,6 +2,7 @@
 	padding: 2.5% 5%;
 	border-top: 1px solid rgba(128, 128, 128, 0.09);
 	transition: all 600ms linear;
+	padding-bottom: 7.5%;
 	> section {
 		.userInfo {
 			width: 100%;
@@ -11,6 +12,7 @@
 			margin-block: 1vh;
 			img {
 				width: 6vmax;
+				aspect-ratio: 1 / 1;
 				border-radius: 50%;
 				object-fit: cover;
 				&:nth-of-type(1) {

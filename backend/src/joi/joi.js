@@ -2,7 +2,6 @@ import Joi from 'joi'
 
 const validateUser = (user) => {
     const schema = Joi.object({
-        
         firstName: Joi.string().min(3).max(30).required(),
         lastName: Joi.string().min(3).max(30).required(),
         phoneNumber: Joi.number(),
