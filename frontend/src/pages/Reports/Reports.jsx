@@ -22,6 +22,13 @@ const Reports = ({ provider }) => {
 	const [index, setIndex] = useState(5);
 
 	const navigate = useNavigate();
+	const formatter = new Intl.NumberFormat(
+		provider?.account?.currencyType?.country,
+		{
+			style: provider?.account?.currencyType?.style,
+			currency: provider?.account?.currencyType?.currency,
+		},
+	);
 
 	// --------------------Renders on Load-----------------------
 	//                   Sets the Active Card
@@ -213,13 +220,7 @@ const Reports = ({ provider }) => {
 							<div>
 								<p>Income</p>
 								<h2>
-									{provider.incomeTotal?.toLocaleString(
-										'de-DE',
-										{
-											style: 'currency',
-											currency: 'EUR',
-										},
-									)}
+									{formatter.format(provider?.incomeTotal)}
 								</h2>
 							</div>
 						</article>
@@ -233,13 +234,7 @@ const Reports = ({ provider }) => {
 							<div>
 								<p>Expense</p>
 								<h2>
-									{provider.expenseTotal?.toLocaleString(
-										'de-DE',
-										{
-											style: 'currency',
-											currency: 'EUR',
-										},
-									)}
+									{formatter.format(provider?.expenseTotal)}
 								</h2>
 							</div>
 						</article>

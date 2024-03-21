@@ -52,6 +52,7 @@ const MyWallet = ({ provider }) => {
 
     const createAccount = async () => {
         event.preventDefault();
+
         const authorization = provider?.authorization;
         const createAccountFetch = await fetch(backendUrl + "accounts/create", {
             method: "POST",
@@ -60,6 +61,7 @@ const MyWallet = ({ provider }) => {
                 cardNumber: newAccountInfo.cardNumber,
                 type: newAccountInfo.type,
                 expirationDate: newAccountInfo.expirationDate,
+                currencyType: newAccountInfo.currencyType,
             }),
         });
         const { success, result, error, message } =
@@ -250,6 +252,37 @@ const MyWallet = ({ provider }) => {
                                         Family Account
                                     </option>
                                 </select>
+                                <label>
+                                    <select
+                                        defaultValue={"Choose your currency"}
+                                        onChange={(e) => {
+                                            const [country, style, currency] =
+                                                e.target.value.split(" ");
+                                            setNewAccountInfo({
+                                                ...newAccountInfo,
+                                                currencyType: {
+                                                    country,
+                                                    style,
+                                                    currency,
+                                                },
+                                            });
+                                        }}
+                                    >
+                                        <option
+                                            value="Choose your currency"
+                                            disabled
+                                        >
+                                            {" "}
+                                            Choose your currency
+                                        </option>
+                                        <option value="de-DE currency EUR">
+                                            EURO
+                                        </option>
+                                        <option value="en-US currency USD">
+                                            US-DOLLAR
+                                        </option>
+                                    </select>
+                                </label>
                                 <h4>Expiry date</h4>
                                 <label>
                                     <input
@@ -346,6 +379,37 @@ const MyWallet = ({ provider }) => {
                                         Family Account
                                     </option>
                                 </select>
+                                <label>
+                                    <select
+                                        defaultValue={"Choose your currency"}
+                                        onChange={(e) => {
+                                            const [country, style, currency] =
+                                                e.target.value.split(" ");
+                                            setAccountInfo({
+                                                ...accountInfo,
+                                                currencyType: {
+                                                    country,
+                                                    style,
+                                                    currency,
+                                                },
+                                            });
+                                        }}
+                                    >
+                                        <option
+                                            value="Choose your currency"
+                                            disabled
+                                        >
+                                            {" "}
+                                            Choose your currency
+                                        </option>
+                                        <option value="de-DE currency EUR">
+                                            EURO
+                                        </option>
+                                        <option value="en-US currency USD">
+                                            US-DOLLAR
+                                        </option>
+                                    </select>
+                                </label>
                                 <h4>Expiry date</h4>
                                 <label>
                                     <input
