@@ -70,10 +70,10 @@ const Verify = () => {
         <>
             <main className="verify">
                 <div>
-                    <img src={logo} alt="Finco-Logo" />
+                    <img src={logo} alt="Finoccio-Logo" />
                 </div>
                 <div>
-                    <h2>Welcome to Finco!</h2>
+                    <h2>Welcome to Finoccio!</h2>
                     <p>
                         Please type in your verification code, to verify your
                         E-mail and get started, to keep your finances organized.

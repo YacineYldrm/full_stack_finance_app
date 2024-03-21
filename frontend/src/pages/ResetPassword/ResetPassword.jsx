@@ -62,7 +62,7 @@ const ResetPassword = () => {
 				<div>
 					<img
 						src={logo}
-						alt='Finco-Logo'
+						alt='Finoccio-Logo'
 					/>
 				</div>
 				<div>

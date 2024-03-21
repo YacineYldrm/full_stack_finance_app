@@ -59,7 +59,7 @@ const Transaction = ({
 	};
 
 	// --------------------Triggers on click-----------------------
-	//   sends the transaction Id to the server to fin and delete the transaction
+	//   sends the transaction Id to the server to find and delete the transaction
 	// ----------------------------------------------------------
 
 	const deleteTransaction = async () => {

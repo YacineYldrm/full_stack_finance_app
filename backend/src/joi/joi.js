@@ -2,8 +2,8 @@ import Joi from "joi";
 
 const validateUser = (user) => {
     const schema = Joi.object({
-        firstName: Joi.string().min(1).max(30).required(),
-        lastName: Joi.string().min(1).max(30).required(),
+        firstName: Joi.string().min(1).max(30).regex(/^[^0-9]+$/).required(),
+        lastName: Joi.string().min(1).max(30).regex(/^[^0-9]+$/).required(),
         phoneNumber: Joi.number(),
         email: Joi.string()
             .email({

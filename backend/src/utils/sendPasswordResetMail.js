@@ -8,7 +8,7 @@ const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
-const FRONTEND_URL = process.env.FRONTEND_URL + "/verify";
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 
 const OAuth = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -31,7 +31,7 @@ const sendPasswordResetMail = async (token, userInfo) => {
         });
 
         const mailResult = await transporter.sendMail({
-            from: "FINCO App <psersianspacex@gmail.com >",
+            from: "FINOCCIO App <psersianspacex@gmail.com >",
             to: userInfo.email,
             subject: "Link to reset Password!",
             html: createResetPasswordMail(token, userInfo, FRONTEND_URL),

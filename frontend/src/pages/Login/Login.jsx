@@ -21,7 +21,7 @@ const Login = ({ provider }) => {
     const [message, setMessage] = useState(null);
     const [seePassword, setSeePassword] = useState(false);
     const navigate = useNavigate();
-    console.log(loginInfo);
+    
 
     // --------------------Triggers on click-----------------------
     //    Logs the User in and gets AccessToken and RefreshToken
@@ -67,7 +67,7 @@ const Login = ({ provider }) => {
         <>
             <main className="login">
                 <div>
-                    <img src={logo} alt="Finco-Logo" />
+                    <img src={logo} alt="Finoccio-Logo" />
                 </div>
                 <div>
                     <h2>Welcome back!</h2>
@@ -82,7 +82,7 @@ const Login = ({ provider }) => {
                                 onChange={(e) =>
                                     setLoginInfo({
                                         ...loginInfo,
-                                        email: e.target.value,
+                                        email: e.target.value.toLowerCase(),
                                     })
                                 }
                             />

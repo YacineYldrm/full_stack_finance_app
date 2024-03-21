@@ -86,7 +86,7 @@ const GetStarted = () => {
 				<div>
 					<h2>Analyze your spending!</h2>
 					<p>
-						Get started with Finco and dive into a comprehensive
+						Get started with Finoccio and dive into a comprehensive
 						analysis of your spending habits. Gain valuable
 						insights, take control of your finances, and embark on
 						your journey to financial empowerment.
