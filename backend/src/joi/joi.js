@@ -5,10 +5,12 @@ const validateUser = (user) => {
         firstName: Joi.string().min(1).max(30).required(),
         lastName: Joi.string().min(1).max(30).required(),
         phoneNumber: Joi.number(),
-        email: Joi.string().email({
-            minDomainSegments: 2,
-            tlds: { allow: ["com", "net", "de"] },
-        }), //  - two domain parts (sample.com) - a top level domain (TLD) of either .com or .net or.de
+        email: Joi.string()
+            .email({
+                minDomainSegments: 2,
+                tlds: { allow: ["com", "net", "de"] },
+            })
+            .required(), //  - two domain parts (sample.com) - a top level domain (TLD) of either .com or .net or.de
 
         password: Joi.string()
             .regex(/[ -~]*[a-z][ -~]*/) // at least 1 lower-case
@@ -28,10 +30,7 @@ const joiError = () => {
         if (error) {
             return res.status(400).json({
                 success: false,
-                error: error.details[0].message.includes("N")
-                    ? "First name and last name are " +
-                      error.details[0].message.split(" ").slice(2).join(" ")
-                    : error.details[0].message.replaceAll('"', ""),
+                error: error.details[0].message,
             });
         }
         next();
