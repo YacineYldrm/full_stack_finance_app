@@ -85,7 +85,7 @@ const Home = ({ provider }) => {
 	// -----------------------------------------------------------------
 
 	useEffect(() => {
-		const percentage = Math.floor((limit / provider.incomeTotal) * 100);
+		const percentage = Math.floor((limit / provider.monthlyIncome) * 100);
 		if (percentage <= 100) setPercentage(percentage);
 		else setPercentage(100);
 	}, [limit]);
@@ -279,10 +279,10 @@ const Home = ({ provider }) => {
 							<label>
 								<input
 									onChange={(e) => setLimit(e.target.value)}
-									disabled={provider.incomeTotal === 0}
+									disabled={provider.monthlyIncome === 0}
 									value={
-										limit > provider.incomeTotal
-											? provider.incomeTotal
+										limit > provider.monthlyIncome
+											? provider.monthlyIncome
 											: limit
 									}
 									type='number'
@@ -304,12 +304,12 @@ const Home = ({ provider }) => {
 											? 'limit_range_high'
 											: 'limit_range_low'
 									}
-									disabled={provider.incomeTotal === 0}
+									disabled={provider.monthlyIncome === 0}
 									value={percentage ? percentage : 0}
 									onChange={(e) =>
 										setLimit(
 											Number(
-												(provider.incomeTotal *
+												(provider.monthlyIncome *
 													e.target.value) /
 													100,
 											).toFixed(0),
@@ -323,13 +323,9 @@ const Home = ({ provider }) => {
 							</label>
 							<h6>Spending limit:</h6>
 							<h4>
-								{provider.incomeTotal > 0
-									? `max ${provider.incomeTotal?.toLocaleString(
-											'de-DE',
-											{
-												style: 'currency',
-												currency: 'EUR',
-											},
+								{provider.monthlyIncome > 0
+									? `max ${formatter.format(
+											provider.monthlyIncome,
 									  )}`
 									: 'Account has no income'}
 							</h4>

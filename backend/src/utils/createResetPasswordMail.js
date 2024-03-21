@@ -31,7 +31,7 @@ const createResetPasswordMail = (token, userInfo, link) => {
                         width: 100%;
                     
                     background-color: rgb(219, 243, 255);
-                    padding: 2.5rem 5rem;
+                    padding: 2.5% 5%;
                     font-family: system-ui, -apple-system, BlinkMacSystemFont,
                     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
                     'Helvetica Neue', sans-serif;
@@ -40,45 +40,44 @@ const createResetPasswordMail = (token, userInfo, link) => {
 			body > div {
                         display: flex;
                     align-items: basline;
-                    gap: 2rem;
+                    gap: 2vmax;
                     color: rgb(4, 137, 225);
-                    font-size: 2rem;
+                    font-size: 2vmax;
                     border-bottom: 3px solid rgb(4, 137, 225);
-                    padding-bottom: 2.5rem;
-                    margin-bottom: 8rem;
+                    padding-bottom: 2.5vh;
+                    margin-bottom: 8vh;
 			}
 			body > div > img {
-                width: 6rem;
-                height:  3rem;
-                margin-right: 2rem;
+                width: 6vmax;
+                height:  3vmax;
+                margin-right: 2vmax;
 			}
 			body > div > h2 {
-                padding-top: 3rem;
+                padding-top: 3vh;
 			}
 
                     h3 {
                         margin: 0 auto;
-                    font-size: 2.3rem;
-                    margin-bottom: 3rem;
-                    margin-bottom: 6rem;
+                    font-size: 2.3vmax;
+                    margin-bottom: 6vh;
                     width: 80%;
 			}
                     h4 {
                         text-align: center;
-                    font-size: 2.5rem;
+                    font-size: 2.5vmax;
                     background-color: rgb(0, 75, 125);
                     color: rgb(219, 243, 255);
                     width:fit-content;
                     padding: 1%;
                     line-height: 100%;
                     margin: 0 auto;
-                    border-radius: 1rem;
-                    margin-bottom: 8rem;
+                    border-radius: 1vmax;
+                    margin-bottom: 8vh;
 			}
                     h5 {
                         margin: 0 auto;
-                    margin-bottom: 10rem;
-                    font-size: 2rem;
+                    margin-bottom: 10vh;
+                    font-size: 2vmax;
                     width: 80%;
 			}
 
@@ -90,7 +89,7 @@ const createResetPasswordMail = (token, userInfo, link) => {
                     padding: 0.7%;
                     line-height: 100%;
                     margin: 0 auto;
-                    border-radius: 0.6rems;
+                    border-radius: 0.6vmax;
                     display: inline-block;
                     transition: all 400ms ease-in-out;
 			}
