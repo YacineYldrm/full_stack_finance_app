@@ -28,7 +28,13 @@ const Transaction = ({
 	// -------------------------States---------------------------
 
 	const [showModal, setShowModal] = useState(false);
-
+	const formatter = new Intl.NumberFormat(
+		provider?.account?.currencyType?.country,
+		{
+			style: provider?.account?.currencyType?.style,
+			currency: provider?.account?.currencyType?.currency,
+		},
+	);
 	// ------------Triggers on component render-----------------
 	//    sets the Category Icon for Transaction
 	// ----------------------------------------------------------
@@ -138,15 +144,9 @@ const Transaction = ({
 				</div>
 				<div>
 					{transaction?.type === 'income' ? (
-						<h5>{`${transaction?.amount.toLocaleString('de-DE', {
-							style: 'currency',
-							currency: 'EUR',
-						})}`}</h5>
+						<h5>{formatter.format(transaction?.amount)}</h5>
 					) : (
-						<h4>{`${transaction?.amount.toLocaleString('de-DE', {
-							style: 'currency',
-							currency: 'EUR',
-						})}`}</h4>
+						<h4>{formatter.format(transaction?.amount)}</h4>
 					)}
 				</div>
 			</main>

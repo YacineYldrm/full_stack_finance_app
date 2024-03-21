@@ -8,6 +8,7 @@ import calcMonth from './calcMonth';
 import calcExpectedExpenses from './calcExpectedExpenses';
 import { silentRefresh } from './refresh';
 import changeCardOnSwipe from './changeCardOnSwipe';
+formatter
 // ######################Components#######################
 import Card from '../components/Card/Card';
 import Button from '../components/Button/Button';
@@ -86,11 +87,13 @@ import rent from '../../public/transactionIcons/rent.svg';
 import salary from '../../public/transactionIcons/salary.svg';
 // ####################URLS#######################
 import { backendUrl, mediaUrl } from '../api';
+import formatter from './formatter';
 
 
 
 
 export {
+    formatter,
     giftCard,
     food,
     shopping,

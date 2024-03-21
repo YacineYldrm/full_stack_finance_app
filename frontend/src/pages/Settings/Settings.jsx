@@ -92,7 +92,6 @@ const Settings = ({ provider }) => {
 		if (!success) {
 			console.log(error, message);
 		} else {
-			console.log(result);
 			provider?.setActiveUser(result);
 		}
 	};
