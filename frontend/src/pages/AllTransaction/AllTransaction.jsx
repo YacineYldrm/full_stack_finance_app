@@ -75,7 +75,7 @@ const AllTransaction = ({ provider }) => {
 						<div className='userInfo'>
 							<img
 								src={logo}
-								alt='finco logo'
+								alt='finoccio logo'
 							/>
 							<img
 								onClick={() => navigate('/menu')}

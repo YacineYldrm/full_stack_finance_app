@@ -30,9 +30,9 @@ const sendMail = async (v_code, userInfo) => {
         });
 
         const mailResult = await transporter.sendMail({
-            from: "FINCO App <psersianspacex@gmail.com >",
+            from: "FINOCCIO App <psersianspacex@gmail.com >",
             to: userInfo.email,
-            subject: "Welcome to FINCO!",
+            subject: "Welcome to FINOCCIO!",
             html: createMailContent(v_code, userInfo, FRONTEND_URL),
             attachments: [{
                 filename: "Logo.svg",

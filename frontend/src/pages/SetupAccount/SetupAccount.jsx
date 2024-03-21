@@ -104,7 +104,7 @@ const SetupAccount = ({ provider }) => {
     return (
         <main className="account_setup">
             <div>
-                <img src={logo} alt="finco logo" />
+                <img src={logo} alt="finoccio logo" />
             </div>
             <div>
                 <h2>Setup your account</h2>

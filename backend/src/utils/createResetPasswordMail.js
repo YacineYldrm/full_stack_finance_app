@@ -106,7 +106,7 @@ const createResetPasswordMail = (token, userInfo, link) => {
                 </div>
                 <h3>Hello ${userInfo.user}</h3>
                 <h5>
-                    We at Finco, will help you to go on,  on your journey towards
+                    We at Finoccio, will help you to go on,  on your journey towards
                     your financial aspirations. <br /><br />
                     Please <a href=${link}/reset-password/${token}>CLICK HERE!</a> to reset your Password!
                     

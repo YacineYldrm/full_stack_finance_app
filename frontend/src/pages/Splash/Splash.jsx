@@ -30,21 +30,21 @@ const Splash = ({ provider }) => {
 						<img
 							className='left'
 							src={left}
-							alt='Finco logo'
+							alt='Finoccio logo'
 						/>
 					</div>
 					<div>
 						<img
 							className='right'
 							src={right}
-							alt='Finco logo'
+							alt='Finoccio logo'
 						/>
 					</div>
 					<div>
 						<img
 							className='circle'
 							src={circle}
-							alt='Finco logo'
+							alt='Finoccio logo'
 						/>
 					</div>
 				</section>

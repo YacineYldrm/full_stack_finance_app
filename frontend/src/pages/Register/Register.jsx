@@ -66,12 +66,12 @@ const Register = () => {
     return (
         <main className="registration">
             <div>
-                <img src={logo} alt="finco logo" />
+                <img src={logo} alt="finoccio logo" />
             </div>
             <div>
                 <h2>Create an account</h2>
                 <p>
-                    Welcome to Finco! Take control of your finances. Track your
+                    Welcome to Finoccio! Take control of your finances. Track your
                     spending and income to keep your finances organized.
                 </p>
             </div>
@@ -116,7 +116,7 @@ const Register = () => {
                             onChange={(e) =>
                                 setUserInfo({
                                     ...userInfo,
-                                    email: e.target.value,
+                                    email: e.target.value.toLowerCase(),
                                 })
                             }
                             type="text"

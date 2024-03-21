@@ -102,11 +102,11 @@ const createMailContent = (v_code, userInfo, link) => {
                     <img
                         src="cid:persianspacex@gmail.com"
                         alt="" />
-                    <h2>Welcome to Finco</h2>
+                    <h2>Welcome to Finoccio</h2>
                 </div>
                 <h3>Hello ${userInfo.user}</h3>
                 <h5>
-                    Welcome aboard! With Finco, you’re embarking on a journey towards
+                    Welcome aboard! With Finoccio, you’re embarking on a journey towards
                     your financial aspirations. From now on, stay in control of your
                     finances effortlessly. <br /><br />
                     Please <a href=${link}/${userInfo._id}>CLICK HERE!</a> and type in your verification code

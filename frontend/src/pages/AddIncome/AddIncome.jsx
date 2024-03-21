@@ -189,11 +189,7 @@ const AddIncome = ({ provider }) => {
 							btnContent={'Add income'}
 							btnFunction={addTransaction}
 						/>
-						<input
-							type='file'
-							accept='image/*'
-							onChange={(e) => setFile(e.target.files[0])}
-						/>
+						
 					</div>
 				</form>
 			</main>
