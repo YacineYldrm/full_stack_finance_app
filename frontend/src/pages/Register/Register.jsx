@@ -51,6 +51,14 @@ const Register = () => {
                 setMessage(
                     "Password must include at least: 8 Characters, 1 upper case letter, 1 lower case letter, 1 special character"
                 );
+            } else if (error.includes("firstName")) {
+                setMessage("Please enter your first name");
+            } else if (error.includes("lastName")) {
+                setMessage("Please enter your last name");
+            } else if (error.includes("email")) {
+                setMessage("Please enter your email");
+            } else if (error.includes("password")) {
+                setMessage("Please choose a password");
             } else {
                 console.log(error, message);
                 setMessage(error, message);
@@ -155,7 +163,7 @@ const Register = () => {
                     </label>
                     <label>
                         <input
-                            onClick={() => setAccepted(true)}
+                            onClick={() => setAccepted(!accepted)}
                             type="checkbox"
                             name=""
                             id=""
